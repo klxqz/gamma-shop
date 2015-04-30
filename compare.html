@@ -1,0 +1,167 @@
+{$wa->title('[`Compare products`]')}
+<link href="{$wa_active_theme_url}comparator.css?v{$wa_theme_version}" rel="stylesheet" type="text/css" />
+<script>
+    $(function () {
+        $("#compare-all").click(function () {
+            $("#product_comparison tr.same").show();
+            $(this).closest('ul').find('li.selected').removeClass('selected');
+            $(this).parent().addClass('selected');
+            return false;
+        });
+        $("#compare-diff").click(function () {
+            $("#product_comparison tr.same").hide();
+            $(this).closest('ul').find('li.selected').removeClass('selected');
+            $(this).parent().addClass('selected');
+            return false;
+        });
+        $(".cmp_remove").on('click', function () {
+            var compare = $.cookie('shop_compare');
+            if (compare) {
+                compare = compare.split(',');
+            } else {
+                compare = [];
+            }
+            var i = $.inArray($(this).data('product') + '', compare);
+            if (i != -1) {
+                compare.splice(i, 1)
+            }
+            if (compare) {
+                $.cookie('shop_compare', compare.join(','), {
+                    expires: 30, path: '/'
+                });
+            } else {
+                $.cookie('shop_compare', null);
+            }
+        });
+    });
+</script>
+
+
+
+
+<h1 class="page-heading">[`Compare products`]</h1>
+
+<div class="products_block">
+    <table class="table table-bordered product_list" id="product_comparison">
+        <tbody><tr>
+                <td class="td_empty compare_extra_information">
+                </td>
+                {foreach $products as $p}
+                    <td class="ajax_block_product comparison_infos product-block">
+                        <div class="ajax_product_info" 
+                             data-price="{shop_currency_html($p.price)|escape}"
+                             data-name="{$p.name|escape}" 
+                             data-url="{$p.frontend_url}" 
+                             {if class_exists(shopImgresizePlugin)}
+                                 data-img="{shopImgresizePlugin::getImgUrlByProduct($p,'80x80')}"
+                                 data-big-img="{shopImgresizePlugin::getImgUrlByProduct($p,'250x250')}"
+                             {else}
+                                 data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
+                                 data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
+                             {/if}
+                             ></div>
+                        {if count($products) > 2}
+                            <div class="remove">
+                                <a data-product="{$p.id}" href="{$p.delete_url}" title="[`Remove from comparison list`]" class="cmp_remove">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </div>
+                        {/if}
+                        <div class="product-image-block">
+                            <a title="{$p.name|escape}" href="{$wa->getUrl('/frontend/product/', ['product_url' => $p.url])}" class="product_image">
+                                {$wa->shop->productImgHtml($p, '250', ['itemprop' => 'image', 'class' => 'img-responsive', 'default' => "`$wa_theme_url`img/dummy96.png", 'title' => $p.name|cat:' ':strip_tags($p.summary)|escape])}
+                            </a>
+
+                        </div> <!-- end product-image-block -->
+                        <h5>
+                            <a title="{$p.name|escape}" href="{$p.frontend_url}" class="product-name">
+                                {$p.name|escape}
+                            </a>
+                        </h5>
+                        <div class="prices-container">
+                            {if $p.compare_price > 0}
+                                <span itemprop="price" class="price product-price product-price-new">
+                                    {shop_currency_html($p.price)}                                
+                                </span>
+                                <span class="old-price product-price">
+                                    {shop_currency_html($p.compare_price)}
+                                </span>
+
+                                {$percent = floor(($p.compare_price - $p.price) / $p.compare_price * 100)}
+                                <span class="price-percent-reduction">-{$percent}%</span>
+                            {else}
+                                <span class="price product-price" itemprop="price">
+                                    {shop_currency_html($p.price)}                               
+                                </span>
+                            {/if}
+                        </div> <!-- end prices-container -->
+
+                        <div class="product_desc">
+                            {$p.summary|truncate:80}
+                        </div>
+
+                        <div class="comparison_product_infos">
+                            <p class="comparison_availability_statut">
+                            </p>
+                            <div class="clearfix">
+                                <div class="button-container">
+                                    <form class="addtocart" {if $p.sku_count > 1}data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                                        <input type="hidden" name="product_id" value="{$p.id}">
+                                        <button class="button ajax_add_to_cart_button btn btn-default" {if !($wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0)}disabled="disabled"{/if}>
+                                            <span>[`Add to cart`]</span>
+                                        </button>
+                                    </form>
+                                    <a title="[`More`]" href="{$wa->getUrl('/frontend/product/', ['product_url' => $p.url])}" class="button lnk_view btn btn-default">
+                                        <span>[`More`]</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div> <!-- end comparison_product_infos -->
+                    </td>
+                {/foreach}
+
+            </tr>
+            <tr>
+                <td>[`Price`]</td>
+                {foreach $products as $p}
+                    <td>
+                        <span class="price nowrap">{shop_currency_html($p.price)}</span>
+                    </td>
+                {/foreach}
+            </tr>
+            {foreach $features as $f_id=>$f}
+                <tr{if $f.same} class="same"{/if}>
+                    <td>{$f.name}</td>
+                    {foreach $products as $p}
+                        <td>
+                            {if isset($p.features[$f_id])}
+                                {if is_array($p.features[$f_id])}
+                                    {implode(', ', $p.features[$f_id])}
+                                {else}
+                                    {$p.features[$f_id]}
+                                {/if}
+                            {else}
+                                <span class="gray">&mdash;</span>
+                            {/if}
+                        </td>
+                    {/foreach}
+                </tr>
+            {/foreach}
+
+        </tbody>
+    </table>
+</div> <!-- end products_block -->
+
+<ul class="footer_link">
+    <li>
+        <a title="[`Back to the store`]" href="{$wa_app_url}" class="button lnk_view btn btn-default">
+            <span>
+                <i class="icon-chevron-left left"></i>
+                [`Back to the store`]
+            </span>
+        </a>
+    </li>
+</ul>
+
+
+

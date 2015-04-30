@@ -1,0 +1,12 @@
+{$crossselling = $product->crossSelling()}
+
+{if $crossselling}
+    <section class="page-product-box">
+        <h3 class="page-product-heading">{sprintf('[`Customers who bought %s also bought`]', $product.name|escape)}</h3>
+        <div class="block products_block accessories-block clearfix">
+            <div class="block_content">
+                {include file="list-thumbs-product.html" products=$crossselling id="bxslider-crossselling"}
+            </div>
+        </div>	
+    </section>
+{/if}

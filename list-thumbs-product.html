@@ -1,0 +1,36 @@
+<ul {if !empty($id)}id="{$id}"{/if} class="bxslider clearfix">
+    {foreach $products as $p}
+        <li class="item product-box ajax_block_product {if $p@first}first_item{elseif $p@last}last_item{else}item{/if} product_accessories_description">
+            <div class="product_desc">
+                <a href="{$p.frontend_url}" title="" class="product-image product_image">
+                    {if class_exists(shopImgresizePlugin)}
+                        <img class="lazyOwl" itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($p,'270x270')}" />
+                    {else}
+                        {$wa->shop->productImgHtml($p, '270', ['class' => 'lazyOwl','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
+                    {/if}
+                </a>
+            </div>
+            <div class="s_title_block">
+                <h5 class="product-name">
+                    <a href="{$p.frontend_url}">
+                        {$p.name}
+                    </a>
+                </h5>
+                <span class="price">
+                    {if $theme_settings.ruble_symbol}
+                        {shop_currency_html($p.price)}
+                    {else}
+                        {shop_currency($p.price)}
+                    {/if}
+                </span>
+            </div>
+            <div class="clearfix">
+                <div class="no-print">
+                    <a class="exclusive button ajax_add_to_cart_button" href="#" data-id-product="1" title="Добавить в корзину">
+                        <span>Добавить в корзину</span>
+                    </a>
+                </div>
+            </div>
+        </li>
+    {/foreach}
+</ul>

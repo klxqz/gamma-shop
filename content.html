@@ -1,0 +1,142 @@
+{if $wa->currentUrl() == $wa_app_url}
+    {$content}
+{else}
+    {if !empty($breadcrumbs)}
+        <!-- Breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a title="Вернуться на главную" href="{$wa_app_url}" class="home">
+                <i class="icon-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+            {foreach $breadcrumbs as $breadcrumb}
+                <a href="{$breadcrumb.url}">{$breadcrumb.name}</a>
+                <span class="navigation-pipe">&gt;</span>
+            {/foreach}
+            {if !empty($category)}
+                {$category.name}
+            {elseif !empty($product)}
+                {$product.name}
+            {elseif !empty($page)}
+                {$page.name}
+            {/if}
+        </div>
+        <!-- /Breadcrumb -->
+    {/if}
+
+    <div class="row">
+        <div class="center_column col-xs-12" id="top_column">
+            <!-- plugin hook: 'frontend_header' -->
+            {* @event frontend_header.%plugin_id% *}
+            {foreach $frontend_header as $_}
+                {$_}
+            {/foreach}   
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- current page core content -->
+        {if !empty($category) || preg_match("/search/", $wa->currentUrl())}
+            <div id="left_column" class="column col-xs-12 col-sm-3"><!-- Block layered navigation module -->
+                {include file="`$wa_parent_theme_path`/sidebar.html" inline}
+            </div>
+            <div id="center_column" class="center_column col-xs-12 col-sm-9">
+                {$content}
+            </div>
+        {else}
+            <div id="center_column" class="center_column col-xs-12 col-sm-12">
+                {$content}
+            </div>
+        {/if}
+    </div><!-- .row -->
+{/if}
+
+
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/jquery.tmpl.min.js"></script>
+{literal}
+    <script id="cart_block_list_item_tmpl" type="text/x-jquery-tmpl">
+        <dt data-id="${id}">
+        <a class="cart-images" href="${url}"  title="${name}">
+        <img src="${img}" alt="${name}" /> 
+        </a>
+        <div class="cart-info">
+        <div class="product-name">
+        <a class="cart_block_product_name" href="${url}"  title="${name}">${name}</a>
+        </div>
+        <span class="quantity-formated">
+        <span class="quantity">${quantity}</span>&nbsp;x&nbsp;
+        </span>
+        <span class="price">{{html price}}</span>
+        </div>
+        <span class="remove_link">
+        <a class="ajax_cart_block_remove_link" href="#"  rel="nofollow">&nbsp;</a>
+        </span>
+        </dt>
+    </script>
+{/literal}
+
+{if !empty($theme_settings.layer_cart)}
+    <div id="layer_cart">
+        <div class="clearfix">
+            <div class="layer_cart_product col-xs-12 col-md-6">
+                <span title="Close window" class="cross"></span>
+                <h2>
+                    <i class="icon-ok"></i>
+                    Товар успешно добавлен в Вашу корзину
+                </h2>
+                <div class="product-image-container layer_cart_img">
+                    <img src="" class="layer_cart_img img-responsive">
+                </div>
+                <div class="layer_cart_product_info">
+                    <span class="product-name" id="layer_cart_product_title"></span>
+                    <span id="layer_cart_product_attributes"></span>
+                    <div>
+                        <strong class="dark">Количество</strong>
+                        <span id="layer_cart_product_quantity">4</span>
+                    </div>
+                    <div>
+                        <strong class="dark">Итого</strong>
+                        <span id="layer_cart_product_price"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="layer_cart_cart col-xs-12 col-md-6">
+                <h2>
+                    <span class="ajax_cart_product_txt">
+                        Всего товаров в Вашей коризне: <span class="ajax_cart_quantity"></span>.
+                    </span>
+                </h2>
+
+
+
+                <div class="layer_cart_row">
+                    <strong class="dark">
+                        Скидка
+                    </strong>
+                    <span class="ajax_cart_discount"></span>
+                </div>
+                <div class="layer_cart_row">	
+                    <strong class="dark">
+                        Итого
+                    </strong>
+                    <span class="ajax_block_cart_total"></span>
+                </div>
+                <div class="button-container">	
+                    <span title="Продолжить покупки" class="continue btn btn-default button exclusive-medium">
+                        <span>
+                            <i class="icon-chevron-left left"></i>
+                            Продолжить покупки
+                        </span>
+                    </span>
+                    <a rel="nofollow" title="Proceed to checkout" href="{$wa->getUrl('shop/frontend/cart')}" class="btn btn-default button button-medium">
+                        <span>
+                            Оформить заказ
+                            <i class="icon-chevron-right right"></i>
+                        </span>
+                    </a>	
+                </div>
+            </div>
+        </div>
+        <div class="crossseling"></div>
+    </div>
+    <div class="layer_cart_overlay"></div>
+{/if}

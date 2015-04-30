@@ -1,0 +1,59 @@
+{if $product.images}
+    <!-- product img-->        
+    <div id="image-block" class="clearfix">
+
+        {$badge_html = $wa->shop->badgeHtml($product.badge)}
+        {if $badge_html}
+            <div class="new-box no-print">
+                <span class="new-label">
+                    {$badge_html}
+                </span>
+            </div>
+        {/if}
+
+        <span id="view_full_size">
+            {if class_exists(shopImgresizePlugin)}
+                <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImgresizePlugin::getImgUrlByProduct($product,'800x800')}" itemprop="url">
+                    <img itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($product,'458x458')}" title="{$product.name}" alt="{$product.name}"/>
+                </a>
+            {else}
+                <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '800', false)}" itemprop="url">
+                    <img itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458', false)}" title="{$product.name}" alt="{$product.name}"/>
+                </a>
+            {/if}
+        </span>
+    </div> <!-- end image-block -->
+
+    {if count($product.images) > 1}
+        <!-- thumbnails -->
+        <div id="views_block" class="clearfix ">
+            <span class="view_scroll_spacer">
+                <a id="view_scroll_left" href="#">
+                    Previous
+                </a>
+            </span>
+
+            <div id="thumbs_list">
+                <ul id="thumbs_list_frame">
+                    {foreach $product.images as $image}
+                        <li id="thumbnail_{$image.id}">
+                            <a id="product-image-{$image.id}"
+                               href="javascript:void(0);"
+                               rel="{ldelim}gallery: 'gal1', smallimage: '{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'458x458')}',largeimage: '{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'800x800')}'{rdelim}"
+                               title="Cutting knife 2003">
+                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'80x80')}" alt="Cutting knife 2003" title="Cutting knife 2003" itemprop="image" />
+                            </a>
+                        </li>
+                    {/foreach}
+                </ul>
+
+            </div> <!-- end thumbs_list -->
+
+            <a id="view_scroll_right" href="#">
+                Next
+            </a>
+        </div> 
+        <!-- end views-block -->
+    {/if}
+
+{/if}

@@ -1,0 +1,50 @@
+{if $product.features}   
+    {if !empty($content_only)}
+        <table class="table-data-sheet">
+            {foreach $product.features as $f_code => $f_value}
+                <tr class="{if $f_value@iteration %2 == 1}odd{else}even{/if}">
+                    <td>
+                        {$features[$f_code].name|escape}
+                    </td>
+                    <td itemprop="{$f_code|escape}">
+                        {if is_array($f_value)}
+                            {if $features[$f_code].type == 'color'}
+                                {implode('<br /> ', $f_value)}
+                            {else}
+                                {implode(', ', $f_value)}
+                            {/if}
+                        {else}
+                            {$f_value}
+                        {/if}
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    {else}
+        <!-- Data sheet -->
+        <section class="page-product-box">
+            <h3 class="page-product-heading">{$theme_settings.product_features_section_title}</h3>
+            <table class="table-data-sheet">
+                {foreach $product.features as $f_code => $f_value}
+                    <tr class="{if $f_value@iteration %2 == 1}odd{else}even{/if}">
+                        <td>
+                            {$features[$f_code].name|escape}
+                        </td>
+                        <td itemprop="{$f_code|escape}">
+                            {if is_array($f_value)}
+                                {if $features[$f_code].type == 'color'}
+                                    {implode('<br /> ', $f_value)}
+                                {else}
+                                    {implode(', ', $f_value)}
+                                {/if}
+                            {else}
+                                {$f_value}
+                            {/if}
+                        </td>
+                    </tr>
+                {/foreach}
+            </table>
+        </section>
+        <!--end Data sheet -->
+    {/if}
+{/if}

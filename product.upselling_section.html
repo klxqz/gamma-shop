@@ -1,0 +1,17 @@
+{$upselling = $product->upSelling()}
+{if $upselling}
+    <!--Accessories -->
+    <section class="page-product-box">
+        <h3 class="page-product-heading">
+            [`See also`]
+            {$compare_ids = array_merge(array($product.id), array_keys($upselling))}
+            <a href="{$wa->getUrl('/frontend/compare', ['id' => implode(',', $compare_ids)])}"  />[`Compare all`]</a>
+        </h3>
+        <div class="block products_block accessories-block clearfix">
+            <div class="block_content">
+                {include file="list-thumbs-product.html" products=$upselling id="bxslider-upselling"}
+            </div>
+        </div>	
+    </section>
+    <!--end Accessories -->
+{/if}

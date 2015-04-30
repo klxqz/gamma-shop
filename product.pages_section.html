@@ -1,0 +1,10 @@
+{foreach $product.pages as $page}
+    <section class="page-product-box">
+        <h3 class="page-product-heading">{$page.name|escape}</h3>
+        <div class="block products_block accessories-block clearfix">
+            <div class="block_content">
+                {$page.content}
+            </div>
+        </div>	
+    </section>
+{/foreach}

@@ -1,0 +1,338 @@
+<div class="row">
+    <div id="top_column" class="center_column col-xs-12">  
+        {if $theme_settings.slider}
+            <div id="homepage-slider">
+                <ul id="homeslider">
+                    {if !empty($theme_settings.slide1)}
+                        <li class="homeslider-container">
+                            <a href="{$theme_settings.slide1_url}">
+                                <img src="{$wa_theme_url}{$theme_settings.slide1}"/>
+                            </a>
+                            <div class="homeslider-description">
+                                {$theme_settings.slide1_description}
+                            </div>
+                        </li>
+                    {/if}
+
+                    {if !empty($theme_settings.slide2)}
+                        <li class="homeslider-container">
+                            <a href="{$theme_settings.slide2_url}">
+                                <img src="{$wa_theme_url}{$theme_settings.slide2}"/>
+                            </a>
+                            <div class="homeslider-description">
+                                {$theme_settings.slide2_description}
+                            </div>
+                        </li>
+                    {/if}
+
+                    {if !empty($theme_settings.slide3)}
+                        <li class="homeslider-container">
+                            <a href="{$theme_settings.slide3_url}">
+                                <img src="{$wa_theme_url}{$theme_settings.slide3}"/>
+                            </a>
+                            <div class="homeslider-description">
+                                {$theme_settings.slide3_description}
+                            </div>
+                        </li>
+                    {/if}
+
+                    {if !empty($theme_settings.slide4)}
+                        <li class="homeslider-container">
+                            <a href="{$theme_settings.slide4_url}">
+                                <img src="{$wa_theme_url}{$theme_settings.slide4}"/>
+                            </a>
+                            <div class="homeslider-description">
+                                {$theme_settings.slide4_description}
+                            </div>
+                        </li>
+                    {/if}
+
+                    {if !empty($theme_settings.slide5)}
+                        <li class="homeslider-container">
+                            <a href="{$theme_settings.slide5_url}">
+                                <img src="{$wa_theme_url}{$theme_settings.slide5}"/>
+                            </a>
+                            <div class="homeslider-description">
+                                {$theme_settings.slide5_description}
+                            </div>
+                        </li>
+                    {/if}
+
+                </ul>
+            </div>
+        {/if}
+
+        {if !empty($theme_settings.banners)}
+            <div id="htmlcontent_top">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1">
+                        <a href="{$theme_settings.banner1_url}"  class="item-link" title="">
+                            <img src="{$wa_theme_url}{$theme_settings.banner1}"  class="item-img"/>
+                            <div class="item-html">
+                                {$theme_settings.banner1_description}
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-2">
+                        <a href="{$theme_settings.banner2_url}"  class="item-link" title="">
+                            <img src="{$wa_theme_url}{$theme_settings.banner2}"  class="item-img"/>
+                            <div class="item-html">
+                                {$theme_settings.banner2_description}
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {/if}
+    </div>
+</div>
+<div class="row">
+    <div id="center_column" class="center_column col-xs-12 col-sm-12">
+        <ul id="home-page-tabs" class="nav nav-tabs clearfix">
+            {if $theme_settings.productlist1}
+                <li>
+                    <a data-toggle="tab" href="#list1" class="blocknewproducts" title="{$theme_settings.productlist1_name|escape}">{$theme_settings.productlist1_name}</a>
+                </li>
+            {/if}
+            {if $theme_settings.productlist2}
+                <li>
+                    <a data-toggle="tab" href="#list2" class="homefeatured" title="{$theme_settings.productlist2_name|escape}">{$theme_settings.productlist2_name}</a>
+                </li>
+            {/if}
+            {if $theme_settings.productlist3}
+                <li>
+                    <a data-toggle="tab" href="#list3" class="blockbestsellers" title="{$theme_settings.productlist3_name|escape}">{$theme_settings.productlist3_name}</a>
+                </li>
+            {/if}
+        </ul>
+        <div class="tab-content">
+
+            {if $theme_settings.productlist1}
+                {include file='list-thumbs-home.html' products=$wa->shop->productSet($theme_settings.productlist1_list) id="list1" class="product_list grid row tab-pane"}
+            {/if}
+            {if $theme_settings.productlist2}
+                {include file='list-thumbs-home.html' products=$wa->shop->productSet($theme_settings.productlist2_list) id="list2" class="product_list grid row tab-pane"}
+            {/if}
+            {if $theme_settings.productlist3}
+                {include file='list-thumbs-home.html' products=$wa->shop->productSet($theme_settings.productlist3_list) id="list3" class="product_list grid row tab-pane"}
+            {/if}
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#home-page-tabs li:first').addClass('active');
+                $('#center_column .product_list:first').addClass('active');
+            });
+        </script>
+
+        <div class="clearfix"> 
+
+            <section class="page-product-box">
+                <h3 class="page-product-heading">
+                    О нас
+                </h3>
+                <div class="block products_block accessories-block clearfix">
+                    <div class="block_content">
+                        <div itemscope itemtype="http://schema.org/Store">
+                            <h1 class="align-center"><span itemprop="name">{sprintf('[`%s online store`]', $wa->shop->settings('name'))}</span></h1>
+                            <meta itemprop="description" content="{$wa->meta('description')|escape}">
+
+                            {if $wa->shop->settings('phone')}
+                                <p class="align-center large">[`Contact us`]: <strong itemprop="telephone">{$wa->shop->settings('phone')}</strong></p>
+                                {/if}
+                            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                <meta itemprop="streetAddress" content="">
+                                <meta itemprop="addressLocality" content="">
+                                <meta itemprop="addressRegion" content="">
+                                <meta itemprop="postalCode" content="">
+                                <meta itemprop="addressCountry" content="{$wa->shop->settings('country')|upper}">
+                            </div>
+
+                            <p class="align-center gray">[`Edit this information in the <strong>home.html</strong> template file using built-in design editor in the store backend.`]</p>
+
+                        </div>
+                    </div>
+                </div>	
+            </section>
+        </div>
+
+        {if !empty($theme_settings.home_photo) || !empty($theme_settings.home_news)}
+            <div class="clearfix row"> 
+                {if !empty($theme_settings.home_photo)}
+                    <div  class="col-xs-12 {if !empty($theme_settings.home_news)}col-sm-4{else}col-sm-12{/if}">
+                        <section class="page-product-box">
+                            <h3 class="page-product-heading">
+                                {$theme_settings.home_photo_title}
+                            </h3>
+                            <div class="block products_block accessories-block clearfix">
+                                <div class="block_content">
+                                    {$number_photo = $theme_settings.home_number_photo}
+                                    {$photos = $wa->photos->photos('',null, 0, $number_photo)}
+                                    <ul id="bxslider-photo">
+                                        {foreach from=$photos item=photo}
+                                            <li{if $photo.stack_count > 0} class="stacked"{/if}>
+                                                <div class="image">
+                                                    {$size_photo = $theme_settings.home_size_photo}
+                                                    {if empty($photo.frontend_link)}
+                                                        {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
+                                                    {else}
+                                                        <a href="{$photo.frontend_link|default:'#'}">
+                                                            {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
+                                                        </a>
+                                                    {/if}
+                                                </div>
+                                            </li>
+                                        {/foreach}
+                                    </ul>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#bxslider-photo').bxSlider({
+                                                minSlides: 1,
+                                                maxSlides: 5,
+                                                pager: false,
+                                                nextText: '',
+                                                prevText: '',
+                                                moveSlides: 1,
+                                                infiniteLoop: false,
+                                                hideControlOnEnd: true
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>	
+                        </section>
+                    </div>
+                {/if}
+
+                {if !empty($theme_settings.home_news)}
+                    <div  class="col-xs-12 {if !empty($theme_settings.home_photo)}col-sm-8{else}col-sm-12{/if}">
+                        <section class="page-product-box">
+                            <h3 class="page-product-heading">
+                                {$theme_settings.home_news_title}
+                            </h3>
+                            <div class="block products_block accessories-block clearfix">
+                                <div class="block_content">
+
+                                    {$latest_posts = $wa->blog->posts()}
+
+                                    <ul id="bxslider-news">
+
+                                        {foreach $latest_posts as $post}
+                                            <li>
+                                                <div class="post">
+                                                    <h3>
+                                                        <a href="{$post.link}">{$post.title}</a>
+                                                        {* @event prepare_posts_frontend.%plugin_id%.post_title *}
+                                                        {if !empty($post.plugins.post_title)}
+                                                            {foreach $post.plugins.post_title as $plugin => $output}
+                                                                {$output}
+                                                            {/foreach}
+                                                        {/if}
+                                                    </h3>
+                                                    <div class="credentials">
+                                                        {if $post.user.posts_link}
+                                                            <a href="{$post.user.posts_link}" class="username">{$post.user.name}</a>
+                                                        {else}
+                                                            <span class="username">{$post.user.name}</span>
+                                                        {/if}
+                                                        {$post.datetime|wa_datetime:"humandate"}
+                                                    </div>
+                                                    <p>
+                                                        {$post.text|strip_tags|truncate:400}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        {/foreach}
+
+                                    </ul>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#bxslider-news').bxSlider({
+                                                minSlides: 3,
+                                                maxSlides: 6,
+                                                slideWidth: 240,
+                                                slideMargin: 20,
+                                                pager: false,
+                                                nextText: '',
+                                                prevText: '',
+                                                moveSlides: 1,
+                                                infiniteLoop: false,
+                                                hideControlOnEnd: true
+                                            });
+                                        });
+                                    </script>
+
+
+
+                                </div>
+                            </div>	
+                        </section>
+                    </div>
+                {/if}
+            </div>
+        {/if}
+
+        {if !empty($theme_settings.home_custom)}
+            <div class="clearfix"> 
+
+                <div id="htmlcontent_home">
+                    <ul class="htmlcontent-home clearfix row">
+                        <li class="htmlcontent-item-1 col-xs-6 ">
+                            <a href="{$theme_settings.banner3_url}"  class="item-link">
+                                <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner3_description}
+                                </div>
+                            </a>
+                        </li>
+                        <li class="htmlcontent-item-2 col-xs-6 ">
+                            <a href="{$theme_settings.banner4_url}"  class="item-link">
+                                <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner4_description}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {if $theme_settings.home_vk_widget}
+                    <div id="facebook_block" class="col-xs-4 div7">
+                        <div class="div">
+                            <h4>[`We VKontakte`]</h4>
+                            <div class="facebook-fanbox">
+                                {include file="`$wa_parent_theme_path`/widget.vk.html"}
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+
+                {if $theme_settings.home_facebook_widget}
+                    <div id="facebook_block" class="col-xs-4 div7">
+                        <div class="div">
+                            <h4>[`Follow us on facebook`]</h4>
+                            <div class="facebook-fanbox">
+                                {include file="`$wa_parent_theme_path`/widget.facebook.html"}
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+
+
+
+                <div id="cmsinfo_block">
+                    <div class="col-xs-6">
+                        <div class="div">
+                            {$theme_settings.home_custom_block1}
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="div">
+                            {$theme_settings.home_custom_block2}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
+    </div> 
+</div> 

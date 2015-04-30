@@ -1,0 +1,308 @@
+{if $wa->get('quick_view')}
+    {include file="quick-view.html"}
+{else}
+    <link rel="stylesheet" href="{$wa_theme_url}print.css" media="all" />
+    <link rel="stylesheet" href="{$wa_theme_url}jquery.jqzoom.css" media="all" />
+
+
+    <div class="primary_block row" itemscope itemtype="http://schema.org/Product">
+        <input type="hidden" id="is_product_page" value="{$product.id}" />
+        <div class="container">
+            <div class="top-hr"></div>
+            <!-- product page navigation -->
+        </div>
+        <!-- left infos-->  
+        <div class="pb-left-column col-xs-12  col-sm-4 col-md-5">
+            {include file="product.images.html"}
+        </div> 
+        <!-- end pb-left-column -->
+        <!-- end left infos--> 
+
+        <!-- center infos -->
+        <div class="pb-center-column col-xs-12  col-sm-4">
+            <h1 itemprop="name">{$product.name|escape}</h1>
+
+            <div class="comments_note clearfix no-print" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                <div class="star_content clearfix">
+                    {for $i=1 to 5}
+                        <div class="star{if $product.rating >= $i} star_on{/if}"></div>
+                    {/for}
+                    <meta itemprop="ratingValue" content = "{$product.rating}" />
+                </div>
+            </div> <!-- .comments_note -->
+
+
+            {if $product.summary}
+                <div id="short_description_block">
+                    <div id="short_description_content" class="rte align_justify" itemprop="description">
+                        {$product.summary|truncate:255}
+                    </div>
+
+                    <p class="buttons_bottom_block">
+                        <a href="javascript:{}" class="button">
+                            Подробнее
+                        </a>
+                    </p>
+                    <!---->
+                </div> <!-- end short_description_block -->
+            {/if}
+
+            {if !empty($theme_settings.product_share_buttons)}
+                <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+                <div class="yashare-auto-init"
+                     data-yashareL10n="ru"
+                     data-yashareQuickServices="{$theme_settings.product_share_buttons}"
+                     data-yashareTitle="{$wa->title()|escape}"
+                     data-yashareDescription="{$wa->meta('description')|escape}"
+                     data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
+                     data-yashareType="none"
+                     ></div>
+            {/if}
+
+            <br/>
+
+            <!-- categories -->
+            {if !empty($theme_settings.show_product_category) && $product.categories}
+                <p id="product-categories">
+                    [`Categories`]:
+                    {foreach $product.categories as $c}
+                        {if $c.status}
+                            <span class="product-info">
+                                <a href="{$wa->getUrl('/frontend/category', ['category_url' => $c.full_url])}">{$c.name|escape}</a>{if !$c@last}, {/if}
+                            </span>
+                        {/if}
+                    {/foreach}
+                </p>
+            {/if}
+
+            <!-- tags -->
+            {if !empty($theme_settings.show_product_tag) && $product.tags}
+                <p class="tags" id="product-tags">
+                    [`Tags`]:
+                    <span class="product-info">
+                        {foreach $product.tags as $t}
+                            <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
+                        {/foreach}
+                    </span>
+                </p>
+            {/if}
+
+            <!-- plugin hook: 'frontend_product.block_aux' -->
+            {* @event frontend_product.%plugin_id%.block_aux *}
+            {foreach $frontend_product as $_}
+                {$_.block_aux}
+            {/foreach}
+
+
+
+            <!-- usefull links-->
+            {$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
+            <ul id="usefull_link_block" class="clearfix no-print">
+                <li class="compare">
+                    <a {if $compare}style="display:none"{/if} class="compare-add inline-link" data-product="{$product.id}" href="#"><b><i>[`Add to comparison table`]</i></b></a>
+                    <a {if !$compare}style="display:none"{/if} class="compare-remove inline-link" data-product="{$product.id}" href="#"><b><i>[`Remove from comparison table`]</i></b></a>
+                    <a id="compare-link" {if count($compare) lt 2}style="display:none"{/if} rel="nofollow" href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="bold">[`Compare`] <span class="count">{count($compare)}</span></a>
+                </li>
+                <li class="favorite">
+                    <a data-id="{$product.id}" href="#" {if in_array($product.id, $wishlist)}class="checked"{/if}>
+                        {if in_array($product.id, $wishlist)}
+                            [`Remove from wishlist`]
+                        {else}
+                            [`Add to wishlist`]
+                        {/if}
+                    </a>
+                </li>
+                <li class="print">
+                    <a href="javascript:print();">
+                        Распечатать
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- end center infos-->
+
+        <!-- pb-right-column-->
+        <div class="pb-right-column col-xs-12  col-sm-4 col-md-3">
+            {include file="product.cart.html" inline}
+
+
+            <div class="clear"></div>
+        </div> 
+        <!-- end pb-right-column-->
+    </div> <!-- end primary_block -->
+
+
+    {$available_sections = [
+            'features_section',
+            'description_section',
+            'reviews_section',
+            'pages_section',
+            'plugin_menu_section'
+        ]}
+    {$product_sections = explode("\n", $theme_settings.product_sections)}
+
+
+    {if $theme_settings.product_display_mode == 'tabs'}
+        <ul id="product-tabs" class="nav nav-tabs clearfix">
+            {foreach $product_sections as $product_section}
+                {if in_array($product_section, $available_sections) && !empty($theme_settings["product_`$product_section`_title"])}
+                    {$title = $theme_settings["product_`$product_section`_title"]}
+                    <li>
+                        <a data-toggle="tab" href="#{$product_section}">{$title}</a>
+                    </li>
+                {/if}
+            {/foreach}
+            {if in_array('pages_section', $product_sections)}
+                {foreach $product.pages as $page}
+                    <li>
+                        <a data-toggle="tab" href="#pages_section_{$page.id}">{$page.name|escape}</a>
+                    </li>
+                {/foreach}
+            {/if}
+        </ul>
+        <div class="tab-content">
+            {foreach $product_sections as $product_section}
+                {if in_array($product_section, $available_sections) && !empty($theme_settings["product_`$product_section`_title"])}
+                    <div id="{$product_section}" class="tab-pane">
+                        {include file="product.`$product_section`.html" content_only = true}
+                    </div>
+                {/if}
+            {/foreach}
+
+            {if in_array('pages_section', $product_sections)}
+                {foreach $product.pages as $page}
+                    <div id="pages_section_{$page.id}" class="tab-pane">
+                        {$page.content}
+                    </div>
+                {/foreach}
+            {/if}
+
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#product-tabs li:first').addClass('active');
+                $('.tab-content .tab-pane:first').addClass('active');
+            });
+        </script>
+    {else}
+
+        {foreach $product_sections as $product_section}
+            {if in_array($product_section, $available_sections)}
+                {include file="product.`$product_section`.html"}        
+            {/if}
+        {/foreach}
+
+    {/if}
+
+    {include file="product.upselling_section.html"} 
+    {include file="product.crossselling_section.html"} 
+
+
+
+    {literal}
+
+        <script type="text/javascript">
+            var CUSTOMIZE_TEXTFIELD = 1;
+            var FancyboxI18nClose = 'Close';
+            var FancyboxI18nNext = 'Next';
+            var FancyboxI18nPrev = 'Previous';
+            var PS_CATALOG_MODE = false;
+            var added_to_wishlist = 'Added to your wishlist.';
+            var ajaxsearch = true;
+            var allowBuyWhenOutOfStock = false;
+            var attribute_anchor_separator = '-';
+            var attributesCombinations = [];
+            var availableLaterValue = '';
+            var availableNowValue = '';
+            var baseDir = '#';
+            var baseUri = '#';
+            var blocksearch_type = 'top';
+            var confirm_report_message = 'Вы уверены, что хотите внести этот комментарий?';
+            var contentOnly = false;
+            var currencyBlank = 0;
+            var currencyFormat = 1;
+            var currencyRate = 1;
+            var currencySign = '$';
+            var currentDate = '2015-02-12 08:04:10';
+            var customizationFields = false;
+            var customizationIdMessage = 'Модификация №';
+            var default_eco_tax = 0;
+            var delete_txt = 'Удалить';
+            var displayPrice = 1;
+            var doesntExist = 'Данная модификация отсутствует. Пожалуйста, выберите другую.';
+            var doesntExistNoMore = 'Этого товара нет в наличии';
+            var doesntExistNoMoreBut = 'с указанными характеристиками, выберите другие';
+            var ecotaxTax_rate = 0;
+            var fieldRequired = 'Пожалуйста заполните все требуемые поля, затем сохраните модификацию.';
+            var freeProductTranslation = 'Бесплатно!';
+            var freeShippingTranslation = 'Бесплатная доставка!';
+            var generated_date = 1423746250;
+            var group_reduction = 0;
+            var idDefaultImage = 1;
+            var id_lang = 3;
+            var id_product = 1;
+            var img_dir = '#';
+            var img_prod_dir = '#';
+            var img_ps_dir = '#';
+            var instantsearch = true;
+            var isGuest = 0;
+            var isLogged = 0;
+            var jqZoomEnabled = true;
+            var loggin_required = 'You must be logged in to manage your wishlist.';
+            var maxQuantityToAllowDisplayOfLastQuantityMessage = 3;
+            var minimalQuantity = 1;
+            var moderation_active = true;
+            var mywishlist_url = '#';
+            var noTaxForThisProduct = true;
+            var oosHookJsCodeFunctions = [];
+            var page_name = 'product';
+            var placeholder_blocknewsletter = 'Enter your e-mail';
+            var priceDisplayMethod = 1;
+            var priceDisplayPrecision = 2;
+            var productAvailableForOrder = true;
+            var productBasePriceTaxExcluded = 128.96;
+            var productColumns = '1';
+            var productHasAttributes = false;
+            var productPrice = 122.51;
+            var productPriceTaxExcluded = 128.96;
+            var productPriceWithoutReduction = 128.96;
+            var productReference = '';
+            var productShowPrice = true;
+            var productUnitPriceRatio = 0;
+            var product_specific_price = {"id_specific_price": "1", "id_specific_price_rule": "0", "id_cart": "0", "id_product": "1", "id_shop": "1", "id_shop_group": "0", "id_currency": "0", "id_country": "0", "id_group": "0", "id_customer": "0", "id_product_attribute": "0", "price": "-1.000000", "from_quantity": "1", "reduction": "0.050000", "reduction_type": "percentage", "from": "0000-00-00 00:00:00", "to": "0000-00-00 00:00:00", "score": "48"};
+            var productcomment_added = 'Ваш комментарий был добавлен!';
+            var productcomment_added_moderation = 'Ваш комментарий был добавлен и будет доступен после одобрения модератором.';
+            var productcomment_ok = 'ОК';
+            var productcomment_title = 'Новый комментарий';
+            var productcomments_controller_url = '#';
+            var productcomments_url_rewrite = false;
+            var quantitiesDisplayAllowed = true;
+            var quantityAvailable = 98;
+            var quickView = true;
+            var reduction_percent = 5;
+            var reduction_price = 0;
+            var removingLinkText = 'удалить товар из корзины';
+            var roundMode = 2;
+            var search_url = '#';
+            var secure_key = 'e91de9f1c7ff79a6d3bf228047e949d3';
+            var specific_currency = false;
+            var specific_price = -1;
+            var static_token = 'e7c9cea3b7e2312c7993bb42fc33064e';
+            var stf_msg_error = 'Ваше письмо не может быть отправлено. Пожалуйста, проверьте адрес и попробуйте еще раз.';
+            var stf_msg_required = 'Вы не заполнили все обязательные поля';
+            var stf_msg_success = 'Ваше письмо успешно отправлено';
+            var stf_msg_title = 'Send to a friend';
+            var stf_secure_key = '940f77d1d05d4ebfcc8d4feb6b19d798';
+            var stock_management = 1;
+            var taxRate = 0;
+            var token = 'e7c9cea3b7e2312c7993bb42fc33064e';
+            var uploading_in_progress = 'Пожалуйста подождите...';
+            var usingSecureMode = false;
+            var wishlistProductsIds = false;
+        </script>
+    {/literal}
+
+    <script type="text/javascript" src="{$wa_theme_url}product_script.js" ></script>
+    <script type="text/javascript" src="{$wa_theme_url}jquery.jqzoom.js" ></script>
+{/if}

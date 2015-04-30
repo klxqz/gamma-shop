@@ -1,0 +1,144 @@
+<!-- Products list -->
+<ul{if !empty($id)} id="{$id}"{/if}{if !empty($class)} class="{$class}"{/if}>
+    {foreach $products as $p name=products}
+        <li class="ajax_block_product col-xs-12 col-sm-4 col-md-3
+            {if $smarty.foreach.products.index % 8 == 0}
+                first-in-line first-item-of-tablet-line first-item-of-mobile-line
+            {elseif ($smarty.foreach.products.index+1) % 8 == 0}
+                last-in-line last-line last-item-of-mobile-line last-mobile-line
+            {elseif ($smarty.foreach.products.index+2) % 8 == 0}
+                last-line first-item-of-tablet-line first-item-of-mobile-line last-mobile-line
+            {elseif ($smarty.foreach.products.index+3) % 8 == 0}
+                last-line last-item-of-tablet-line last-item-of-mobile-line
+            {elseif ($smarty.foreach.products.index+4) % 8 == 0}
+                first-in-line last-line first-item-of-mobile-line
+            {elseif ($smarty.foreach.products.index+5) % 8 == 0}
+                last-in-line first-item-of-tablet-line last-item-of-mobile-line
+            {elseif ($smarty.foreach.products.index+6) % 8 == 0}
+                last-item-of-tablet-line first-item-of-mobile-line
+            {elseif ($smarty.foreach.products.index+7) % 8 == 0}
+                last-item-of-mobile-line
+            {/if}">
+
+            <div class="product-container" itemscope itemtype="http://schema.org/Product">
+                <div class="left-block">
+                    <div class="ajax_product_info" 
+                         data-price="{shop_currency_html($p.price)|escape}"
+                         data-name="{$p.name|escape}" 
+                         data-url="{$p.frontend_url}" 
+                         {if class_exists(shopImgresizePlugin)}
+                             data-img="{shopImgresizePlugin::getImgUrlByProduct($p,'80x80')}"
+                         {else}
+                             data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
+                         {/if}
+                         {if class_exists(shopImgresizePlugin)}
+                             data-big-img="{shopImgresizePlugin::getImgUrlByProduct($p,'250x250')}"
+                         {else}
+                             data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
+                         {/if}
+                         ></div>
+                    <div class="product-image-container">
+                        <a class="product_img_link" href="{$p.frontend_url}" title="{$p.name}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}" itemprop="url">
+                            {if class_exists(shopImgresizePlugin)}
+                                <img class="replace-2x img-responsive" itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($p,'270x270')}" />
+                            {else}
+                                {$wa->shop->productImgHtml($p, '270', ['class' => 'replace-2x img-responsive','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
+                            {/if}
+                        </a>
+                        {if !empty($theme_settings.quick_view)}
+                            <a class="quick-view" href="{$p.frontend_url}" rel="{$p.frontend_url}">
+                                <span>[`Quick view`]</span>
+                            </a>
+                        {/if}
+                        {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                        {if $badge_html}
+                            <div class="new-box">
+                                <span class="new-label">
+                                    {$badge_html}
+                                </span>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <div class="right-block">
+                    <h5 itemprop="name">
+                        <a class="product-name" href="{$p.frontend_url}" title="{$p.name}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}" itemprop="url" >
+                            <span class="list-name">{$p.name}</span>
+                            <span class="grid-name">{$p.name}</span>
+                        </a>
+                    </h5>
+                    <div class="comments_note" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">	
+                        <div class="star_content clearfix">
+                            {for $i=1 to 5}
+                                <div class="star{if $p.rating >= $i} star_on{/if}"></div>
+                            {/for}
+                            <meta itemprop="ratingValue" content = "{$p.rating}" />
+                        </div>
+                    </div>
+                    {if $p.summary}
+                        <p class="product-desc" itemprop="description">
+                            <span class="list-desc">{$p.summary|truncate:255}</span>
+                            <span class="grid-desc">{$p.summary|truncate:80}</span>
+                        </p>
+                    {/if}
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="content_price">
+                        {if $p.compare_price > 0}
+                            <span itemprop="price" class="price product-price product-price-new">
+                                {if $theme_settings.ruble_symbol}
+                                    {shop_currency_html($p.price)}   
+                                {else}
+                                    {shop_currency($p.price)}   
+                                {/if}
+                            </span>
+                            <span class="old-price product-price">
+                                {if $theme_settings.ruble_symbol}
+                                    {shop_currency_html($p.compare_price)}
+                                {else}
+                                    {shop_currency($p.compare_price)}
+                                {/if}
+                            </span>
+
+                            {$percent = floor(($p.compare_price - $p.price) / $p.compare_price * 100)}
+                            <span class="price-percent-reduction">-{$percent}%</span>
+                        {else}
+                            <span class="price product-price" itemprop="price">
+                                {if $theme_settings.ruble_symbol}
+                                    {shop_currency_html($p.price)}   
+                                {else}
+                                    {shop_currency($p.price)}   
+                                {/if}                             
+                            </span>
+                        {/if}
+                    </div>
+                    <div class="button-container">
+                        <form class="addtocart" {if $p.sku_count > 1}data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                            <input type="hidden" name="product_id" value="{$p.id}">
+                            <a class="button ajax_add_to_cart_button btn btn-default{if !($wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0)} disabled{/if}">
+                                <span>[`Add to cart`]</span>
+                            </a>
+                        </form>
+
+                        <a itemprop="url" class="button lnk_view btn btn-default" href="{$p.frontend_url}" title="View">
+                            <span>More</span>
+                        </a>
+                    </div>
+                    <div class="color-list-container"> </div>
+                    <div class="product-flags"></div>
+                    <span itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="availability">
+                        {if !($p.count === null || $p.count > 0)}
+                            <span class="out-of-stock">
+                                <link itemprop="availability" href="http://schema.org/OutOfStock" />
+                                {if $wa->shop->settings('ignore_stock_count')}[`Pre-order only`]{else}[`Out of stock`]{/if}
+                            </span>
+                        {else}
+                            <span class="available-now">
+                                <link itemprop="availability" href="http://schema.org/InStock" />
+                                [`In stock`]
+                            </span>
+                        {/if}
+                    </span>
+                </div>
+            </div><!-- .product-container> -->
+        </li>
+    {/foreach}
+</ul>

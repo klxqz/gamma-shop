@@ -1,0 +1,12 @@
+{if $product.description}
+    {if !empty($content_only)}
+        {$product.description}
+    {else}
+        <section class="page-product-box">
+            <h3 class="page-product-heading">{$theme_settings.product_description_section_title}</h3>									
+            <div  class="rte" itemprop="description">
+                {$product.description}
+            </div>
+        </section>
+    {/if}
+{/if}

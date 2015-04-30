@@ -1,0 +1,53 @@
+<ul>
+    {foreach $products as $p}
+        <li class="clearfix">
+            <a class="products-block-image" href="{$p.frontend_url}">
+                {if class_exists(shopImgresizePlugin)}
+                    <img class="replace-2x img-responsive" src="{shopImgresizePlugin::getImgUrlByProduct($p,'98x98')}" alt="" title="{$p.name}" />
+                {else}
+                    {$wa->shop->productImgHtml($p, '98x98', ['class' => 'replace-2x img-responsive', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
+                {/if}
+            </a>
+            <div class="product-content">
+                <h5>
+                    <a class="product-name" href="{$p.frontend_url}" title="{$p.name}">
+                        {$p.name}
+                    </a>
+                </h5>
+                {if $p.summary}
+                    <p class="product-description">
+                        {$p.summary|truncate:60}
+                    </p>
+                {/if}
+                <div class="price-box">
+                    {if $p.compare_price > 0}
+                        <span class="price special-price">
+                            {if $theme_settings.ruble_symbol}
+                                {shop_currency_html($p.price)}   
+                            {else}
+                                {shop_currency($p.price)}   
+                            {/if}
+                        </span>
+                        {$percent = floor(($p.compare_price - $p.price) / $p.compare_price * 100)}
+                        <span class="price-percent-reduction">-{$percent}%</span>
+                        <span class="old-price">
+                            {if $theme_settings.ruble_symbol}
+                                {shop_currency_html($p.compare_price)}
+                            {else}
+                                {shop_currency($p.compare_price)}
+                            {/if}
+                        </span>
+                    {else}
+                        <span class="price">
+                            {if $theme_settings.ruble_symbol}
+                                {shop_currency_html($p.price)}   
+                            {else}
+                                {shop_currency($p.price)}   
+                            {/if}                                    
+                        </span>
+                    {/if}
+                </div>
+            </div>
+        </li>
+    {/foreach}
+</ul>

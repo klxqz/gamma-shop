@@ -1,0 +1,66 @@
+{function reviews_content}
+    <div id="product_comments_block_tab">
+        {if $theme_settings.product_reviews_display_mode == 'separate_page'}
+            {foreach $reviews as $review}
+                {include file="review.html" reply_allowed=false inline}
+            {/foreach}
+
+            {if !$reviews}
+                <p>{sprintf('[`Be the first to <a href="%s">write a review</a> of this product!`]', 'reviews/')}</p>
+            {else}
+                {sprintf(_w(
+                            'Read <a href="%s">all %d review</a> on %s', 
+                            'Read <a href="%s">all %d reviews</a> on %s', 
+                            $reviews_total_count, false
+                        ), 'reviews/', $reviews_total_count, $product.name|escape)
+                }
+            {/if}            
+        {/if}
+
+    </div>
+    {if $theme_settings.product_reviews_display_mode == 'product_page'}
+        <script type="text/javascript">
+            $(function () {
+                var loading = $('<div><i class="icon16 loading"></i></div>'),
+                        prdu = "{$wa->shop->productUrl($product)}";
+                $('#product_comments_block_tab')
+                        .append(loading)
+                        .load(prdu + 'reviews/ .reviews', { random: "1" },
+                        function () {
+                            initFormControl();
+                            $(this).prepend('<script type="text/javascript" src="{$wa_app_static_url}js/rate.widget.js"><\/script>')
+                                    .prepend('<script type="text/javascript" src="{$wa_theme_url}reviews.js"><\/script>')
+                                    .find('.loading').parent().remove();
+
+                            $('div.wa-captcha .wa-captcha-refresh, div.wa-captcha .wa-captcha-img').unbind('click').click(function () {
+                                var div = $(this).parents('div.wa-captcha');
+                                var captcha = div.find('.wa-captcha-img');
+                                if (captcha.length) {
+                                    captcha.attr('src', captcha.attr('src').replace(/\?.*$/, '?rid=' + Math.random()));
+                                    captcha.one('load', function () {
+                                        div.find('.wa-captcha-input').focus();
+                                    });
+                                }
+                                ;
+                                div.find('input').val('');
+                                return false;
+                            });
+                        }
+                        );
+            });
+        </script>
+    {/if}
+{/function}
+
+{if $reviews}
+    {if !empty($content_only)}
+        {reviews_content}
+    {else}
+        <section class="page-product-box">
+            <h3 id="#idTab5" class="idTabHrefShort page-product-heading">{$theme_settings.product_reviews_section_title}</h3> 
+            <div id="idTab5">
+                {reviews_content}
+            </div>
+        </section>
+    {/if}
+{/if}

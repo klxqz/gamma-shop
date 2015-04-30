@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd">
+<theme id="gamma" system="0" vendor="985310" author="wa-plugins.ru" app="shop" parent_theme_id="site:gamma" version="1.0.0">
+    <name locale="en_US">Gamma</name>
+    <name locale="ru_RU">Гамма</name>
+    <files>
+        <file path="index.html" parent="1">
+        </file>
+        <file path="custom.css" parent="1">
+        </file>
+        <file path="custom.shop.css">
+            <description locale="en_US">Core storefront CSS</description>
+            <description locale="ru_RU">Основной CSS интернет-магазина</description>
+        </file>
+        <file path="content.html">
+            <description locale="en_US">Main storefront layout and navigation</description>
+            <description locale="ru_RU">Основное макет вывода содержимого и навигации в интернет-магазине</description>
+        </file>
+        <file path="head.html">
+            <description locale="en_US">Shop-Script's &lt;head&gt; instructions</description>
+            <description locale="en_US">Блок &lt;head&gt; приложения Shop-Script</description>
+        </file>
+        <file path="category.html">
+            <description locale="en_US">Wrapper for a category page</description>
+            <description locale="ru_RU">Обертка для страницы категории</description>
+        </file>
+        <file path="list-thumbs.html">
+            <description locale="en_US">Product list thumbnail view</description>
+            <description locale="ru_RU">Список товаров эскизами</description>
+        </file>
+        <file path="list-table.html">
+            <description locale="en_US">Product list table view</description>
+            <description locale="ru_RU">Список товаров таблицей</description>
+        </file>
+        <file path="product.html">
+            <description locale="en_US">Dedicated product page</description>
+            <description locale="ru_RU">Шаблон основной страницы товара</description>
+        </file>
+        <file path="product.cart.html">
+            <description locale="en_US">Product add to cart block</description>
+            <description locale="ru_RU">Блок добавления товара в корзину</description>
+        </file>
+        <file path="product.js">
+            <description locale="en_US">Product page JS</description>
+            <description locale="ru_RU">JS-скрипты страницы товара</description>
+        </file>
+        <file path="product.page.html">
+            <description locale="en_US">Product static subpage content</description>
+            <description locale="ru_RU">Информационная подстраница товара</description>
+        </file>
+        <file path="review.html">
+            <description locale="en_US">A single product review template</description>
+            <description locale="ru_RU">Шаблон вывода одного отзыва о товаре</description>
+        </file>
+        <file path="reviews.html">
+            <description locale="en_US">Product review list</description>
+            <description locale="ru_RU">Список отзывов о товаре</description>
+        </file>
+        <file path="compare.html">
+            <description locale="en_US">Product comparison</description>
+            <description locale="ru_RU">Сравнение товаров</description>
+        </file>
+        <file path="cart.html">
+            <description locale="en_US">Shopping cart page</description>
+            <description locale="ru_RU">Страница с товарами корзины</description>
+        </file>
+        <file path="cart.js">
+            <description locale="en_US">Cart JS</description>
+            <description locale="ru_RU">JS-скрипты корзины</description>
+        </file>
+        <file path="checkout.html">
+            <description locale="en_US">Checkout core wrapper</description>
+            <description locale="ru_RU">Единый шаблон страниц оформления заказа</description>
+        </file>
+        <file path="checkout.shipping.html">
+            <description locale="en_US">Checkout: shipping option selection</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="checkout.payment.html">
+            <description locale="en_US">Checkout: payment option selection</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="checkout.contactinfo.html">
+            <description locale="en_US">Checkout: customer contact information form</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="checkout.confirmation.html">
+            <description locale="en_US">Checkout: order confirmation</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="checkout.success.html">
+            <description locale="en_US">Checkout: thank you page</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="checkout.error.html">
+            <description locale="en_US">Checkout: error page</description>
+            <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+        </file>
+        <file path="my.nav.html">
+            <description locale="en_US">Customer account navigation menu</description>
+            <description locale="ru_RU">Меню навигации в личном кабинете покупателя</description>
+        </file>
+        <file path="my.affiliate.html">
+            <description locale="en_US">Customer account interface: affiliate program</description>
+            <description locale="ru_RU">Личный кабинет покупателя: партнерская программа</description>
+        </file>
+        <file path="my.profile.html" parent="1">
+        </file>
+        <file path="my.orders.html">
+            <description locale="en_US">Customer account interface: order list</description>
+            <description locale="ru_RU">Личный кабинет покупателя: список заказов</description>
+        </file>
+        <file path="my.order.html">
+            <description locale="en_US">Customer account interface: single order information</description>
+            <description locale="ru_RU">Личный кабинет покупателя: информация о заказе</description>
+        </file>
+        <file path="home.html">
+            <description locale="en_US">Storefront homepage</description>
+            <description locale="ru_RU">Главная витрина магазина</description>
+        </file>
+        <file path="search.html">
+            <description locale="en_US">Wrapper for product search (filtering) results, e.g. by name, tag, or manufacturer</description>
+            <description locale="ru_RU">Обертка для страницы поиска (фильтрации) товаров, например, по тегу, ключевому слову или производителю</description>
+        </file>
+        <file path="page.html">
+            <description locale="en_US">Static page content</description>
+            <description locale="ru_RU">Содержимое информационной страницы</description>
+        </file>
+        <file path="sidebar.html">
+            <description locale="en_US">Navigation sidebar</description>
+            <description locale="ru_RU">Колонка навигации по магазину</description>
+        </file>
+        <file path="login.html" parent="1">
+        </file>
+        <file path="signup.html" parent="1">
+        </file>
+        <file path="forgotpassword.html" parent="1">
+        </file>
+        <file path="error.html" parent="1">
+        </file>
+        <file path="custom.shop.js">
+            <description locale="en_US">CUSTOM theme JS</description>
+            <description locale="ru_RU">Скрипты темы CUSTOM</description>
+        </file>
+        <file path="reviews.js">
+            <description locale="en_US">Reviews JS</description>
+            <description locale="ru_RU">Скрипты отзывов</description>
+        </file>
+    </files>
+    <about locale="en_US">
+        <![CDATA[
+<p><b>CUSTOM</b> is a universal design theme family for all basic Webasyst apps: Site, Blog, Photos, Shop-Script, and others. The parent (main) theme of the family, which includes the basic set of CSS rules and the common layout template index.html, is the CUSTOM (i.e. this) theme for the Site application. All CUSTOM design themes used in other applications (e.g., Blog or Photos) utilize common CSS rules and file index.html of the parent (main) theme.</p>
+<p>CUSTOM design themes are optimized for all modern web browsers, including iOS and Android based mobile devices.</p>
+
+]]>
+    </about>
+    <about locale="ru_RU">
+        <![CDATA[
+<p><b>CUSTOM</b> — это универсальное семейство тем дизайна для всех базовых приложений фреймворка Вебасист: Сайт, Блог, Фото, Shop-Script и других. Родительской (основной) темой семейства, включающей в себя базовый набор CSS-стилей и общий макет дизайна index.html, является тема CUSTOM для приложения «Сайт» (данная тема). Все темы дизайна CUSTOM для других приложений (Блог, Фото и других) используют базовый CSS и index.html из родительской (основной) темы.</p>
+<p>Темы дизайна семейства CUSTOM оптимизированы для всех современных браузеров и мобильных устройств на основе iOS и Android.</p>
+
+<h3>.hero</h3>
+<p>Тема дизайна предоставляет класс .hero, который рекомендуется использовать для выделения ключевого содержимого страницы. Класс визуально оформляет содержимое в виде «растяжки» на всю ширину основной видимой области страницы:</p>
+
+
+]]>
+    </about>
+    
+    
+     
+    
+    <settings>
+        <setting var="store_settings_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">store settings</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Настройки магазина</p>	
+                ]]>
+            </name>
+        </setting> 
+        
+        
+        <setting var="shop_basic_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Shop. Setting basic elements</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Магазин. Настройка основных элементов.</p>	
+                ]]>
+            </name>
+        </setting> 
+        
+        <setting var="layer_cart" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Information box after adding product to cart</name>
+            <name locale="ru_RU">Информационное окно после добавления товара в корзину</name>
+        </setting>
+        
+        <setting var="quick_view" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Quick view product</name>
+            <name locale="ru_RU">Быстрый просмотр товара</name>
+        </setting>
+                
+                                
+        
+        <setting var="store_settings_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Shop settings.</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Настройки магазина. </p>	
+                ]]>
+            </name>
+        </setting> 
+        
+        
+        
+        <setting var="setting_slider_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. Slider</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Слайдер</p>	
+                ]]>
+            </name>
+        </setting>
+       
+        <setting var="slider" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Slider</name>
+            <name locale="ru_RU">Слайдер</name>
+        </setting>
+        
+        
+        <setting var="slide1" control_type="image">
+            <value>img/slider/slide-1.jpg</value>
+            <filename>img/slider/slider1.*</filename>
+            <name locale="en_US">slide 1</name>
+            <name locale="ru_RU">слайд 1</name>
+        </setting>
+        <setting var="slide1_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">slide 1 url</name>
+            <name locale="ru_RU">слайд 1 ссылка</name>
+        </setting>
+        <setting var="slide1_description" control_type="text">
+            <value><![CDATA[<h2>MOLESKINE</h2>
+<h3>SOFT XLARGE RULED NOTEBOOK</h3>
+<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
+<p class="p1">Starting From: <span>$19.99</span></p>
+<div class="a"> </div>]]></value>
+            <name locale="en_US">slide 1 description</name>
+            <name locale="ru_RU">слайд 1 Описание</name>
+        </setting>
+
+        <setting var="slide2" control_type="image">
+            <value>img/slider/slide-2.jpg</value>
+            <filename>img/slider/slider2.*</filename>
+            <name locale="en_US">slide 2</name>
+            <name locale="ru_RU">слайд 2</name>
+        </setting>
+        <setting var="slide2_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">slide 2 url</name>
+            <name locale="ru_RU">слайд 2 ссылка</name>
+        </setting>
+        <setting var="slide2_description" control_type="text">
+            <value><![CDATA[<h2>Staedtler</h2>
+<h3>Triplus Fineliner Pen Pack</h3>
+<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
+<p class="p1">Starting From: <span>$29.99</span></p>
+<div class="a"> </div>]]></value>
+            <name locale="en_US">slide 2 description</name>
+            <name locale="ru_RU">слайд 2 Описание</name>
+        </setting>
+        
+        
+        <setting var="slide3" control_type="image">
+            <value>img/slider/slide-3.jpg</value>
+            <filename>img/slider/slider3.*</filename>
+            <name locale="en_US">slide 3</name>
+            <name locale="ru_RU">слайд 3</name>
+        </setting>
+        <setting var="slide3_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">slide 3 url</name>
+            <name locale="ru_RU">слайд 3 ссылка</name>
+        </setting>
+        <setting var="slide3_description" control_type="text">
+            <value><![CDATA[<h2>Maped</h2>
+<h3>Effortless Stapler Half strip</h3>
+<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
+<p class="p1">Starting From: <span>$33.99</span></p>
+<div class="a"> </div>]]></value>
+            <name locale="en_US">slide 3 description</name>
+            <name locale="ru_RU">слайд 3 Описание</name>
+        </setting>
+        
+        
+        <setting var="slide4" control_type="image">
+            <value></value>
+            <filename>img/slider/slider4.*</filename>
+            <name locale="en_US">slide 4</name>
+            <name locale="ru_RU">слайд 4</name>
+        </setting>
+        <setting var="slide4_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">slide 4 url</name>
+            <name locale="ru_RU">слайд 4 ссылка</name>
+        </setting>
+        <setting var="slide4_description" control_type="text">
+            <value></value>
+            <name locale="en_US">slide 4 description</name>
+            <name locale="ru_RU">слайд 4 Описание</name>
+        </setting>
+        
+        
+        <setting var="slide5" control_type="image">
+            <value></value>
+            <filename>img/slider/slider5.*</filename>
+            <name locale="en_US">slide 5</name>
+            <name locale="ru_RU">слайд 5</name>
+        </setting>
+        <setting var="slide5_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">slide 5 url</name>
+            <name locale="ru_RU">слайд 5 ссылка</name>
+        </setting>
+        <setting var="slide5_description" control_type="text">
+            <value></value>
+            <name locale="en_US">slide 5 description</name>
+            <name locale="ru_RU">слайд 5 Описание</name>
+        </setting>
+        
+        
+        <setting var="setting_banners_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. Banners.</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Баннеры.</p>	
+                ]]>
+            </name>
+        </setting>
+
+        
+        <setting var="banners" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Banners</name>
+            <name locale="ru_RU">Баннеры</name>
+        </setting>
+        
+        <setting var="banner1" control_type="image">
+            <value>img/banners/banner-1.png</value>
+            <filename>img/banners/banner-1.*</filename>
+            <name locale="en_US">banner 1</name>
+            <name locale="ru_RU">баннер 1</name>
+        </setting>
+        <setting var="banner1_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">banner 1 url</name>
+            <name locale="ru_RU">баннер 1 ссылка</name>
+        </setting>
+        <setting var="banner1_description" control_type="text">
+            <value><![CDATA[<div>
+    <h2>Save 20% <br/>when you</h2>
+    <p>use credit card</p>
+</div>]]></value>
+            <name locale="en_US">banner 1 description</name>
+            <name locale="ru_RU">баннер 1 Описание</name>
+        </setting>
+        
+        <setting var="banner2" control_type="image">
+            <value>img/banners/banner-2.png</value>
+            <filename>img/banners/banner-2.*</filename>
+            <name locale="en_US">banner 2</name>
+            <name locale="ru_RU">баннер 2</name>
+        </setting>
+        <setting var="banner2_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">banner 2 url</name>
+            <name locale="ru_RU">баннер 2 ссылка</name>
+        </setting>
+        <setting var="banner2_description" control_type="text">
+            <value><![CDATA[<div><h2>order<br/>online</h2>
+    <p>Hours: 8AM -11PM</p>
+    </div>]]></value>
+            <name locale="en_US">banner 2 description</name>
+            <name locale="ru_RU">баннер 2 Описание</name>
+        </setting>
+        
+        <setting var="banner3" control_type="image">
+            <value>img/banners/banner-3.jpg</value>
+            <filename>img/banners/banner-3.*</filename>
+            <name locale="en_US">banner 3</name>
+            <name locale="ru_RU">баннер 3</name>
+        </setting>
+        <setting var="banner3_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">banner 3 url</name>
+            <name locale="ru_RU">баннер 3 ссылка</name>
+        </setting>
+        <setting var="banner3_description" control_type="text">
+            <value><![CDATA[<div>
+    <h2>BIC</h2>
+    <h3>Get 20% Off<br/>On Selected Items</h3>
+    <span class="fa-shopping-cart"></span>
+</div>]]></value>
+            <name locale="en_US">banner 3 description</name>
+            <name locale="ru_RU">баннер 3 Описание</name>
+        </setting>
+        
+        <setting var="banner4" control_type="image">
+            <value>img/banners/banner-4.jpg</value>
+            <filename>img/banners/banner-4.*</filename>
+            <name locale="en_US">banner 4</name>
+            <name locale="ru_RU">баннер 4</name>
+        </setting>
+        <setting var="banner4_url" control_type="text">
+            <value>#</value>
+            <name locale="en_US">banner 4 url</name>
+            <name locale="ru_RU">баннер 4 ссылка</name>
+        </setting>
+        <setting var="banner4_description" control_type="text">
+            <value><![CDATA[<div>
+    <h2>Sharpie</h2>
+    <h3>Get 20% Off<br/>On Selected Items</h3>
+    <span class="fa-shopping-cart"></span>
+</div>]]></value>
+            <name locale="en_US">banner 4 description</name>
+            <name locale="ru_RU">баннер 4 Описание</name>
+        </setting>
+        
+        <setting var="setting_home_productlists_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. Products list</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Списки товаров.</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="productlist1" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Products list 1</name>
+            <name locale="ru_RU">Список товаров 1</name>
+        </setting>
+        <setting var="productlist1_name" control_type="text">
+            <value>Новые поступления</value>
+            <name locale="en_US">The name of the products list</name>
+            <name locale="ru_RU">Название списка</name>
+        </setting>
+        <setting var="productlist1_list" control_type="text">
+            <value>bestsellers</value>
+            <name locale="en_US">Products list</name>
+            <name locale="ru_RU">Список товаров</name>
+        </setting>
+        
+        <setting var="productlist2" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Products list 2</name>
+            <name locale="ru_RU">Список товаров 2</name>
+        </setting>
+        <setting var="productlist2_name" control_type="text">
+            <value>Популярные</value>
+            <name locale="en_US">The name of the products list</name>
+            <name locale="ru_RU">Название списка</name>
+        </setting>
+        <setting var="productlist2_list" control_type="text">
+            <value>promo</value>
+            <name locale="en_US">Products list</name>
+            <name locale="ru_RU">Список товаров</name>
+        </setting>
+        
+        
+        <setting var="productlist3" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Products list 3</name>
+            <name locale="ru_RU">Список товаров 3</name>
+        </setting>
+        <setting var="productlist3_name" control_type="text">
+            <value>Лидеры продаж</value>
+            <name locale="en_US">The name of the products list</name>
+            <name locale="ru_RU">Название списка</name>
+        </setting>
+        <setting var="productlist3_list" control_type="text">
+            <value>bestsellers</value>
+            <name locale="en_US">Products list</name>
+            <name locale="ru_RU">Список товаров</name>
+        </setting>
+        
+        
+        <setting var="setting_home_photo_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. Photo</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Фото</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="home_photo" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">photo output</name>
+            <name locale="ru_RU">Вывод фото</name>
+        </setting>
+        
+        <setting var="home_photo_title" control_type="text">
+            <value locale="en_US">Photo</value>
+            <value locale="ru_RU">Фото</value>
+            <name locale="en_US">Title block</name>
+            <name locale="ru_RU">Название блока</name>
+        </setting>
+        
+        
+        <setting var="home_number_photo" control_type="text">
+            <value>5</value>
+            <name locale="en_US">number of photos.</name>
+            <name locale="ru_RU">Количество фото.</name>
+        </setting>
+        
+        <setting var="home_size_photo" control_type="text">
+            <value>320x200</value>
+            <name locale="en_US">size photo.</name>
+            <name locale="ru_RU">Размер фото.</name>
+        </setting>
+        
+        <setting var="setting_home_news_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. News</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Новости</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="home_news" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">news output</name>
+            <name locale="ru_RU">Вывод новостей</name>
+        </setting>
+        
+        <setting var="home_news_title" control_type="text">
+            <value locale="en_US">News</value>
+            <value locale="ru_RU">Новости</value>
+            <name locale="en_US">Title block</name>
+            <name locale="ru_RU">Название блока</name>
+        </setting>
+        
+        
+        <setting var="home_number_news" control_type="text">
+            <value>5</value>
+            <name locale="en_US">number of news.</name>
+            <name locale="ru_RU">Количество новостей</name>
+        </setting>
+        
+        
+        
+        <setting var="setting_home_custom_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Homepage. Custom</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Главная страница. Пользовательские блоки</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="home_custom" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Enabled</name>
+            <name locale="ru_RU">Включено</name>
+        </setting>
+        
+        <setting var="home_vk_widget" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">VK widget</name>
+            <name locale="ru_RU">Виджет ВКонтакте</name>
+        </setting>
+        
+        <setting var="home_facebook_widget" control_type="checkbox">
+            <value>0</value>
+            <name locale="en_US">Facebook widget</name>
+            <name locale="ru_RU">Виджет Facebook</name>
+        </setting>
+        
+        
+        <setting var="home_custom_block1" control_type="text">
+            <value><![CDATA[<ul>
+    <li>
+        <em class="icon-truck" id="icon-truck"></em>
+        <div class="type-text">
+            <h3>Бесплатная доставка</h3>
+            <p>Бесплатная доставка для оптовых покупателей.</p>
+        </div>
+    </li>
+    <li>
+        <em class="icon-phone" id="icon-phone"></em>
+        <div class="type-text">
+            <h3>Онлайн консультант</h3>
+            <p>Онлайн консультант поможет сделать верный выбор</p>
+        </div>
+    </li>
+    <li>
+        <em class="icon-credit-card" id="icon-credit-card"></em>
+        <div class="type-text">
+            <h3>Купоны на скидку</h3>
+            <p>Частые акции и купоны на скидку</p>
+        </div>
+    </li>
+</ul>]]></value>
+            <name locale="en_US">Custom Block 1</name>
+            <name locale="ru_RU">Пользовательский блок 1</name>
+        </setting>
+        
+        <setting var="home_custom_block2" control_type="text">
+            <value><![CDATA[<h3>Важно</h3>
+<ul class="links">
+    <li><a href="#" >Ссылка 1</a></li>
+    <li><a href="#" >Ссылка 2</a></li>
+    <li><a href="#" >Ссылка 3</a></li>
+    <li><a href="#" >Ссылка 4</a></li>
+    <li><a href="#" >Ссылка 5</a></li>
+</ul>]]></value>
+            <name locale="en_US">Custom Block 2</name>
+            <name locale="ru_RU">Пользовательский блок 2</name>
+        </setting>
+        
+        
+        <setting var="category_settings_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Settings category page.</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Настройки страницы категории.</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="use_logocategory_plugin" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">use "logo category" plugin</name>
+            <name locale="ru_RU">
+                Использовать плагин "логотип категории" для вывода изображений.
+                <![CDATA[
+                <a href="http://www.webasyst.ru/store/plugin/shop/logocategory/">Купить и установить плагин "Логотип категории"</a>	
+                ]]>
+            </name>
+        </setting>
+        
+        <setting var="ajax_filters" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">AJAX-enabled product by-feature filtering</name>
+            <name locale="ru_RU">AJAX-фильтры товаров по характеристикам</name>
+        </setting>
+        <setting var="filter_slider" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">AJAX-enabled product by-feature filtering</name>
+            <name locale="ru_RU">Слайдер для цены в фильтре</name>
+        </setting>
+        
+        <setting var="availability_category" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show availability of the product in the category</name>
+            <name locale="ru_RU">Показывать наличие товара в категории</name>
+        </setting>
+        
+        <setting var="additional_buttons_category" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show additional buttons (compare, favorites) in the category</name>
+            <name locale="ru_RU">Показывать дополнительные кнопки(сравнить, избранное) в категории</name>
+        </setting>
+        
+        <setting var="category_description_truncate" control_type="text">
+            <value>500</value>
+            <name locale="en_US">The maximum length of the description of the category. The number of characters.</name>
+            <name locale="ru_RU">Максимальная длинна описания категории. Количество символов.</name>
+        </setting>
+        
+        
+        <setting var="products_pers" control_type="text">
+            <value>6,12,24,30,50,100</value>
+            <name locale="en_US">Select the number of displayed items in category</name>
+            <name locale="ru_RU">Выбор количества отображаемых товаров в категории</name>
+        </setting>
+        
+        <setting var="default_product_view" control_type="select">
+            <value>grid</value>
+            <name locale="en_US">Default products list view</name>
+            <name locale="ru_RU">Отображение списка товаров по умолчанию</name>
+            <options>
+                <option value="grid">
+                    <name locale="en_US">Grid</name>
+                    <name locale="ru_RU">Таблица</name>
+                </option>
+                <option value="list">
+                    <name locale="en_US">List</name>
+                    <name locale="ru_RU">Список</name>
+                </option>
+            </options>
+        </setting>
+        
+        
+        
+        <setting var="product_settings_title" control_type="text">
+            <value></value>
+            <name locale="en_US">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Settings product page.</p>	
+                ]]>
+            </name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <hr /><br/><br/>
+                <p class="p-title">Настройки страницы товара.</p>	
+                ]]>
+            </name>
+        </setting>
+        
+        
+        <setting var="product_share_buttons" control_type="text">
+            <value>vkontakte,facebook,twitter,odnoklassniki,gplus</value>
+            <name locale="en_US">List of buttons to "share". (vkontakte, facebook, twitter, odnoklassniki, moimir, lj, friendfeed, moikrug, gplus, surfingbird)</name>
+            <name locale="ru_RU">Список кнопок «поделиться». (vkontakte, facebook, twitter, odnoklassniki, moimir, lj, friendfeed, moikrug, gplus, surfingbird)</name>
+        </setting>
+        
+        <setting var="show_product_category" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show product category</name>
+            <name locale="ru_RU">Показывать категории товара</name>
+        </setting>
+        
+        <setting var="show_product_tag" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show product tag</name>
+            <name locale="ru_RU">Показывать теги товара</name>
+        </setting>
+        
+        <setting var="show_payment_options" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show payment options</name>
+            <name locale="ru_RU">Показывать варианты оплаты</name>
+        </setting>
+        
+        
+        <setting var="product_display_mode" control_type="select">
+            <value>tabs</value>
+            <name locale="en_US">Display mode information sections</name>
+            <name locale="ru_RU">Режим отображения информационных разделов</name>
+            <options>
+                <option value="sections">
+                    <name locale="en_US">sections</name>
+                    <name locale="ru_RU">Секции</name>
+                </option>
+                <option value="tabs">
+                    <name locale="en_US">Tabs</name>
+                    <name locale="ru_RU">Вкладки</name>
+                </option>
+            </options>
+        </setting>
+        
+        
+        <setting var="product_sections" control_type="text">
+            <value><![CDATA[description_section
+features_section
+reviews_section
+pages_section
+plugin_menu_section]]></value>
+            <name locale="en_US">
+                Add and move the line in this list to change the set of sections the product and their sequence.
+            </name>
+            <name locale="ru_RU">
+                Добавляйте и перемещайте строки в этом списке, чтобы изменить набор секций товара и их последовательность.
+            </name>
+        </setting>
+        
+        <setting var="product_description_section_title" control_type="text">
+            <value locale="en_US">Description</value>
+            <value locale="ru_RU">Описание</value>
+            <name locale="en_US">
+                <![CDATA[
+                <b>description_section</b>	
+                ]]>
+                - description section. Section. title.</name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <b>description_section</b>	
+                ]]> - секция описания. Заголовок секции.</name>
+        </setting>
+        
+        <setting var="product_features_section_title" control_type="text">
+            <value locale="en_US">Features</value>
+            <value locale="ru_RU">Характеристики</value>
+            <name locale="en_US">
+                <![CDATA[
+                <b>features_section</b>	
+                ]]>
+                - features section. Section. title.</name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <b>features_section</b>	
+                ]]> - секция характеристик. Заголовок секции.</name>
+        </setting>
+        
+        <setting var="product_reviews_section_title" control_type="text">
+            <value locale="en_US">Reviews</value>
+            <value locale="ru_RU">Отзывы</value>
+            <name locale="en_US">
+                <![CDATA[
+                <b>reviews_section</b>	
+                ]]>
+                - reviews section. Section. title.</name>
+            <name locale="ru_RU">
+                <![CDATA[
+                <b>reviews_section</b>	
+                ]]> - секция отзывов. Заголовок секции.</name>
+        </setting>
+        
+        <setting var="product_reviews_display_mode" control_type="select">
+            <value>product_page</value>
+            <name locale="en_US">Reviews on the product page</name>
+            <name locale="ru_RU">Отзывы на странице товара</name>
+            <options>
+                <option value="product_page">
+                    <name locale="en_US">On the product page</name>
+                    <name locale="ru_RU">На странице товара</name>
+                </option>
+                <option value="separate_page">
+                    <name locale="en_US">On a separate page</name>
+                    <name locale="ru_RU">На отдельной странице</name>
+                </option>
+            </options>
+        </setting>
+        
+        
+        
+
+    </settings>
+    
+    <locales>
+        <locale>
+            <msgid>Quick view</msgid>
+            <msgstr locale="ru_RU">Быстрый просмотр</msgstr>
+        </locale>
+
+        <locale>
+            <msgid>Subcategories</msgid>
+            <msgstr locale="ru_RU">Подкатегории</msgstr>
+        </locale>
+        <locale>
+            <msgid>View</msgid>
+            <msgstr locale="ru_RU">Вид</msgstr>
+        </locale>
+        <locale>
+            <msgid>Grid</msgid>
+            <msgstr locale="ru_RU">Таблица</msgstr>
+        </locale>
+        <locale>
+            <msgid>List</msgid>
+            <msgstr locale="ru_RU">Список</msgstr>
+        </locale>
+        <locale>
+            <msgid>Show by</msgid>
+            <msgstr locale="ru_RU">Показывать по</msgstr>
+        </locale>
+    </locales>
+    
+    
+</theme>

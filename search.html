@@ -1,0 +1,149 @@
+{if $wa->get('list') == 'viewed_products'}
+    {$title = '[`Viewed products`]'}
+
+    {$pages_count = 1}
+    {$viewed_products = waRequest::cookie('viewed_products')}
+    {if !empty($viewed_products)}
+        {$products = $wa->shop->products("id/`$viewed_products`")}
+    {else}
+        {$products = null}   
+    {/if}
+{elseif $wa->get('list') == 'wishlist'}
+    {$title = '[`Favorites`]'}
+
+    {$pages_count = 1}
+    {$wishlist = waRequest::cookie('shop_wishlist')}
+    {if !empty($wishlist)}
+        {$products = $wa->shop->products("id/`$wishlist`")}
+    {else}
+        {$products = null}   
+    {/if}
+{else}
+    {$is_products_pers = true}
+    {$title = "[`Search by query`] «`$wa->get('query')|escape`»"}
+
+{/if}
+
+{$compare = waRequest::cookie('shop_compare', array(), waRequest::TYPE_ARRAY_INT)}
+{$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
+
+
+
+
+<h1 class="page-heading product-listing">
+    <span class="cat-name">{$title}</span>
+</h1>
+
+
+<div class="content_sortPagiBar clearfix">
+    <div class="sortPagiBar clearfix">
+        <ul class="display hidden-xs">
+            <li class="display-title">[`View`]:</li>
+            <li id="grid">
+                <a rel="nofollow" href="#">
+                    <i class="icon-th-large"></i>
+                    [`Grid`]
+                </a>
+            </li>
+            <li id="list">
+                <a rel="nofollow" href="#">
+                    <i class="icon-th-list"></i>
+                    [`List`]
+                </a>
+            </li>
+        </ul>
+
+
+
+
+        <!-- /Sort products -->
+
+
+        {$products_pers = explode(',',$theme_settings.products_pers)}
+        <!-- nbr product/page -->
+        <div  class="nbrItemPage">
+            <div class="clearfix selector1">
+                <label for="nb_item">
+                    [`Show by`]
+                </label>
+                <select name="n" id="nb_item" class="form-control">
+                    {if isset($smarty.cookies.products_per_page)}
+                        {$products_per_page = $smarty.cookies.products_per_page}
+                    {else}
+                        {$products_per_page = 50}
+                    {/if}
+                    {foreach $products_pers as $products_per}
+                        <option value="{$products_per}" {if $products_per_page  == $products_per}selected="selected"{/if} >{$products_per}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <!-- /nbr product/page -->
+
+    </div>
+    <div class="top-pagination-content clearfix">
+        <div class="compare-form">
+            <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
+                <span>
+                    [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>
+                </span>
+            </a>
+        </div>
+
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination clearfix">
+            {wa_pagination total=$pages_count attrs=['class' => "pagination"] next = '<i class="icon-chevron-right"></i>' prev = '<i class="icon-chevron-left"></i>'}
+        </div>
+
+        <!-- /Pagination -->
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="product-list">
+    {if !$products}
+        {if !empty($filters)}
+            [`No products were found.`]
+        {else}
+            [`This category does not contain any products.`]
+        {/if}
+    {else}
+        {include file='list-thumbs.html' sorting=!empty($category.params.enable_sorting)}
+    {/if}
+</div>
+
+
+
+
+
+
+
+
+<div class="content_sortPagiBar">
+    <div class="bottom-pagination-content clearfix">
+        <div class="compare-form">
+            <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
+                <span>
+                    [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>
+                </span>
+            </a>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination_bottom" class="pagination clearfix">
+            {wa_pagination total=$pages_count attrs=['class' => "pagination"] next = '<i class="icon-chevron-right"></i>' prev = '<i class="icon-chevron-left"></i>'}
+        </div>
+
+        <!-- /Pagination -->
+
+    </div>
+</div>
+
+<script type="text/javascript" src="{$wa_theme_url}category.js" ></script>

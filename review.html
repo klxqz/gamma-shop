@@ -1,0 +1,46 @@
+{* one review output *}
+
+{if !empty($ajax_append)}<li data-id={$review.id} data-parent-id="{$review.parent_id}">{/if}
+
+    <div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
+        <div class="comment_author col-sm-2">
+            <div class="star_content clearfix" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                {$rate = round($review.rate)}
+                <meta itemprop="worstRating" content = "1">
+                <meta itemprop="ratingValue" content="{$rate}">
+                <meta itemprop="bestRating" content = "5">
+
+                {for $i=1 to 5}
+                    <div class="star{if $rate >= $i} star_on{/if}"></div>
+                {/for}
+            </div>
+            <div class="comment_author_infos">
+                <strong itemprop="author"><i class="icon-user"></i> {$review.author.name}</strong>
+                <meta itemprop="datePublished" content="{$review.datetime|date_format:'Y-m-d'}">
+                <em>{$review.datetime|wa_datetime:"humandatetime"}</em>
+            </div>
+        </div>
+
+        <div class="comment_details col-sm-10">
+            <p class="title_block">
+                <strong itemprop="name">{if $review.title}{$review.title}{/if}</strong>
+            </p>
+            {if $review.text}
+                <p itemprop="description">{$review.text}</p>
+            {/if}
+
+
+            {if $reply_allowed}
+                <div class="actions">
+                    <a href="{if isset($reply_link)}{$reply_link}{else}#{/if}" class="review-reply inline-link"><b><i>[`reply`]</i></b></a>
+                </div>
+            {/if}
+        </div>
+
+
+
+    </div>
+
+
+
+    {if !empty($ajax_append)}<ul class="menu-v with-icons reviews-branch"></ul></li>{/if}

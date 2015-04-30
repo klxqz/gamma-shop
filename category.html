@@ -1,0 +1,219 @@
+{function name=sortOption}
+    {if $active_sort === null}
+        {$active_sort = waRequest::get('sort')}
+    {/if}
+    {$inverted = in_array($sort, array('rating', 'create_datetime', 'total_sales', 'count', 'stock'))}
+    {$data = waRequest::get()}
+    {$data['sort'] = $sort}
+    {if $sort == $active_sort}
+        {if waRequest::get('order') == 'asc'}
+            {$data['order'] = 'desc'}
+        {else}
+            {$data['order'] = 'asc'}
+        {/if}
+    {else}
+        {if $inverted}
+            {$data['order'] = 'desc'}
+        {else}
+            {$data['order'] = 'asc'}
+        {/if}
+    {/if}
+    <option value="?{http_build_query($data)}" {if $active_sort == $sort}selected="selected"{/if}>{$name} {if $active_sort == $sort}{if $data['order'] == 'asc'}&uarr;{else}&darr;{/if}{/if}</option>
+{/function}
+
+{$compare = waRequest::cookie('shop_compare', array(), waRequest::TYPE_ARRAY_INT)}
+{$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
+
+
+
+
+<div class="content_scene_cat">
+    <!-- Category image -->
+    <div class="content_scene_cat_bg row">
+        {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($category.id)}
+            <div class="category-image hidden-xs col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                <img class="img-responsive" src="{shopLogocategoryPlugin::getImgUrl($category.id)}" />
+            </div>
+        {/if}
+        <div class="cat_desc  col-xs-12 col-sm-7 {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($category.id)}col-lg-9{else}col-lg-12{/if} col-md-8 ">
+            <span class="category-name">
+                {$category.name}                            
+            </span>
+            {if $category.description}
+                {if $theme_settings.category_description_truncate}
+                    <div id="category_description_short" class="rte">{$category.description|strip_tags|truncate:$theme_settings.category_description_truncate}</div>
+                {else}
+                    <div id="category_description_short" class="rte">{$category.description}</div>
+                {/if}
+                {if $theme_settings.category_description_truncate && $category.description|strip_tags|truncate:$theme_settings.category_description_truncate != $category.description}
+                    <div id="category_description_full" class="unvisible rte">{$category.description}</div>
+                    <a href="#" class="lnk_more">[`More`]</a>
+                {/if}
+            {/if}
+        </div>
+    </div>
+</div>
+<h1 class="page-heading product-listing">
+    <span class="cat-name">{$category.name}</span>
+</h1>
+
+{if $category.subcategories}
+    <!-- Subcategories -->
+    <div id="subcategories">
+        <p class="subcategory-heading">[`Subcategories`]</p>
+        <ul class="clearfix">
+            {foreach $category.subcategories as $sc}
+                <li>
+                    {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($sc.id)}
+                        <div class="subcategory-image">
+                            <a href="{$sc.url}" class="img">
+                                <img class="replace-2x" src="{shopLogocategoryPlugin::getImgUrl($sc.id)}" alt="" />
+                            </a>
+                        </div>
+                    {/if}
+                    <h5>
+                        <a class="subcategory-name" href="{$sc.url}">{$sc.name}</a>
+                    </h5>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+
+<div class="content_sortPagiBar clearfix">
+    <div class="sortPagiBar clearfix">
+        <ul class="display hidden-xs">
+            <li class="display-title">[`View`]:</li>
+            <li id="grid">
+                <a rel="nofollow" href="#">
+                    <i class="icon-th-large"></i>
+                    [`Grid`]
+                </a>
+            </li>
+            <li id="list">
+                <a rel="nofollow" href="#">
+                    <i class="icon-th-list"></i>
+                    [`List`]
+                </a>
+            </li>
+        </ul>
+
+
+        {$sorting=!empty($category.params.enable_sorting)}
+        {if !empty($sorting)}
+            <!-- sorting -->
+            {$sort_fields = ['rating' => '[`Customer rating`]', 'total_sales' => '[`Bestsellers`]', 'price' => '[`Price`]', 'name' => '[`Name`]', 'create_datetime'=>'[`Date added`]', 'stock' => '[`In stock`]']}
+            {if !isset($active_sort)}
+                {$active_sort = $wa->get('sort', 'create_datetime')}
+            {/if}
+            <div id="productsSortForm" class="productsSortForm">
+                <div class="select selector1">
+                    <label for="selectProductSort">[`Sort by`]</label>
+                    <select id="selectProductSort" class="selectProductSort form-control">
+                        {if !empty($category) && !$category.sort_products}
+                            <option value="{$wa->currentUrl(0, 1)}" {if !$active_sort} selected="selected"{/if} >[`New & Popular`]</option>
+                        {/if}
+                        {foreach $sort_fields as $sort => $name}
+                            {$params = ['sort' => $sort, 'name' => $name, 'active_sort' => $active_sort]}
+                            {sortOption $params}
+                            {if $wa->get('sort') == $sort}
+                                {$wa->title( $wa->title()|cat:' — '|cat:$name)}
+                            {/if}
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+        {/if}
+
+
+        <!-- /Sort products -->
+
+
+        {$products_pers = explode(',',$theme_settings.products_pers)}
+        <!-- nbr product/page -->
+        <div  class="nbrItemPage">
+            <div class="clearfix selector1">
+                <label for="nb_item">
+                    [`Show by`]
+                </label>
+                <select name="n" id="nb_item" class="form-control">
+                    {if isset($smarty.cookies.products_per_page)}
+                        {$products_per_page = $smarty.cookies.products_per_page}
+                    {else}
+                        {$products_per_page = 50}
+                    {/if}
+                    {foreach $products_pers as $products_per}
+                        <option value="{$products_per}" {if $products_per_page  == $products_per}selected="selected"{/if} >{$products_per}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <!-- /nbr product/page -->
+
+    </div>
+    <div class="top-pagination-content clearfix">
+        <div class="compare-form">
+            <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
+                <span>
+                    [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>
+                </span>
+            </a>
+        </div>
+
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination clearfix">
+            {wa_pagination total=$pages_count attrs=['class' => "pagination"] next = '<i class="icon-chevron-right"></i>' prev = '<i class="icon-chevron-left"></i>'}
+        </div>
+
+        <!-- /Pagination -->
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="product-list">
+    {if !$products}
+        {if !empty($filters)}
+            [`No products were found.`]
+        {else}
+            [`This category does not contain any products.`]
+        {/if}
+    {else}
+        {include file='list-thumbs.html' sorting=!empty($category.params.enable_sorting)}
+    {/if}
+</div>
+
+
+
+
+
+
+
+
+<div class="content_sortPagiBar">
+    <div class="bottom-pagination-content clearfix">
+        <div class="compare-form">
+            <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
+                <span>
+                    [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>
+                </span>
+            </a>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination_bottom" class="pagination clearfix">
+            {wa_pagination total=$pages_count attrs=['class' => "pagination"] next = '<i class="icon-chevron-right"></i>' prev = '<i class="icon-chevron-left"></i>'}
+        </div>
+
+        <!-- /Pagination -->
+
+    </div>
+</div>
+
+<script type="text/javascript" src="{$wa_theme_url}category.js" ></script>
