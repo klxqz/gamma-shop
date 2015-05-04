@@ -29,6 +29,14 @@ function Product(form, options) {
         self.updatePrice();
     });
 
+    this.form.find('.inline-select a').click(function () {
+        var d = $(this).closest('.inline-select');
+        d.find('a.active').removeClass('active');
+        $(this).addClass('active');
+        d.find('.sku-feature').val($(this).data('value')).change();
+        return false;
+    });
+
     this.form.find(".skus input[type=radio]").click(function () {
         if ($(this).data('image-id')) {
             $("#product-image-" + $(this).data('image-id')).click();

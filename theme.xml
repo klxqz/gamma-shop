@@ -898,6 +898,26 @@ plugin_menu_section]]></value>
             </options>
         </setting>
         
+        <setting var="selectable_features_control" control_type="radio">
+            <value>inline</value>
+            <name locale="ru_RU">Выбор характеристик</name>
+            <name locale="en_US">Selectable features</name>
+            <options>
+                <option value="inline">
+                    <name locale="ru_RU">Показывать все значения крупно в ряд</name>
+                    <name locale="en_US">Display all values inline</name>
+                    <description locale="ru_RU">Для товаров в режиме продажи «Выбор характеристик» значения характеристик будут показаны одной строкой друг за другом. Рекомендуется, если названия значений относительно короткие и по ним однозначно можно определить, о какой характеристике товара идет речь, например, XL, 16 GB, 13”.</description>
+                    <description locale="en_US">For products which are sold in selectable features mode, all feature values will be displayed inline. Great if feature value names are self-explanatory and explicit in context of a product, e.g. XL, 16 GB, 13”.</description>
+                </option>
+                <option value="select">
+                    <name locale="ru_RU"><![CDATA[Выбор из списка &lt;select&gt;]]></name>
+                    <name locale="en_US"><![CDATA[&lt;select&gt; HTML control]]></name>
+                    <description locale="ru_RU"><![CDATA[Для товаров в режиме продажи «Выбор характеристик» значения характеристик будут предложены на выбор с помощью стандартного выбора &lt;select&gt;. Рекомендуется, если названия значений характеристик содержат более одного-двух слов или по значениям нельзя однозначно понять, о какой характеристике товара идет речь, например, «до 10 часов», «не предусмотрено».]]></description>
+                    <description locale="en_US"><![CDATA[For products which are sold in selectable features mode, feature values will be displayed using a &lt;select&gt; HTML control. Recommended if value names are either too long or ambiguous in context of a product, e.g. “up to 10 hours”, “yes”.]]></description>
+                </option>
+            </options>
+        </setting>
+        
         
         
 
@@ -929,6 +949,33 @@ plugin_menu_section]]></value>
             <msgid>Show by</msgid>
             <msgstr locale="ru_RU">Показывать по</msgstr>
         </locale>
+        <locale>
+            <msgid>Print</msgid>
+            <msgstr locale="ru_RU">Распечатать</msgstr>
+        </locale>
+        <locale>
+            <msgid>Read more</msgid>
+            <msgstr locale="ru_RU">Подробнее</msgstr>
+        </locale>
+        <locale>
+            <msgid>Add to wishlist</msgid>
+            <msgstr locale="ru_RU">Добавить в избранное</msgstr>
+        </locale>
+        <locale>
+            <msgid>Remove from wishlist</msgid>
+            <msgstr locale="ru_RU">Удалить из избранного</msgstr>
+        </locale>
+        <locale>
+            <msgid>Unit price</msgid>
+            <msgstr locale="ru_RU">Цена</msgstr>
+        </locale>
+        <locale>
+            <msgid>Bonuses</msgid>
+            <msgstr locale="ru_RU">Бонусы</msgstr>
+        </locale>
+        
+        
+        
     </locales>
     
     

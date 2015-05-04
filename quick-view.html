@@ -3,11 +3,17 @@
     <div class="pb-left-column col-xs-12  col-sm-4 col-md-5">
         <!-- product img-->        
         <div id="image-block" class="clearfix">
-            <span class="sale-box no-print">
-                <span class="sale-label">Sale!</span>
-            </span>
+
+            {$badge_html = $wa->shop->badgeHtml($product.badge)}
+            {if $badge_html}
+                <div class="new-box no-print">
+                    <span class="new-label">
+                        {$badge_html}
+                    </span>
+                </div>
+            {/if}
             <span id="view_full_size">
-                <img id="bigpic" itemprop="image" src="http://livedemo00.template-help.com/prestashop_49358/img/p/1/1-tm_large_default.jpg" title="Cutting knife 2003" alt="Cutting knife 2003" width="458" height="458"/>
+                <img id="bigpic" itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458x458', false)}" title="Cutting knife 2003" alt="Cutting knife 2003" width="458" height="458"/>
             </span>
         </div> <!-- end image-block -->
 
@@ -20,60 +26,29 @@
             </span>
             <div id="thumbs_list">
                 <ul id="thumbs_list_frame">
-                    <li id="thumbnail_1">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/1/1-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox shown"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_1" src="http://livedemo00.template-help.com/prestashop_49358/img/p/1/1-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
-                    <li id="thumbnail_2">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/2/2-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_2" src="http://livedemo00.template-help.com/prestashop_49358/img/p/2/2-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
-                    <li id="thumbnail_3">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/3/3-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_3" src="http://livedemo00.template-help.com/prestashop_49358/img/p/3/3-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
-                    <li id="thumbnail_4">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/4/4-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_4" src="http://livedemo00.template-help.com/prestashop_49358/img/p/4/4-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
-                    <li id="thumbnail_5">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/5/5-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_5" src="http://livedemo00.template-help.com/prestashop_49358/img/p/5/5-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
-                    <li id="thumbnail_6" class="last">
-                        <a 
-                            href="http://livedemo00.template-help.com/prestashop_49358/img/p/6/6-tm_thickbox_default.jpg"
-                            data-fancybox-group="other-views"
-                            class="fancybox"
-                            title="Cutting knife 2003">
-                            <img class="img-responsive" id="thumb_6" src="http://livedemo00.template-help.com/prestashop_49358/img/p/6/6-tm_cart_default.jpg" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                        </a>
-                    </li>
+                    {foreach $product.images as $image}
+                        {if class_exists(shopImgresizePlugin)}
+                            <li id="thumbnail_{$image.id}">
+                                <a 
+                                    href="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'458x458')}"
+                                    data-fancybox-group="other-views"
+                                    class="fancybox shown"
+                                    title="Cutting knife 2003">
+                                    <img class="img-responsive" id="thumb_{$image.id}" src="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'80x80')}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
+                                </a>
+                            </li>
+                        {else}
+                            <li id="thumbnail_{$image.id}">
+                                <a 
+                                    href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
+                                    data-fancybox-group="other-views"
+                                    class="fancybox shown"
+                                    title="Cutting knife 2003">
+                                    <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
+                                </a>
+                            </li>
+                        {/if}
+                    {/foreach}
                 </ul>
             </div> <!-- end thumbs_list -->
             <a id="view_scroll_right" title="Другие виды" href="javascript:{}">
@@ -82,165 +57,234 @@
         </div> 
         <!-- end views-block -->
         <!-- end thumbnails -->
-        <p class="resetimg clear no-print">
-            <span id="wrapResetImages" style="display: none;">
-                <a href="http://livedemo00.template-help.com/prestashop_49358/index.php?id_product=1&amp;controller=product&amp;id_lang=3" name="resetImages">
-                    <i class="icon-repeat"></i>
-                    Показать все фотографии
-                </a>
-            </span>
-        </p>
     </div> 
     <!-- end pb-left-column -->
     <!-- end left infos--> 
 
     <!-- center infos -->
     <div class="pb-center-column col-xs-12  col-sm-4">
-        <p class="online_only">Только онлайн</p>
 
-        <h1 itemprop="name">Cutting knife 2003</h1>
-        <p id="product_reference" style="display: none;">
-            <label>Model </label>
-            <span class="editable" itemprop="sku"></span>
-        </p>
-        <p id="product_condition">
-            <label>Состояние </label>
-            <span class="editable" itemprop="condition">				                	Новые
-            </span>
-        </p>
-        <div id="short_description_block">
-            <div id="short_description_content" class="rte align_justify" itemprop="description"><p>Pellentesque eu suscipit nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id erat nibh. Nam fermentum risus ac sapien molestie consequat.</p></div>
+        <h1 itemprop="name">{$product.name|escape}</h1>
 
-            <p class="buttons_bottom_block">
-                <a href="javascript:{}" class="button">
-                    Подробнее
-                </a>
+        {if $product.summary}
+            <div id="short_description_block">
+                <div id="short_description_content" class="rte align_justify" itemprop="description">
+                    {$product.summary}
+                </div>
+
+                <p class="buttons_bottom_block">
+                    <a href="javascript:{}" class="button">
+                        Подробнее
+                    </a>
+                </p>
+                <!---->
+            </div> <!-- end short_description_block -->
+        {/if}
+
+        {if !empty($theme_settings.product_share_buttons)}
+            <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+            <div class="yashare-auto-init"
+                 data-yashareL10n="ru"
+                 data-yashareQuickServices="{$theme_settings.product_share_buttons}"
+                 data-yashareTitle="{$wa->title()|escape}"
+                 data-yashareDescription="{$wa->meta('description')|escape}"
+                 data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
+                 data-yashareType="none"
+                 ></div>
+        {/if}
+
+        <!-- categories -->
+        {if !empty($theme_settings.show_product_category) && $product.categories}
+            <p id="product-categories">
+                [`Categories`]:
+                {foreach $product.categories as $c}
+                    {if $c.status}
+                        <span class="product-info">
+                            <a href="{$wa->getUrl('/frontend/category', ['category_url' => $c.full_url])}">{$c.name|escape}</a>{if !$c@last}, {/if}
+                        </span>
+                    {/if}
+                {/foreach}
             </p>
-            <!---->
-        </div> <!-- end short_description_block -->
-        <!-- number of item in stock -->
-        <p id="pQuantityAvailable">
-            <span id="quantityAvailable">98</span>
-            <span  style="display: none;" id="quantityAvailableTxt">Item</span>
-            <span  id="quantityAvailableTxtMultiple">Items</span>
-        </p>
-        <!-- availability -->
-        <p id="availability_statut" style="display: none;">
+        {/if}
 
-            <span id="availability_value"></span>				
-        </p>
-        <p class="warning_inline" id="last_quantities" style="display: none" >Внимание: ограниченное количество товара в наличии!</p>
-        <p id="availability_date" style="display: none;">
-            <span id="availability_date_label">Будет доступен:</span>
-            <span id="availability_date_value"></span>
-        </p>
-        <!-- Out of stock hook -->
-        <div id="oosHook" style="display: none;">
+        <!-- tags -->
+        {if !empty($theme_settings.show_product_tag) && $product.tags}
+            <p class="tags" id="product-tags">
+                [`Tags`]:
+                <span class="product-info">
+                    {foreach $product.tags as $t}
+                        <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
+                    {/foreach}
+                </span>
+            </p>
+        {/if}
 
-        </div>
-        <p class="socialsharing_product list-inline no-print">
-            <button type="button" class="btn btn-default btn-twitter" onclick="socialsharing_twitter_click('Cutting knife 2003 http://livedemo00.template-help.com/prestashop_49358/index.php?id_product=1&controller=product&id_lang=3');">
-                <i class="icon-twitter"></i> Tweet
-                <!-- <img src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/img/twitter.gif" alt="Tweet" /> -->
-            </button>
-            <button type="button" class="btn btn-default btn-facebook" onclick="socialsharing_facebook_click();">
-                <i class="icon-facebook"></i> Share
-                <!-- <img src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/img/facebook.gif" alt="Facebook Like" /> -->
-            </button>
-            <button type="button" class="btn btn-default btn-google-plus" onclick="socialsharing_google_click();">
-                <i class="icon-google-plus"></i> Google+
-                <!-- <img src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/img/google.gif" alt="Google Plus" /> -->
-            </button>
-            <button type="button" class="btn btn-default btn-pinterest" onclick="socialsharing_pinterest_click();">
-                <i class="icon-pinterest"></i> Pinterest
-                <!-- <img src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/img/pinterest.gif" alt="Pinterest" /> -->
-            </button>
-        </p>
-        <!--  /Module ProductComments -->					</div>
+        {$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
+        <ul id="usefull_link_block" class="clearfix no-print">
+            <li class="compare">
+                <a {if $compare}style="display:none"{/if} class="compare-add inline-link" data-product="{$product.id}" href="#"><b><i>[`Add to comparison table`]</i></b></a>
+                <a {if !$compare}style="display:none"{/if} class="compare-remove inline-link" data-product="{$product.id}" href="#"><b><i>[`Remove from comparison table`]</i></b></a>
+                <a id="compare-link" {if count($compare) lt 2}style="display:none"{/if} rel="nofollow" href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="bold">[`Compare`] <span class="count">{count($compare)}</span></a>
+            </li>
+            <li class="favorite">
+                <a data-id="{$product.id}" href="#" {if in_array($product.id, $wishlist)}class="checked"{/if}>
+                    {if in_array($product.id, $wishlist)}
+                        [`Remove from wishlist`]
+                    {else}
+                        [`Add to wishlist`]
+                    {/if}
+                </a>
+            </li>
+            <li class="print">
+                <a href="javascript:print();">
+                    Распечатать
+                </a>
+            </li>
+        </ul>
+    </div>
     <!-- end center infos-->
 
     <!-- pb-right-column-->
     <div class="pb-right-column col-xs-12  col-sm-4 col-md-3">
-        <!-- add to cart form-->
-        <form id="buy_block" action="http://livedemo00.template-help.com/prestashop_49358/index.php?controller=cart" method="post">
-            <!-- hidden datas -->
-            <p class="hidden">
-                <input type="hidden" name="token" value="e7c9cea3b7e2312c7993bb42fc33064e" />
-                <input type="hidden" name="id_product" value="1" id="product_page_product_id" />
-                <input type="hidden" name="add" value="1" />
-                <input type="hidden" name="id_product_attribute" id="idCombination" value="" />
-            </p>
-            <div class="box-info-product">
-                <div class="content_prices clearfix">
-                    <!-- prices -->
-                    <div class="price">
-                        <p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <link itemprop="availability" href="http://schema.org/InStock"/>																			<span id="our_price_display" itemprop="price">$122.51</span>
-                            <!---->
-                            <meta itemprop="priceCurrency" content="USD" />
-                        </p>
-                        <p id="reduction_percent" >
-                            <span id="reduction_percent_display">
-                                -5%									</span>
-                        </p>
-                        <p id="old_price">
-                            <span id="old_price_display">$128.96</span>
-                            <!--  -->
-                        </p>
-                    </div> <!-- end prices -->
-                    <p id="reduction_amount"  style="display:none">
-                        <span id="reduction_amount_display">
-                        </span>
-                    </p>
-
-
-                    <div class="clear"></div>
-                </div> <!-- end content_prices -->
-                <div class="product_attributes clearfix">
-                    <!-- quantity wanted -->
-                    <p id="quantity_wanted_p">
-                        <label>Quantity:</label>
-                        <input type="text" name="qty" id="quantity_wanted" class="text" value="1" />
-                        <a href="#" data-field-qty="qty" class="btn btn-default button-minus product_quantity_down">
-                            <span>
-                                <i class="icon-minus"></i>
-                            </span>
-                        </a>
-                        <a href="#" data-field-qty="qty" class="btn btn-default button-plus product_quantity_up ">
-                            <span>
-                                <i class="icon-plus"></i>
-                            </span>
-                        </a>
-                        <span class="clearfix"></span>
-                    </p>
-                    <!-- minimal quantity wanted -->
-                    <p id="minimal_quantity_wanted_p" style="display: none;">
-                        Данный товар не продается по одной единице. Вы должны выбрать по крайней мере 
-                        <b id="minimal_quantity_label">1</b> 
-                        единиц данного товара.
-                    </p>
-                </div> <!-- end product_attributes -->
-                <div class="box-cart-bottom">
-                    <div>
-                        <p id="add_to_cart" class="buttons_bottom_block no-print">
-                            <button type="submit" name="Submit" class="exclusive btn button ajax_add_to_cart_button">
-                                <span>Добавить в корзину</span>
-                            </button>
-                        </p>
-                    </div>
-                    <!-- Productpaymentlogos module -->
-
-                    <!-- /Productpaymentlogos module -->
-                    <p class="buttons_bottom_block no-print">
-                        <a id="wishlist_button" href="#" onclick="WishlistCart('wishlist_block_list', 'add', '1', $('#idCombination').val(), document.getElementById('quantity_wanted').value);
-                                return false;" rel="nofollow"  title="Добавить в список">
-                            Добавить в список
-                        </a>
-                    </p>
-                    <strong></strong>
-                </div> <!-- end box-cart-bottom -->
-            </div> <!-- end box-info-product -->
-        </form>
+        {include file="product.cart.html" inline}
     </div> 
     <!-- end pb-right-column-->
 </div> <!-- end primary_block -->
+
+{literal}
+    <script type="text/javascript">
+        var CUSTOMIZE_TEXTFIELD = 1;
+        var FancyboxI18nClose = 'Close';
+        var FancyboxI18nNext = 'Next';
+        var FancyboxI18nPrev = 'Previous';
+        var PS_CATALOG_MODE = false;
+        var added_to_wishlist = 'Added to your wishlist.';
+        var ajaxsearch = true;
+        var allowBuyWhenOutOfStock = false;
+        var attribute_anchor_separator = '-';
+        var attributesCombinations = [];
+        var availableLaterValue = '';
+        var availableNowValue = '';
+        var baseDir = 'http://livedemo00.template-help.com/prestashop_49358/';
+        var baseUri = 'http://livedemo00.template-help.com/prestashop_49358/index.php';
+        var blocksearch_type = 'top';
+        var confirm_report_message = 'Вы уверены, что хотите внести этот комментарий?';
+        var contentOnly = true;
+        var currencyBlank = 0;
+        var currencyFormat = 1;
+        var currencyRate = 1;
+        var currencySign = '$';
+        var currentDate = '2015-05-04 01:35:05';
+        var customizationFields = false;
+        var customizationIdMessage = 'Модификация №';
+        var default_eco_tax = 0;
+        var delete_txt = 'Удалить';
+        var displayPrice = 1;
+        var doesntExist = 'Данная модификация отсутствует. Пожалуйста, выберите другую.';
+        var doesntExistNoMore = 'Этого товара нет в наличии';
+        var doesntExistNoMoreBut = 'с указанными характеристиками, выберите другие';
+        var ecotaxTax_rate = 0;
+        var fieldRequired = 'Пожалуйста заполните все требуемые поля, затем сохраните модификацию.';
+        var freeProductTranslation = 'Бесплатно!';
+        var freeShippingTranslation = 'Бесплатная доставка!';
+        var generated_date = 1430717705;
+        var group_reduction = 0;
+        var idDefaultImage = 1;
+        var id_lang = 3;
+        var id_product = 1;
+        var img_dir = 'http://livedemo00.template-help.com/prestashop_49358/themes/theme967/img/';
+        var img_prod_dir = 'http://livedemo00.template-help.com/prestashop_49358/img/p/';
+        var img_ps_dir = 'http://livedemo00.template-help.com/prestashop_49358/img/';
+        var instantsearch = true;
+        var isGuest = 0;
+        var isLogged = 0;
+        var jqZoomEnabled = true;
+        var loggin_required = 'You must be logged in to manage your wishlist.';
+        var maxQuantityToAllowDisplayOfLastQuantityMessage = 3;
+        var minimalQuantity = 1;
+        var moderation_active = true;
+        var mywishlist_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?fc=module&module=blockwishlist&controller=mywishlist&id_lang=3';
+        var noTaxForThisProduct = true;
+        var oosHookJsCodeFunctions = [];
+        var page_name = 'product';
+        var placeholder_blocknewsletter = 'Enter your e-mail';
+        var priceDisplayMethod = 1;
+        var priceDisplayPrecision = 2;
+        var productAvailableForOrder = true;
+        var productBasePriceTaxExcluded = 128.96;
+        var productColumns = '1';
+        var productHasAttributes = false;
+        var productPrice = 122.51;
+        var productPriceTaxExcluded = 128.96;
+        var productPriceWithoutReduction = 128.96;
+        var productReference = '';
+        var productShowPrice = true;
+        var productUnitPriceRatio = 0;
+        var product_specific_price = {"id_specific_price": "1", "id_specific_price_rule": "0", "id_cart": "0", "id_product": "1", "id_shop": "1", "id_shop_group": "0", "id_currency": "0", "id_country": "0", "id_group": "0", "id_customer": "0", "id_product_attribute": "0", "price": "-1.000000", "from_quantity": "1", "reduction": "0.050000", "reduction_type": "percentage", "from": "0000-00-00 00:00:00", "to": "0000-00-00 00:00:00", "score": "48"};
+        var productcomment_added = 'Ваш комментарий был добавлен!';
+        var productcomment_added_moderation = 'Ваш комментарий был добавлен и будет доступен после одобрения модератором.';
+        var productcomment_ok = 'ОК';
+        var productcomment_title = 'Новый комментарий';
+        var productcomments_controller_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?fc=module&module=productcomments&controller=default&id_lang=3';
+        var productcomments_url_rewrite = false;
+        var quantitiesDisplayAllowed = true;
+        var quantityAvailable = 98;
+        var quickView = true;
+        var reduction_percent = 5;
+        var reduction_price = 0;
+        var removingLinkText = 'удалить товар из корзины';
+        var roundMode = 2;
+        var search_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?controller=search';
+        var secure_key = 'e91de9f1c7ff79a6d3bf228047e949d3';
+        var specific_currency = false;
+        var specific_price = -1;
+        var static_token = 'e7c9cea3b7e2312c7993bb42fc33064e';
+        var stf_msg_error = 'Ваше письмо не может быть отправлено. Пожалуйста, проверьте адрес и попробуйте еще раз.';
+        var stf_msg_required = 'Вы не заполнили все обязательные поля';
+        var stf_msg_success = 'Ваше письмо успешно отправлено';
+        var stf_msg_title = 'Send to a friend';
+        var stf_secure_key = '940f77d1d05d4ebfcc8d4feb6b19d798';
+        var stock_management = 1;
+        var taxRate = 0;
+        var token = 'e7c9cea3b7e2312c7993bb42fc33064e';
+        var uploading_in_progress = 'Пожалуйста подождите...';
+        var usingSecureMode = false;
+        var wishlistProductsIds = false;
+    </script>
+{/literal}
+{*
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.easing.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/tools.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/global.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/10-bootstrap.min.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/15-jquery.total-storage.min.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/15-jquery.uniform-modified.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/products-comparison.js"></script>
+*}
+{*
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.idTabs.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/bxslider/jquery.bxslider.js"></script>
+*}
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jqzoom/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/product.js"></script>
+
+{*
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/js/socialsharing.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blockcart/ajax-cart.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/tools/treeManagement.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocknewsletter/blocknewsletter.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/autocomplete/jquery.autocomplete.js"></script>
+
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blockwishlist/js/ajax-wishlist.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/productcomments/js/jquery.rating.pack.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/sendtoafriend/sendtoafriend.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/hoverIntent.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/superfish-modified.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/blocktopmenu.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/productcomments/js/jquery.textareaCounter.plugin.js"></script>
+<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/productcomments/js/productcomments.js"></script>
+*}

@@ -385,3 +385,41 @@ $(document).ready(function (e) {
         })
     }
 });
+
+$(document).ready(function (e) {
+    $('.favorite a').click(function () {
+        var wishlist = $.cookie('shop_wishlist');
+        if (wishlist) {
+            wishlist = wishlist.split(',');
+        } else {
+            wishlist = [];
+        }
+
+        if (!$(this).hasClass('checked')) {
+            var i = $.inArray($(this).data('id') + '', wishlist);
+            if (i == -1) {
+                wishlist.push($(this).data('id'));
+            }
+
+            $(this).addClass('checked');
+            $(this).text('Удалить из избранного');
+        } else {
+            var i = $.inArray($(this).data('id') + '', wishlist);
+            if (i != -1) {
+                wishlist.splice(i, 1);
+            }
+            $(this).removeClass('checked');
+            $(this).text('Добавить в избранное');
+        }
+
+        $('#panel .wishlist .count').text(wishlist.length);
+        if (wishlist.length > 0) {
+            $.cookie('shop_wishlist', wishlist.join(','), {expires: 30, path: '/'});
+            $('#panel .wishlist').removeAttr('disabled');
+        } else {
+            $.cookie('shop_wishlist', null, {expires: 30, path: '/'});
+            $('#panel .wishlist').attr('disabled', 'disabled');
+        }
+        return false;
+    });
+});

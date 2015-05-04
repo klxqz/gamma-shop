@@ -12,31 +12,56 @@
          {/if}
          ></div>
     <div class="box-info-product">
-        <h4>{sprintf('[`Buy %s`]',$product.name|escape)}</h4>
-
-
+        
 
         <div class="content_prices clearfix">
-
-
-
+            
+            <h4>{sprintf('[`Buy %s`]',$product.name|escape)}</h4>
 
             {if $product.sku_type}
 
                 <!-- SELECTABLE FEATURES selling mode -->
                 {$default_sku_features = $product.sku_features}
                 {$product_available = $product.status}
-                <div class="options">
-                    {foreach $features_selectable as $f}
-                        {$f.name}:
-                        <select data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]">
-                            {foreach $f.values as $v_id => $v}
-                                <option value="{$v_id}" {if $v_id == ifset($default_sku_features[$f.id])}selected{/if}>{$v}</option>
-                            {/foreach}
-                        </select>
-                        <br>
-                    {/foreach}
-                </div>
+
+
+                {if $theme_settings.selectable_features_control == 'inline'}
+                    <div class="options">
+                        {foreach $features_selectable as $f}
+                            <div class="inline-select{if $f.type == 'color'} color{/if}">
+                                {foreach $f.values as $v_id => $v}
+                                    {if !isset($default_sku_features[$f.id])}
+                                        {$default_sku_features[$f.id]=$v_id}
+                                    {/if}
+                                    <a data-value="{$v_id}" href="#"class="btn btn-default{if $v_id == ifset($default_sku_features[$f.id])} active{/if}"{if $f.type == 'color'} style="{$v->style}; margin-bottom: 20px;"{/if}>
+                                        {if $f.type == 'color'}
+                                            &nbsp;<i class="icon16 checkmark color_checkmark"></i>
+                                        {/if}
+                                        {if $f.type == 'color'}
+                                            &nbsp;<span class="color_name">{strip_tags($v)}</span>
+                                        {else}
+                                            {$v}
+                                        {/if}
+                                    </a>
+                                {/foreach}
+                                <input type="hidden" data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
+                            </div>
+
+                        {/foreach}
+                    </div>        
+                {else}
+                    <div class="options">
+                        {foreach $features_selectable as $f}
+                            {$f.name}:
+                            <select data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]">
+                                {foreach $f.values as $v_id => $v}
+                                    <option value="{$v_id}" {if $v_id == ifset($default_sku_features[$f.id])}selected{/if}>{$v}</option>
+                                {/foreach}
+                            </select>
+                            <br>
+                        {/foreach}
+                    </div>
+                {/if}
             {else}
 
                 <!-- FLAT SKU LIST selling mode -->

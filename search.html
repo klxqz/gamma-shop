@@ -24,6 +24,8 @@
 
 {/if}
 
+{$wa->title($title)}
+
 {$compare = waRequest::cookie('shop_compare', array(), waRequest::TYPE_ARRAY_INT)}
 {$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
 

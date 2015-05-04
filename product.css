@@ -310,6 +310,8 @@ span.view_scroll_spacer {
     content: "\f080"; }
 #usefull_link_block li.favorite a:before {
     content: "\f08a"; }
+#usefull_link_block li.favorite a.checked:before {
+    content: "\f004"; }
 #usefull_link_block li.sendtofriend a:before {
     content: "\f003"; }
 #usefull_link_block li#left_share_fb {

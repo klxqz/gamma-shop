@@ -7,13 +7,13 @@ $(function () {
             $(".cart-discount").closest('tr').show();
         }
         $(".cart-discount").html('&minus; ' + data.discount);
-        
+
         if (data.add_affiliate_bonus) {
             $(".affiliate").show().html(data.add_affiliate_bonus);
         } else {
             $(".affiliate").hide();
         }
-        
+
     }
 
     // add to cart block: services
@@ -68,23 +68,23 @@ $(function () {
         var div = $(this).closest('div');
         var tr = $(this).closest('tr');
         if ($(this).is(':checked')) {
-           var parent_id = $(this).closest('tr').data('id')
-           var data = {html: 1, parent_id: parent_id, service_id: $(this).val()};
-           var variants = $('select[name="service_variant[' + parent_id + '][' + $(this).val() + ']"]');
-           if (variants.length) {
-               data['service_variant_id'] = variants.val();
-           }
-           $.post('add/', data, function(response) {
-               div.data('id', response.data.id);
-               tr.find('.item-total').html(response.data.item_total);
-               updateCart(response.data);
-           }, "json");
+            var parent_id = $(this).closest('tr').data('id')
+            var data = {html: 1, parent_id: parent_id, service_id: $(this).val()};
+            var variants = $('select[name="service_variant[' + parent_id + '][' + $(this).val() + ']"]');
+            if (variants.length) {
+                data['service_variant_id'] = variants.val();
+            }
+            $.post('add/', data, function (response) {
+                div.data('id', response.data.id);
+                tr.find('.item-total').html(response.data.item_total);
+                updateCart(response.data);
+            }, "json");
         } else {
-           $.post('delete/', {html: 1, id: div.data('id')}, function (response) {
-               div.data('id', null);
-               tr.find('.item-total').html(response.data.item_total);
-               updateCart(response.data);
-           }, "json");
+            $.post('delete/', {html: 1, id: div.data('id')}, function (response) {
+                div.data('id', null);
+                tr.find('.item-total').html(response.data.item_total);
+                updateCart(response.data);
+            }, "json");
         }
     });
 
@@ -98,6 +98,22 @@ $(function () {
 
     $("#cancel-affiliate").click(function () {
         $(this).closest('form').append('<input type="hidden" name="use_affiliate" value="0">').submit();
+        return false;
+    });
+    $('.cart_quantity_up').click(function () {
+        var input = $(this).closest('.cart_quantity').find('.cart_quantity_input');
+        var qty = parseInt(input.val());
+        input.val(qty + 1);
+        input.change();
+        return false;
+    });
+    $('.cart_quantity_down').click(function () {
+        var input = $(this).closest('.cart_quantity').find('.cart_quantity_input');
+        var qty = parseInt(input.val());
+        if (qty - 1 > 0) {
+            input.val(qty - 1);
+            input.change();
+        }
         return false;
     })
 });
