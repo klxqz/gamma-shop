@@ -39,13 +39,6 @@ $(document).ready(function () {
     first_url_check = true;
 
 
-    //init the price in relation of the selected attributes
-    if (typeof productHasAttributes != 'undefined' && productHasAttributes)
-    {
-
-    }
-    else if (typeof productHasAttributes != 'undefined' && !productHasAttributes)
-        refreshProductImages(0);
 
     $(document).on('click', 'a[name=resetImages]', function (e) {
         e.preventDefault();
@@ -81,43 +74,6 @@ $(document).ready(function () {
         if (typeof ajax_allowed != 'undefined' && !ajax_allowed)
             $('#buy_block').attr('target', '_top');
     }
-
-    // The button to increment the product value
-    $(document).on('click', '.product_quantity_up', function (e) {
-        e.preventDefault();
-        fieldName = $(this).data('field-qty');
-        var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-        if (quantityAvailable > 0) {
-            quantityAvailableT = quantityAvailable;
-        } else {
-            quantityAvailableT = 100000000;
-        }
-        if (!isNaN(currentVal) && currentVal < quantityAvailableT) {
-            $('input[name=' + fieldName + ']').val(currentVal + 1).trigger('keyup');
-        } else {
-            $('input[name=' + fieldName + ']').val(quantityAvailableT);
-        }
-    });
-    // The button to decrement the product value
-    $(document).on('click', '.product_quantity_down', function (e) {
-        e.preventDefault();
-        fieldName = $(this).data('field-qty');
-        var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-        if (!isNaN(currentVal) && currentVal > 1) {
-            $('input[name=' + fieldName + ']').val(currentVal - 1).trigger('keyup');
-        } else {
-            $('input[name=' + fieldName + ']').val(1);
-        }
-    });
-
-    if (typeof minimalQuantity != 'undefined' && minimalQuantity)
-    {
-        checkMinimalQuantity();
-        $(document).on('keyup', 'input[name=qty]', function (e) {
-            checkMinimalQuantity(minimalQuantity);
-        });
-    }
-
 
 });
 
@@ -234,44 +190,17 @@ $(window).resize(refreshProductImages);
 
 
 
-
-function checkMinimalQuantity(minimal_quantity)
-{
-    if ($('#quantity_wanted').val() < minimal_quantity)
-    {
-        $('#quantity_wanted').css('border', '1px solid red');
-        $('#minimal_quantity_wanted_p').css('color', 'red');
-    }
-    else
-    {
-        $('#quantity_wanted').css('border', '1px solid #BDC2C9');
-        $('#minimal_quantity_wanted_p').css('color', '#374853');
-    }
-}
-
-
-
-
-
 $(document).ready(function (e) {
-    if (productColumns != 'undefined') {
-        if ($(document).width() >= 768) {
-            if (productColumns == 1) {
-                minSlides = 6
-            } else if (productColumns == 2) {
-                minSlides = 5
-            } else {
-                minSlides = 3
-            }
-            maxSlides = 6;
-        } else {
-            minSlides = 3;
-            maxSlides = 3;
-        }
+
+    if ($(document).width() >= 768) {
+        minSlides = 6
+        maxSlides = 6;
     } else {
-        minSlides = 2
+        minSlides = 3;
+        maxSlides = 3;
     }
-    if (!!$.prototype.bxSlider)
+
+    if (!!$.prototype.bxSlider) {
         upselling_slider = $('#bxslider-upselling').bxSlider({
             minSlides: minSlides,
             maxSlides: maxSlides,
@@ -284,6 +213,8 @@ $(document).ready(function (e) {
             infiniteLoop: false,
             hideControlOnEnd: true
         });
+    }
+
     if ($('#bxslider-upselling').length) {
         $(window).resize(function () {
             if ($(document).width() <= 767) {
@@ -301,17 +232,9 @@ $(document).ready(function (e) {
                 })
             }
             else if ($(document).width() >= 768) {
-                if (productColumns != 'undefined') {
-                    if (productColumns == 1) {
-                        minSlides = 6
-                    } else if (productColumns == 2) {
-                        minSlides = 5
-                    } else {
-                        minSlides = 3
-                    }
-                } else {
-                    minSlides = 2
-                }
+
+                minSlides = 6;
+
                 upselling_slider.reloadSlider({
                     minSlides: minSlides,
                     maxSlides: 6,
@@ -358,17 +281,7 @@ $(document).ready(function (e) {
                 })
             }
             else if ($(document).width() >= 768) {
-                if (productColumns != 'undefined') {
-                    if (productColumns == 1) {
-                        minSlides = 6
-                    } else if (productColumns == 2) {
-                        minSlides = 5
-                    } else {
-                        minSlides = 3
-                    }
-                } else {
-                    minSlides = 2
-                }
+                minSlides = 6;
                 crossselling_slider.reloadSlider({
                     minSlides: minSlides,
                     maxSlides: 6,

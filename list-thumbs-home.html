@@ -23,27 +23,18 @@
             <div class="product-container" itemscope itemtype="http://schema.org/Product">
                 <div class="left-block">
                     <div class="ajax_product_info" 
-                         data-price="{shop_currency_html($p.price)|escape}"
+                         {if $theme_settings.ruble_symbol}
+                             data-price="{shop_currency_html($p.price)|escape}"
+                         {else}
+                             data-price="{shop_currency($p.price)|escape}"
+                         {/if}
                          data-name="{$p.name|escape}" 
-                         data-url="{$p.frontend_url}" 
-                         {if class_exists(shopImgresizePlugin)}
-                             data-img="{shopImgresizePlugin::getImgUrlByProduct($p,'80x80')}"
-                         {else}
-                             data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-                         {/if}
-                         {if class_exists(shopImgresizePlugin)}
-                             data-big-img="{shopImgresizePlugin::getImgUrlByProduct($p,'250x250')}"
-                         {else}
-                             data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
-                         {/if}
+                         data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
+                         data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
                          ></div>
                     <div class="product-image-container">
                         <a class="product_img_link" href="{$p.frontend_url}" title="{$p.name}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}" itemprop="url">
-                            {if class_exists(shopImgresizePlugin)}
-                                <img class="replace-2x img-responsive" itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($p,'270x270')}" />
-                            {else}
-                                {$wa->shop->productImgHtml($p, '270', ['class' => 'replace-2x img-responsive','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
-                            {/if}
+                            {$wa->shop->productImgHtml($p, '200', ['class' => 'replace-2x img-responsive','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
                         </a>
                         {if !empty($theme_settings.quick_view)}
                             <a class="quick-view" href="{$p.frontend_url}" rel="{$p.frontend_url}">
@@ -119,7 +110,7 @@
                         </form>
 
                         <a itemprop="url" class="button lnk_view btn btn-default" href="{$p.frontend_url}" title="View">
-                            <span>More</span>
+                            <span>[`More`]</span>
                         </a>
                     </div>
                     <div class="color-list-container"> </div>

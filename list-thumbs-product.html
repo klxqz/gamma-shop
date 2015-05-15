@@ -3,11 +3,7 @@
         <li class="item product-box ajax_block_product {if $p@first}first_item{elseif $p@last}last_item{else}item{/if} product_accessories_description">
             <div class="product_desc">
                 <a href="{$p.frontend_url}" title="" class="product-image product_image">
-                    {if class_exists(shopImgresizePlugin)}
-                        <img class="lazyOwl" itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($p,'270x270')}" />
-                    {else}
-                        {$wa->shop->productImgHtml($p, '270', ['class' => 'lazyOwl','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
-                    {/if}
+                    {$wa->shop->productImgHtml($p, '178', ['class' => 'lazyOwl','itemprop' => 'image', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
                 </a>
             </div>
             <div class="s_title_block">

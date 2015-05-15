@@ -27,27 +27,15 @@
             <div id="thumbs_list">
                 <ul id="thumbs_list_frame">
                     {foreach $product.images as $image}
-                        {if class_exists(shopImgresizePlugin)}
-                            <li id="thumbnail_{$image.id}">
-                                <a 
-                                    href="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'458x458')}"
-                                    data-fancybox-group="other-views"
-                                    class="fancybox shown"
-                                    title="Cutting knife 2003">
-                                    <img class="img-responsive" id="thumb_{$image.id}" src="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'80x80')}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                                </a>
-                            </li>
-                        {else}
-                            <li id="thumbnail_{$image.id}">
-                                <a 
-                                    href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
-                                    data-fancybox-group="other-views"
-                                    class="fancybox shown"
-                                    title="Cutting knife 2003">
-                                    <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                                </a>
-                            </li>
-                        {/if}
+                        <li id="thumbnail_{$image.id}">
+                            <a 
+                                href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
+                                data-fancybox-group="other-views"
+                                class="fancybox shown"
+                                title="Cutting knife 2003">
+                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
+                            </a>
+                        </li>
                     {/foreach}
                 </ul>
             </div> <!-- end thumbs_list -->
@@ -152,139 +140,10 @@
     <!-- end pb-right-column-->
 </div> <!-- end primary_block -->
 
-{literal}
-    <script type="text/javascript">
-        var CUSTOMIZE_TEXTFIELD = 1;
-        var FancyboxI18nClose = 'Close';
-        var FancyboxI18nNext = 'Next';
-        var FancyboxI18nPrev = 'Previous';
-        var PS_CATALOG_MODE = false;
-        var added_to_wishlist = 'Added to your wishlist.';
-        var ajaxsearch = true;
-        var allowBuyWhenOutOfStock = false;
-        var attribute_anchor_separator = '-';
-        var attributesCombinations = [];
-        var availableLaterValue = '';
-        var availableNowValue = '';
-        var baseDir = 'http://livedemo00.template-help.com/prestashop_49358/';
-        var baseUri = 'http://livedemo00.template-help.com/prestashop_49358/index.php';
-        var blocksearch_type = 'top';
-        var confirm_report_message = 'Вы уверены, что хотите внести этот комментарий?';
-        var contentOnly = true;
-        var currencyBlank = 0;
-        var currencyFormat = 1;
-        var currencyRate = 1;
-        var currencySign = '$';
-        var currentDate = '2015-05-04 01:35:05';
-        var customizationFields = false;
-        var customizationIdMessage = 'Модификация №';
-        var default_eco_tax = 0;
-        var delete_txt = 'Удалить';
-        var displayPrice = 1;
-        var doesntExist = 'Данная модификация отсутствует. Пожалуйста, выберите другую.';
-        var doesntExistNoMore = 'Этого товара нет в наличии';
-        var doesntExistNoMoreBut = 'с указанными характеристиками, выберите другие';
-        var ecotaxTax_rate = 0;
-        var fieldRequired = 'Пожалуйста заполните все требуемые поля, затем сохраните модификацию.';
-        var freeProductTranslation = 'Бесплатно!';
-        var freeShippingTranslation = 'Бесплатная доставка!';
-        var generated_date = 1430717705;
-        var group_reduction = 0;
-        var idDefaultImage = 1;
-        var id_lang = 3;
-        var id_product = 1;
-        var img_dir = 'http://livedemo00.template-help.com/prestashop_49358/themes/theme967/img/';
-        var img_prod_dir = 'http://livedemo00.template-help.com/prestashop_49358/img/p/';
-        var img_ps_dir = 'http://livedemo00.template-help.com/prestashop_49358/img/';
-        var instantsearch = true;
-        var isGuest = 0;
-        var isLogged = 0;
-        var jqZoomEnabled = true;
-        var loggin_required = 'You must be logged in to manage your wishlist.';
-        var maxQuantityToAllowDisplayOfLastQuantityMessage = 3;
-        var minimalQuantity = 1;
-        var moderation_active = true;
-        var mywishlist_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?fc=module&module=blockwishlist&controller=mywishlist&id_lang=3';
-        var noTaxForThisProduct = true;
-        var oosHookJsCodeFunctions = [];
-        var page_name = 'product';
-        var placeholder_blocknewsletter = 'Enter your e-mail';
-        var priceDisplayMethod = 1;
-        var priceDisplayPrecision = 2;
-        var productAvailableForOrder = true;
-        var productBasePriceTaxExcluded = 128.96;
-        var productColumns = '1';
-        var productHasAttributes = false;
-        var productPrice = 122.51;
-        var productPriceTaxExcluded = 128.96;
-        var productPriceWithoutReduction = 128.96;
-        var productReference = '';
-        var productShowPrice = true;
-        var productUnitPriceRatio = 0;
-        var product_specific_price = {"id_specific_price": "1", "id_specific_price_rule": "0", "id_cart": "0", "id_product": "1", "id_shop": "1", "id_shop_group": "0", "id_currency": "0", "id_country": "0", "id_group": "0", "id_customer": "0", "id_product_attribute": "0", "price": "-1.000000", "from_quantity": "1", "reduction": "0.050000", "reduction_type": "percentage", "from": "0000-00-00 00:00:00", "to": "0000-00-00 00:00:00", "score": "48"};
-        var productcomment_added = 'Ваш комментарий был добавлен!';
-        var productcomment_added_moderation = 'Ваш комментарий был добавлен и будет доступен после одобрения модератором.';
-        var productcomment_ok = 'ОК';
-        var productcomment_title = 'Новый комментарий';
-        var productcomments_controller_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?fc=module&module=productcomments&controller=default&id_lang=3';
-        var productcomments_url_rewrite = false;
-        var quantitiesDisplayAllowed = true;
-        var quantityAvailable = 98;
-        var quickView = true;
-        var reduction_percent = 5;
-        var reduction_price = 0;
-        var removingLinkText = 'удалить товар из корзины';
-        var roundMode = 2;
-        var search_url = 'http://livedemo00.template-help.com/prestashop_49358/index.php?controller=search';
-        var secure_key = 'e91de9f1c7ff79a6d3bf228047e949d3';
-        var specific_currency = false;
-        var specific_price = -1;
-        var static_token = 'e7c9cea3b7e2312c7993bb42fc33064e';
-        var stf_msg_error = 'Ваше письмо не может быть отправлено. Пожалуйста, проверьте адрес и попробуйте еще раз.';
-        var stf_msg_required = 'Вы не заполнили все обязательные поля';
-        var stf_msg_success = 'Ваше письмо успешно отправлено';
-        var stf_msg_title = 'Send to a friend';
-        var stf_secure_key = '940f77d1d05d4ebfcc8d4feb6b19d798';
-        var stock_management = 1;
-        var taxRate = 0;
-        var token = 'e7c9cea3b7e2312c7993bb42fc33064e';
-        var uploading_in_progress = 'Пожалуйста подождите...';
-        var usingSecureMode = false;
-        var wishlistProductsIds = false;
-    </script>
-{/literal}
-{*
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.easing.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/tools.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/global.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/10-bootstrap.min.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/15-jquery.total-storage.min.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/autoload/15-jquery.uniform-modified.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/fancybox/jquery.fancybox.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/products-comparison.js"></script>
-*}
-{*
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.idTabs.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.scrollTo.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jquery.serialScroll.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/bxslider/jquery.bxslider.js"></script>
-*}
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/jqzoom/jquery.jqzoom.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/product.js"></script>
+<script type="text/javascript">
+    var contentOnly = true;
+    var jqZoomEnabled = true;
+</script>
 
-{*
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/socialsharing/js/socialsharing.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blockcart/ajax-cart.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/tools/treeManagement.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocknewsletter/blocknewsletter.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/js/jquery/plugins/autocomplete/jquery.autocomplete.js"></script>
-
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blockwishlist/js/ajax-wishlist.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/productcomments/js/jquery.rating.pack.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/sendtoafriend/sendtoafriend.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/hoverIntent.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/superfish-modified.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/blocktopmenu/js/blocktopmenu.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/modules/productcomments/js/jquery.textareaCounter.plugin.js"></script>
-<script type="text/javascript" src="http://livedemo00.template-help.com/prestashop_49358/themes/theme967/js/modules/productcomments/js/productcomments.js"></script>
-*}
+<script type="text/javascript" src="{$wa_theme_url}jquery.jqzoom.js"></script>
+<script type="text/javascript" src="{$wa_theme_url}product_script.js"></script>

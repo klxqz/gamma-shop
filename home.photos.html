@@ -1,0 +1,41 @@
+<section class="page-product-box">
+    <h3 class="page-product-heading">
+        {$theme_settings.home_photo_title}
+    </h3>
+    <div class="block products_block accessories-block clearfix">
+        <div class="block_content">
+            {$number_photo = $theme_settings.home_number_photo}
+            {$photos = $wa->photos->photos('',null, 0, $number_photo)}
+            <ul id="bxslider-photo">
+                {foreach from=$photos item=photo}
+                    <li{if $photo.stack_count > 0} class="stacked"{/if}>
+                        <div class="image">
+                            {$size_photo = $theme_settings.home_size_photo}
+                            {if empty($photo.frontend_link)}
+                                {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
+                            {else}
+                                <a href="{$photo.frontend_link|default:'#'}">
+                                    {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
+                                </a>
+                            {/if}
+                        </div>
+                    </li>
+                {/foreach}
+            </ul>
+            <script>
+                $(document).ready(function () {
+                    $('#bxslider-photo').bxSlider({
+                        minSlides: 1,
+                        maxSlides: 5,
+                        pager: false,
+                        nextText: '',
+                        prevText: '',
+                        moveSlides: 1,
+                        infiniteLoop: false,
+                        hideControlOnEnd: true
+                    });
+                });
+            </script>
+        </div>
+    </div>	
+</section>

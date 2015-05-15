@@ -149,18 +149,11 @@
     </files>
     <about locale="en_US">
         <![CDATA[
-<p><b>CUSTOM</b> is a universal design theme family for all basic Webasyst apps: Site, Blog, Photos, Shop-Script, and others. The parent (main) theme of the family, which includes the basic set of CSS rules and the common layout template index.html, is the CUSTOM (i.e. this) theme for the Site application. All CUSTOM design themes used in other applications (e.g., Blog or Photos) utilize common CSS rules and file index.html of the parent (main) theme.</p>
-<p>CUSTOM design themes are optimized for all modern web browsers, including iOS and Android based mobile devices.</p>
 
 ]]>
     </about>
     <about locale="ru_RU">
         <![CDATA[
-<p><b>CUSTOM</b> — это универсальное семейство тем дизайна для всех базовых приложений фреймворка Вебасист: Сайт, Блог, Фото, Shop-Script и других. Родительской (основной) темой семейства, включающей в себя базовый набор CSS-стилей и общий макет дизайна index.html, является тема CUSTOM для приложения «Сайт» (данная тема). Все темы дизайна CUSTOM для других приложений (Блог, Фото и других) используют базовый CSS и index.html из родительской (основной) темы.</p>
-<p>Темы дизайна семейства CUSTOM оптимизированы для всех современных браузеров и мобильных устройств на основе iOS и Android.</p>
-
-<h3>.hero</h3>
-<p>Тема дизайна предоставляет класс .hero, который рекомендуется использовать для выделения ключевого содержимого страницы. Класс визуально оформляет содержимое в виде «растяжки» на всю ширину основной видимой области страницы:</p>
 
 
 ]]>
@@ -251,13 +244,38 @@
             </name>
         </setting>
        
-        <setting var="slider" control_type="checkbox">
-            <value>1</value>
+        <setting var="slider" control_type="radio">
+            <value>images</value>
             <name locale="en_US">Slider</name>
             <name locale="ru_RU">Слайдер</name>
+            <options>
+                <option value="images">
+                    <name locale="en_US">Image slider</name>
+                    <name locale="ru_RU">Слайдер изображений</name>
+                    <description locale="ru_RU"><![CDATA[В настройке ниже Вы можете изменить изображения и текст слайдов]]></description>
+                    <description locale="en_US"><![CDATA[In the settings below, you can change the image and text slides]]></description>
+                </option>
+                <option value="products">
+                    <name locale="en_US">Product slider</name>
+                    <name locale="ru_RU">Слайдер товаров</name>
+                    <description locale="ru_RU"><![CDATA[В настройке ниже Вы можете указать список продуктов, который будет использоваться слайдером]]></description>
+                    <description locale="en_US"><![CDATA[In the settings below, you can specify a list of products that will be used slider]]></description>
+                </option>
+                <option value="">
+                    <name locale="en_US">Disabled</name>
+                    <name locale="ru_RU">Отключен</name>
+                    <description locale="ru_RU"><![CDATA[Слайдер не выводится]]></description>
+                    <description locale="en_US"><![CDATA[The slider not displayed]]></description>
+                </option>
+            </options>
         </setting>
         
-        
+        <setting var="slider_productlist" control_type="text">
+            <value>bestsellers</value>
+            <name locale="en_US">List of products slider</name>
+            <name locale="ru_RU">Список товаров слайдера</name>
+        </setting>
+          
         <setting var="slide1" control_type="image">
             <value>img/slider/slide-1.jpg</value>
             <filename>img/slider/slider1.*</filename>
@@ -270,10 +288,10 @@
             <name locale="ru_RU">слайд 1 ссылка</name>
         </setting>
         <setting var="slide1_description" control_type="text">
-            <value><![CDATA[<h2>MOLESKINE</h2>
-<h3>SOFT XLARGE RULED NOTEBOOK</h3>
-<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
-<p class="p1">Starting From: <span>$19.99</span></p>
+            <value><![CDATA[<h2>Заголовок</h2>
+<h3>Заголовок</h3>
+<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
+<p class="p1">Цена: <span>$19.99</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 1 description</name>
             <name locale="ru_RU">слайд 1 Описание</name>
@@ -291,10 +309,10 @@
             <name locale="ru_RU">слайд 2 ссылка</name>
         </setting>
         <setting var="slide2_description" control_type="text">
-            <value><![CDATA[<h2>Staedtler</h2>
-<h3>Triplus Fineliner Pen Pack</h3>
-<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
-<p class="p1">Starting From: <span>$29.99</span></p>
+            <value><![CDATA[<h2>Ваш товар</h2>
+<h3>Легкая и гибкая настройка слайдера</h3>
+<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
+<p class="p1">Цена: <span>$29.99</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 2 description</name>
             <name locale="ru_RU">слайд 2 Описание</name>
@@ -315,8 +333,8 @@
         <setting var="slide3_description" control_type="text">
             <value><![CDATA[<h2>Maped</h2>
 <h3>Effortless Stapler Half strip</h3>
-<p>Dovitae diam purus luctus facilisis. Nullam at ipsum eros tris tique ultrice. Duis quis imperdie dolore est Sed lobortis ultrices aliquet.</p>
-<p class="p1">Starting From: <span>$33.99</span></p>
+<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
+<p class="p1">Цена: <span>$33.99</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 3 description</name>
             <name locale="ru_RU">слайд 3 Описание</name>
@@ -395,8 +413,8 @@
         </setting>
         <setting var="banner1_description" control_type="text">
             <value><![CDATA[<div>
-    <h2>Save 20% <br/>when you</h2>
-    <p>use credit card</p>
+    <h2>Скидка 20% <br/>при расчете</h2>
+    <p>кредитной карты</p>
 </div>]]></value>
             <name locale="en_US">banner 1 description</name>
             <name locale="ru_RU">баннер 1 Описание</name>
@@ -414,8 +432,8 @@
             <name locale="ru_RU">баннер 2 ссылка</name>
         </setting>
         <setting var="banner2_description" control_type="text">
-            <value><![CDATA[<div><h2>order<br/>online</h2>
-    <p>Hours: 8AM -11PM</p>
+            <value><![CDATA[<div><h2>Обработка<br/>Заказов</h2>
+    <p>Пн—Пт: 9:00—18:00</p>
     </div>]]></value>
             <name locale="en_US">banner 2 description</name>
             <name locale="ru_RU">баннер 2 Описание</name>
@@ -434,8 +452,8 @@
         </setting>
         <setting var="banner3_description" control_type="text">
             <value><![CDATA[<div>
-    <h2>BIC</h2>
-    <h3>Get 20% Off<br/>On Selected Items</h3>
+    <h2>Внимание!</h2>
+    <h3>До 20% скидки<br/>На представленные товары</h3>
     <span class="fa-shopping-cart"></span>
 </div>]]></value>
             <name locale="en_US">banner 3 description</name>
@@ -455,8 +473,8 @@
         </setting>
         <setting var="banner4_description" control_type="text">
             <value><![CDATA[<div>
-    <h2>Sharpie</h2>
-    <h3>Get 20% Off<br/>On Selected Items</h3>
+    <h2>Новинки</h2>
+    <h3>Новые поступления<br/>Успевайте купить</h3>
     <span class="fa-shopping-cart"></span>
 </div>]]></value>
             <name locale="en_US">banner 4 description</name>
@@ -972,6 +990,18 @@ plugin_menu_section]]></value>
         <locale>
             <msgid>Bonuses</msgid>
             <msgstr locale="ru_RU">Бонусы</msgstr>
+        </locale>
+        <locale>
+            <msgid>Favorite</msgid>
+            <msgstr locale="ru_RU">Избранное</msgstr>
+        </locale>
+        <locale>
+            <msgid>About us</msgid>
+            <msgstr locale="ru_RU">О нас</msgstr>
+        </locale>
+        <locale>
+            <msgid>Price</msgid>
+            <msgstr locale="ru_RU">Цена</msgstr>
         </locale>
         
         

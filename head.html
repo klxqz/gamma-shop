@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{$wa_active_theme_url}product_list.css"  media="all"/>
+<link rel="stylesheet" href="{$wa_active_theme_url}productcomments.css"  media="all"/>
 
 <link rel="stylesheet" href="{$wa_active_theme_url}category.css"  media="all"/>
 <link rel="stylesheet" href="{$wa_active_theme_url}blocklayered.css"  media="all"/>
@@ -8,10 +10,7 @@
 <!-- js -->
 <script type="text/javascript" src="{$wa_app_static_url}js/lazy.load.js?v{$wa->version()}"></script>
 
-
-
 {if !empty($filters) && !empty($theme_settings.filter_slider)}
-
     <link href="{$wa_url}wa-content/css/jquery-ui/base/jquery.ui.theme.css?v{$wa_theme_version}" rel="stylesheet" type="text/css" />
     <link href="{$wa_url}wa-content/css/jquery-ui/base/jquery.ui.slider.css?v{$wa_theme_version}" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-ui/jquery.ui.core.min.js?v{$wa_theme_version}"></script>
@@ -22,17 +21,19 @@
 
 {$compare = waRequest::cookie('shop_compare', array(), waRequest::TYPE_ARRAY_INT)}
 <script type="text/javascript">
+    var ruble_symbol = {if !empty($theme_settings.ruble_symbol)}1{else}0{/if};
     var compare_url = '{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}';
     var layer_cart = '{!empty($theme_settings.layer_cart)}';
     var quick_view = '{!empty($theme_settings.quick_view)}';
     var filter_slider = {if !empty($filters) && !empty($theme_settings.filter_slider)}1{else}0{/if};
-    var default_product_view = '{$theme_settings.default_product_view}'
+        var default_product_view = '{$theme_settings.default_product_view}'
 </script>
 <script type="text/javascript" src="{$wa_active_theme_url}custom.shop.js?v{$wa_theme_version}"></script>
 {if $wa->shop->config('enable_2x')}
     <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/jquery.retina.min.js?v{$wa->version(true)}"></script>
-    <script type="text/javascript">$(window).load(function () {
-            $('.promo img,.product-list img,.product-page img,.cart img').retina()
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.replace-2x').retina()
         });
     </script>
 {/if}
@@ -46,4 +47,6 @@
 
 <!-- plugin hook: 'frontend_head' -->
 {* @event frontend_head.%plugin_id% *}
-{foreach $frontend_head as $_}{$_}{/foreach}
+{foreach $frontend_head as $_}
+    {$_}
+{/foreach}

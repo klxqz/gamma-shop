@@ -43,7 +43,8 @@
 
 <div class="products_block">
     <table class="table table-bordered product_list" id="product_comparison">
-        <tbody><tr>
+        <tbody>
+            <tr>
                 <td class="td_empty compare_extra_information">
                 </td>
                 {foreach $products as $p}
@@ -52,13 +53,8 @@
                              data-price="{shop_currency_html($p.price)|escape}"
                              data-name="{$p.name|escape}" 
                              data-url="{$p.frontend_url}" 
-                             {if class_exists(shopImgresizePlugin)}
-                                 data-img="{shopImgresizePlugin::getImgUrlByProduct($p,'80x80')}"
-                                 data-big-img="{shopImgresizePlugin::getImgUrlByProduct($p,'250x250')}"
-                             {else}
-                                 data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-                                 data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
-                             {/if}
+                             data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
+                             data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
                              ></div>
                         {if count($products) > 2}
                             <div class="remove">

@@ -1,21 +1,20 @@
 <form id="buy_block" method="post" action="{$wa->getUrl('/frontendCart/add')}">
     <div class="ajax_product_info" 
-         data-price="{shop_currency_html($product.price)|escape}"
+         {if $theme_settings.ruble_symbol}
+             data-price="{shop_currency_html($product.price)|escape}"
+         {else}
+             data-price="{shop_currency($product.price)|escape}"
+         {/if}
          data-name="{$product.name|escape}" 
          data-url="{$product.frontend_url}" 
-         {if class_exists(shopImgresizePlugin)}
-             data-img="{shopImgresizePlugin::getImgUrlByProduct($product,'80x80')}"
-             data-big-img="{shopImgresizePlugin::getImgUrlByProduct($product,'250x250')}"
-         {else}
-             data-img="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-             data-big-img="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
-         {/if}
+         data-img="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
+         data-big-img="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
          ></div>
     <div class="box-info-product">
-        
+
 
         <div class="content_prices clearfix">
-            
+
             <h4>{sprintf('[`Buy %s`]',$product.name|escape)}</h4>
 
             {if $product.sku_type}
@@ -178,7 +177,13 @@
 
             <div class="price">
                 <p class="our_price_display">																		
-                    <span itemprop="price" id="our_price_display" data-price="{shop_currency($product.price, null, null, 0)}">{shop_currency_html($product.price)}</span>
+                    <span itemprop="price" id="our_price_display" data-price="{shop_currency($product.price, null, null, 0)}">
+                        {if $theme_settings.ruble_symbol}
+                            {shop_currency_html($product.price)}
+                        {else}
+                            {shop_currency($product.price)}
+                        {/if}
+                    </span>
                 </p>
                 {if $product.compare_price > 0}
                     {$percent = floor(($product.compare_price - $product.price) / $product.compare_price * 100)}
@@ -188,7 +193,13 @@
                         </span>
                     </p>
                     <p id="old_price">
-                        <span id="old_price_display">{shop_currency_html($product.compare_price)}</span>
+                        <span id="old_price_display">
+                            {if $theme_settings.ruble_symbol}
+                                {shop_currency_html($product.compare_price)}
+                            {else}
+                                {shop_currency($product.price)}
+                            {/if}
+                        </span>
                     </p>
                 {/if}
 

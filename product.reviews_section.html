@@ -19,35 +19,10 @@
 
     </div>
     {if $theme_settings.product_reviews_display_mode == 'product_page'}
+        <script type="text/javascript" src="{$wa_app_static_url}js/rate.widget.js"></script>
         <script type="text/javascript">
-            $(function () {
-                var loading = $('<div><i class="icon16 loading"></i></div>'),
-                        prdu = "{$wa->shop->productUrl($product)}";
-                $('#product_comments_block_tab')
-                        .append(loading)
-                        .load(prdu + 'reviews/ .reviews', { random: "1" },
-                        function () {
-                            initFormControl();
-                            $(this).prepend('<script type="text/javascript" src="{$wa_app_static_url}js/rate.widget.js"><\/script>')
-                                    .prepend('<script type="text/javascript" src="{$wa_theme_url}reviews.js"><\/script>')
-                                    .find('.loading').parent().remove();
-
-                            $('div.wa-captcha .wa-captcha-refresh, div.wa-captcha .wa-captcha-img').unbind('click').click(function () {
-                                var div = $(this).parents('div.wa-captcha');
-                                var captcha = div.find('.wa-captcha-img');
-                                if (captcha.length) {
-                                    captcha.attr('src', captcha.attr('src').replace(/\?.*$/, '?rid=' + Math.random()));
-                                    captcha.one('load', function () {
-                                        div.find('.wa-captcha-input').focus();
-                                    });
-                                }
-                                ;
-                                div.find('input').val('');
-                                return false;
-                            });
-                        }
-                        );
-            });
+            var product_reviews_display_mode = 'product_page';
+            var product_url = '{$wa->shop->productUrl($product)}';
         </script>
     {/if}
 {/function}

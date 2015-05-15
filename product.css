@@ -1,22 +1,4 @@
-/* ------- FONTS ------- */
-/* ------- BORDERS ------- */
-/* ------- BACKGROUNDS ------- */
-/* ------- COLORS ------- */
-/* ------- Indents ------- */
-/* ------- Product Elements ------- */
-/* ------- Buttons ------- */
-/* ------- Buttons +/- ------ */
-/* ------- Button Small ------- */
-/* ------- Button exclusive-medium ------- */
-/* ------- My Account List bg ------- */
-/* ------- Product Listing ------- */
-/* ------- Grid/List vars ------- */
-/* ------- Pagination vars ------- */
-/* ------- Product Info ------- */
-/* ------- Cart Steps ------- */
-/* ------- sub heading (h2,h3) define ------- */
-/* ------- Image vars ------- */
-/* product desc */
+
 /* primary_block ***************************************************************************** */
 .primary_block {
     margin-bottom: 40px; }
@@ -75,7 +57,7 @@ img {
         margin: 0 auto; } }
 .pb-left-column #image-block img {
     background: #fbfbfb;
-    width: 100%; }
+}
 .pb-left-column #image-block #view_full_size {
     display: block;
     cursor: pointer; }

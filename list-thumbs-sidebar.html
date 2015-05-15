@@ -2,11 +2,7 @@
     {foreach $products as $p}
         <li class="clearfix">
             <a class="products-block-image" href="{$p.frontend_url}">
-                {if class_exists(shopImgresizePlugin)}
-                    <img class="replace-2x img-responsive" src="{shopImgresizePlugin::getImgUrlByProduct($p,'98x98')}" alt="" title="{$p.name}" />
-                {else}
-                    {$wa->shop->productImgHtml($p, '98x98', ['class' => 'replace-2x img-responsive', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
-                {/if}
+                {$wa->shop->productImgHtml($p, '98x98', ['class' => 'replace-2x img-responsive', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
             </a>
             <div class="product-content">
                 <h5>

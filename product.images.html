@@ -12,15 +12,9 @@
         {/if}
 
         <span id="view_full_size">
-            {if class_exists(shopImgresizePlugin)}
-                <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImgresizePlugin::getImgUrlByProduct($product,'800x800')}" itemprop="url">
-                    <img itemprop="image" src="{shopImgresizePlugin::getImgUrlByProduct($product,'458x458')}" title="{$product.name}" alt="{$product.name}"/>
-                </a>
-            {else}
-                <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '800', false)}" itemprop="url">
-                    <img itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458', false)}" title="{$product.name}" alt="{$product.name}"/>
-                </a>
-            {/if}
+            <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '800', false)}" itemprop="url">
+                <img itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458', false)}" title="{$product.name}" alt="{$product.name}"/>
+            </a>
         </span>
     </div> <!-- end image-block -->
 
@@ -39,9 +33,9 @@
                         <li id="thumbnail_{$image.id}">
                             <a id="product-image-{$image.id}"
                                href="javascript:void(0);"
-                               rel="{ldelim}gallery: 'gal1', smallimage: '{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'458x458')}',largeimage: '{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'800x800')}'{rdelim}"
+                               rel="{ldelim}gallery: 'gal1', smallimage: '{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}',largeimage: '{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '800x800', false)}'{rdelim}"
                                title="Cutting knife 2003">
-                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImgresizePlugin::getImgUrlByProduct(['id' => $product.id, 'image_id' => $image.id, 'ext' => $image.ext],'80x80')}" alt="Cutting knife 2003" title="Cutting knife 2003" itemprop="image" />
+                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" itemprop="image" />
                             </a>
                         </li>
                     {/foreach}

@@ -11,7 +11,6 @@ function initCompare() {
             var i = $.inArray($(this).data('id') + '', compare);
             if (i == -1) {
                 compare.push($(this).data('id'));
-
             }
             $('.total-compare-val').text(compare.length);
             if (compare.length > 1) {
@@ -266,6 +265,12 @@ $(document).ready(function () {
     if (filter_slider) {
         initFilterSlider();
     }
+    
+    $(document).on('click', '#layer_cart .cross, #layer_cart .continue, .layer_cart_overlay', function (e) {
+        e.preventDefault();
+        $('.layer_cart_overlay').hide();
+        $('#layer_cart').fadeOut('fast');
+    });
 
     if ($('#is_product_page').length) {
         var $this = $('#is_product_page');
@@ -299,7 +304,7 @@ $(document).ready(function () {
 
 
     $("#columns").on('click', '.ajax_add_to_cart_button', function () {
-        $(this).closest('form.addtocart').submit();
+        $(this).closest('form').submit();
         return false;
     });
 
@@ -319,7 +324,11 @@ $(document).ready(function () {
             });
             return false;
         }
-        $.post(f.attr('action') + '?html=1', f.serialize(), function (response) {
+        var param = '';
+        if(ruble_symbol) {
+            param = '?html=1';
+        }
+        $.post(f.attr('action') + param, f.serialize(), function (response) {
             if (response.status == 'ok') {
                 var cart_total = $(".shopping_cart");
 

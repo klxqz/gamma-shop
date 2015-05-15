@@ -1,0 +1,94 @@
+{if !empty($theme_settings.slider)}
+    <link rel="stylesheet" href="{$wa_theme_url}homeslider.css"  media="all"/>
+    {if $theme_settings.slider == 'images'}
+        <div id="homepage-slider">
+            <ul id="homeslider">
+                {if !empty($theme_settings.slide1)}
+                    <li class="homeslider-container">
+                        <a href="{$theme_settings.slide1_url}">
+                            <img src="{$wa_theme_url}{$theme_settings.slide1}"/>
+                        </a>
+                        <div class="homeslider-description">
+                            {$theme_settings.slide1_description}
+                        </div>
+                    </li>
+                {/if}
+
+                {if !empty($theme_settings.slide2)}
+                    <li class="homeslider-container">
+                        <a href="{$theme_settings.slide2_url}">
+                            <img src="{$wa_theme_url}{$theme_settings.slide2}"/>
+                        </a>
+                        <div class="homeslider-description">
+                            {$theme_settings.slide2_description}
+                        </div>
+                    </li>
+                {/if}
+
+                {if !empty($theme_settings.slide3)}
+                    <li class="homeslider-container">
+                        <a href="{$theme_settings.slide3_url}">
+                            <img src="{$wa_theme_url}{$theme_settings.slide3}"/>
+                        </a>
+                        <div class="homeslider-description">
+                            {$theme_settings.slide3_description}
+                        </div>
+                    </li>
+                {/if}
+
+                {if !empty($theme_settings.slide4)}
+                    <li class="homeslider-container">
+                        <a href="{$theme_settings.slide4_url}">
+                            <img src="{$wa_theme_url}{$theme_settings.slide4}"/>
+                        </a>
+                        <div class="homeslider-description">
+                            {$theme_settings.slide4_description}
+                        </div>
+                    </li>
+                {/if}
+
+                {if !empty($theme_settings.slide5)}
+                    <li class="homeslider-container">
+                        <a href="{$theme_settings.slide5_url}">
+                            <img src="{$wa_theme_url}{$theme_settings.slide5}"/>
+                        </a>
+                        <div class="homeslider-description">
+                            {$theme_settings.slide5_description}
+                        </div>
+                    </li>
+                {/if}
+            </ul>
+        </div>
+    {elseif $theme_settings.slider == 'products'}
+        {$sp = $wa->shop->productSet($theme_settings.slider_productlist)}
+        <div id="homepage-slider">
+            <ul id="homeslider">
+                {foreach $sp as $p}
+                    <li class="homeslider-container">
+                        <a href="{$p.frontend_url}">
+                            {$wa->shop->productImgHtml($p, '0x567', ['class' => 'replace-2x img-responsive', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
+                        </a>
+                        <div class="homeslider-description">
+                            <h2>{$p.name}</h2>
+                            {if $p.summary}
+                                <p>{$p.summary}</p>
+                            {/if}
+                            <p class="p1">
+                                [`Price`]: 
+                                <span>
+                                    {if $theme_settings.ruble_symbol}
+                                        {shop_currency_html($p.price)}
+                                    {else}
+                                        {shop_currency($p.price)}
+                                    {/if}
+                                </span>
+                            </p>
+                        </div>
+
+                    </li>
+                {/foreach}
+            </ul>
+        </div>
+    {/if}
+    <script type="text/javascript" src="{$wa_theme_url}homeslider.js" ></script>
+{/if}

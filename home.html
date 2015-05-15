@@ -1,86 +1,31 @@
 <div class="row">
     <div id="top_column" class="center_column col-xs-12">  
-        {if $theme_settings.slider}
-            <div id="homepage-slider">
-                <ul id="homeslider">
-                    {if !empty($theme_settings.slide1)}
-                        <li class="homeslider-container">
-                            <a href="{$theme_settings.slide1_url}">
-                                <img src="{$wa_theme_url}{$theme_settings.slide1}"/>
-                            </a>
-                            <div class="homeslider-description">
-                                {$theme_settings.slide1_description}
-                            </div>
-                        </li>
-                    {/if}
 
-                    {if !empty($theme_settings.slide2)}
-                        <li class="homeslider-container">
-                            <a href="{$theme_settings.slide2_url}">
-                                <img src="{$wa_theme_url}{$theme_settings.slide2}"/>
-                            </a>
-                            <div class="homeslider-description">
-                                {$theme_settings.slide2_description}
-                            </div>
-                        </li>
-                    {/if}
-
-                    {if !empty($theme_settings.slide3)}
-                        <li class="homeslider-container">
-                            <a href="{$theme_settings.slide3_url}">
-                                <img src="{$wa_theme_url}{$theme_settings.slide3}"/>
-                            </a>
-                            <div class="homeslider-description">
-                                {$theme_settings.slide3_description}
-                            </div>
-                        </li>
-                    {/if}
-
-                    {if !empty($theme_settings.slide4)}
-                        <li class="homeslider-container">
-                            <a href="{$theme_settings.slide4_url}">
-                                <img src="{$wa_theme_url}{$theme_settings.slide4}"/>
-                            </a>
-                            <div class="homeslider-description">
-                                {$theme_settings.slide4_description}
-                            </div>
-                        </li>
-                    {/if}
-
-                    {if !empty($theme_settings.slide5)}
-                        <li class="homeslider-container">
-                            <a href="{$theme_settings.slide5_url}">
-                                <img src="{$wa_theme_url}{$theme_settings.slide5}"/>
-                            </a>
-                            <div class="homeslider-description">
-                                {$theme_settings.slide5_description}
-                            </div>
-                        </li>
-                    {/if}
-
-                </ul>
-            </div>
-        {/if}
+        {include file="home.slider.html"}
 
         {if !empty($theme_settings.banners)}
             <div id="htmlcontent_top">
                 <ul class="htmlcontent-home clearfix row">
-                    <li class="htmlcontent-item-1">
-                        <a href="{$theme_settings.banner1_url}"  class="item-link" title="">
-                            <img src="{$wa_theme_url}{$theme_settings.banner1}"  class="item-img"/>
-                            <div class="item-html">
-                                {$theme_settings.banner1_description}
-                            </div>
-                        </a>
-                    </li>
-                    <li class="htmlcontent-item-2">
-                        <a href="{$theme_settings.banner2_url}"  class="item-link" title="">
-                            <img src="{$wa_theme_url}{$theme_settings.banner2}"  class="item-img"/>
-                            <div class="item-html">
-                                {$theme_settings.banner2_description}
-                            </div>
-                        </a>
-                    </li>
+                    {if !empty($theme_settings.banner1)}
+                        <li class="htmlcontent-item-1">
+                            <a href="{$theme_settings.banner1_url}"  class="item-link" title="">
+                                <img src="{$wa_theme_url}{$theme_settings.banner1}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner1_description}
+                                </div>
+                            </a>
+                        </li>
+                    {/if}
+                    {if !empty($theme_settings.banner2)}
+                        <li class="htmlcontent-item-2">
+                            <a href="{$theme_settings.banner2_url}"  class="item-link" title="">
+                                <img src="{$wa_theme_url}{$theme_settings.banner2}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner2_description}
+                                </div>
+                            </a>
+                        </li>
+                    {/if}
                 </ul>
             </div>
         {/if}
@@ -106,7 +51,6 @@
             {/if}
         </ul>
         <div class="tab-content">
-
             {if $theme_settings.productlist1}
                 {include file='list-thumbs-home.html' products=$wa->shop->productSet($theme_settings.productlist1_list) id="list1" class="product_list grid row tab-pane"}
             {/if}
@@ -126,11 +70,8 @@
         </script>
 
         <div class="clearfix"> 
-
             <section class="page-product-box">
-                <h3 class="page-product-heading">
-                    О нас
-                </h3>
+                <h3 class="page-product-heading">[`About us`]</h3>
                 <div class="block products_block accessories-block clearfix">
                     <div class="block_content">
                         <div itemscope itemtype="http://schema.org/Store">
@@ -158,115 +99,15 @@
 
         {if !empty($theme_settings.home_photo) || !empty($theme_settings.home_news)}
             <div class="clearfix row"> 
-                {if !empty($theme_settings.home_photo)}
+                {if $wa->photos && !empty($theme_settings.home_photo)}
                     <div  class="col-xs-12 {if !empty($theme_settings.home_news)}col-sm-4{else}col-sm-12{/if}">
-                        <section class="page-product-box">
-                            <h3 class="page-product-heading">
-                                {$theme_settings.home_photo_title}
-                            </h3>
-                            <div class="block products_block accessories-block clearfix">
-                                <div class="block_content">
-                                    {$number_photo = $theme_settings.home_number_photo}
-                                    {$photos = $wa->photos->photos('',null, 0, $number_photo)}
-                                    <ul id="bxslider-photo">
-                                        {foreach from=$photos item=photo}
-                                            <li{if $photo.stack_count > 0} class="stacked"{/if}>
-                                                <div class="image">
-                                                    {$size_photo = $theme_settings.home_size_photo}
-                                                    {if empty($photo.frontend_link)}
-                                                        {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
-                                                    {else}
-                                                        <a href="{$photo.frontend_link|default:'#'}">
-                                                            {$wa->photos->getImgHtml($photo, $size_photo, ["class"=>"shadowed"])}
-                                                        </a>
-                                                    {/if}
-                                                </div>
-                                            </li>
-                                        {/foreach}
-                                    </ul>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('#bxslider-photo').bxSlider({
-                                                minSlides: 1,
-                                                maxSlides: 5,
-                                                pager: false,
-                                                nextText: '',
-                                                prevText: '',
-                                                moveSlides: 1,
-                                                infiniteLoop: false,
-                                                hideControlOnEnd: true
-                                            });
-                                        });
-                                    </script>
-                                </div>
-                            </div>	
-                        </section>
+                        {include file="home.photos.html"}
                     </div>
                 {/if}
 
-                {if !empty($theme_settings.home_news)}
+                {if $wa->blog && !empty($theme_settings.home_news)}
                     <div  class="col-xs-12 {if !empty($theme_settings.home_photo)}col-sm-8{else}col-sm-12{/if}">
-                        <section class="page-product-box">
-                            <h3 class="page-product-heading">
-                                {$theme_settings.home_news_title}
-                            </h3>
-                            <div class="block products_block accessories-block clearfix">
-                                <div class="block_content">
-
-                                    {$latest_posts = $wa->blog->posts()}
-
-                                    <ul id="bxslider-news">
-
-                                        {foreach $latest_posts as $post}
-                                            <li>
-                                                <div class="post">
-                                                    <h3>
-                                                        <a href="{$post.link}">{$post.title}</a>
-                                                        {* @event prepare_posts_frontend.%plugin_id%.post_title *}
-                                                        {if !empty($post.plugins.post_title)}
-                                                            {foreach $post.plugins.post_title as $plugin => $output}
-                                                                {$output}
-                                                            {/foreach}
-                                                        {/if}
-                                                    </h3>
-                                                    <div class="credentials">
-                                                        {if $post.user.posts_link}
-                                                            <a href="{$post.user.posts_link}" class="username">{$post.user.name}</a>
-                                                        {else}
-                                                            <span class="username">{$post.user.name}</span>
-                                                        {/if}
-                                                        {$post.datetime|wa_datetime:"humandate"}
-                                                    </div>
-                                                    <p>
-                                                        {$post.text|strip_tags|truncate:400}
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        {/foreach}
-
-                                    </ul>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('#bxslider-news').bxSlider({
-                                                minSlides: 3,
-                                                maxSlides: 6,
-                                                slideWidth: 240,
-                                                slideMargin: 20,
-                                                pager: false,
-                                                nextText: '',
-                                                prevText: '',
-                                                moveSlides: 1,
-                                                infiniteLoop: false,
-                                                hideControlOnEnd: true
-                                            });
-                                        });
-                                    </script>
-
-
-
-                                </div>
-                            </div>	
-                        </section>
+                        {include file="home.news.html"}
                     </div>
                 {/if}
             </div>
@@ -275,26 +116,28 @@
         {if !empty($theme_settings.home_custom)}
             <div class="clearfix"> 
 
-                <div id="htmlcontent_home">
-                    <ul class="htmlcontent-home clearfix row">
-                        <li class="htmlcontent-item-1 col-xs-6 ">
-                            <a href="{$theme_settings.banner3_url}"  class="item-link">
-                                <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
-                                <div class="item-html">
-                                    {$theme_settings.banner3_description}
-                                </div>
-                            </a>
-                        </li>
-                        <li class="htmlcontent-item-2 col-xs-6 ">
-                            <a href="{$theme_settings.banner4_url}"  class="item-link">
-                                <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
-                                <div class="item-html">
-                                    {$theme_settings.banner4_description}
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                {if !empty($theme_settings.banners)}
+                    <div id="htmlcontent_home">
+                        <ul class="htmlcontent-home clearfix row">
+                            <li class="htmlcontent-item-1 col-xs-6 ">
+                                <a href="{$theme_settings.banner3_url}"  class="item-link">
+                                    <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
+                                    <div class="item-html">
+                                        {$theme_settings.banner3_description}
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="htmlcontent-item-2 col-xs-6 ">
+                                <a href="{$theme_settings.banner4_url}"  class="item-link">
+                                    <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
+                                    <div class="item-html">
+                                        {$theme_settings.banner4_description}
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {/if}
 
                 {if $theme_settings.home_vk_widget}
                     <div id="facebook_block" class="col-xs-4 div7">
