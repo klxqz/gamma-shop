@@ -6,51 +6,52 @@
         <div class="block_content">
             {$home_number_news = $theme_settings.home_number_news}
             {$latest_posts = $wa->blog->posts(null, $home_number_news)}
-
-            <ul id="bxslider-news">
-                {foreach $latest_posts as $post}
-                    <li>
-                        <div class="post">
-                            <h3>
-                                <a href="{$post.link}">{$post.title}</a>
-                                {* @event prepare_posts_frontend.%plugin_id%.post_title *}
-                                {if !empty($post.plugins.post_title)}
-                                    {foreach $post.plugins.post_title as $plugin => $output}
-                                        {$output}
-                                    {/foreach}
-                                {/if}
-                            </h3>
-                            <div class="credentials">
-                                {if $post.user.posts_link}
-                                    <a href="{$post.user.posts_link}" class="username">{$post.user.name}</a>
-                                {else}
-                                    <span class="username">{$post.user.name}</span>
-                                {/if}
-                                {$post.datetime|wa_datetime:"humandate"}
+            {if $latest_posts}
+                <ul id="bxslider-news">
+                    {foreach $latest_posts as $post}
+                        <li>
+                            <div class="post">
+                                <h3>
+                                    <a href="{$post.link}">{$post.title}</a>
+                                    {* @event prepare_posts_frontend.%plugin_id%.post_title *}
+                                    {if !empty($post.plugins.post_title)}
+                                        {foreach $post.plugins.post_title as $plugin => $output}
+                                            {$output}
+                                        {/foreach}
+                                    {/if}
+                                </h3>
+                                <div class="credentials">
+                                    {if $post.user.posts_link}
+                                        <a href="{$post.user.posts_link}" class="username">{$post.user.name}</a>
+                                    {else}
+                                        <span class="username">{$post.user.name}</span>
+                                    {/if}
+                                    {$post.datetime|wa_datetime:"humandate"}
+                                </div>
+                                <p>
+                                    {$post.text|strip_tags|truncate:200}
+                                </p>
                             </div>
-                            <p>
-                                {$post.text|strip_tags|truncate:200}
-                            </p>
-                        </div>
-                    </li>
-                {/foreach}
-            </ul>
-            <script>
-                $(document).ready(function () {
-                    $('#bxslider-news').bxSlider({
-                        minSlides: 3,
-                        maxSlides: 6,
-                        slideWidth: 240,
-                        slideMargin: 20,
-                        pager: false,
-                        nextText: '',
-                        prevText: '',
-                        moveSlides: 1,
-                        infiniteLoop: false,
-                        hideControlOnEnd: true
+                        </li>
+                    {/foreach}
+                </ul>
+                <script>
+                    $(document).ready(function () {
+                        $('#bxslider-news').bxSlider({
+                            minSlides: 3,
+                            maxSlides: 6,
+                            slideWidth: 240,
+                            slideMargin: 20,
+                            pager: false,
+                            nextText: '',
+                            prevText: '',
+                            moveSlides: 1,
+                            infiniteLoop: false,
+                            hideControlOnEnd: true
+                        });
                     });
-                });
-            </script>
+                </script>
+            {/if}
         </div>
     </div>	
 </section>

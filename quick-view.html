@@ -1,149 +1,204 @@
-<div class="primary_block row" itemscope itemtype="http://schema.org/Product">
-    <!-- left infos-->  
-    <div class="pb-left-column col-xs-12  col-sm-4 col-md-5">
-        <!-- product img-->        
-        <div id="image-block" class="clearfix">
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 " lang="en"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9 ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]> <html class="no-js ie9" lang="en"><![endif]-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>{$wa->title()|escape}</title>
+        <meta name="Keywords" content="{$wa->meta('keywords')|escape}" />
+        <meta name="Description" content="{$wa->meta('description')|escape}" />
+        <meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
 
-            {$badge_html = $wa->shop->badgeHtml($product.badge)}
-            {if $badge_html}
-                <div class="new-box no-print">
-                    <span class="new-label">
-                        {$badge_html}
+
+        <link rel="stylesheet" href="{$wa_parent_theme_url}font-awesome/css/font-awesome.min.css"  media="all"/>
+        <link rel="stylesheet" href="{$wa_parent_theme_url}global.css"  media="all"/>
+        {if $theme_settings.use_uniform}<link rel="stylesheet" href="{$wa_parent_theme_url}css/uniform/{$theme_settings.uniform_theme}/css/uniform.{$theme_settings.uniform_theme}.min.css"  media="all"/>{/if}
+        <link rel="stylesheet" href="{$wa_active_theme_url}product.css" media="all" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" media="all"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- css -->
+        {if $theme_settings.ruble_symbol && $wa->shop && $wa->shop->currency() == 'RUB'} 
+            <link href="{$wa_url}wa-content/font/ruble/arial/fontface.css" rel="stylesheet" type="text/css">
+        {/if}
+
+        <link href="{$wa_active_theme_url}gamma.shop.css?v{$wa_theme_version}" rel="stylesheet" type="text/css">
+        <!-- js -->
+        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery/jquery-1.8.2.min.js"></script>  
+
+
+
+        {if !empty($theme_settings.color_scheme) && $theme_settings.color_scheme == 'custom_color_scheme'}
+            {include file="custom.color_scheme.html" inline}
+        {elseif !empty($theme_settings.color_scheme)}
+            <link rel="stylesheet" href="{$wa_theme_url}{$theme_settings.color_scheme}.css"  media="all"/>
+        {/if}
+
+
+    </head>
+    <body id="product" class="product category-paper-products hide-left-column hide-right-column content_only">
+        <div class="primary_block row" itemscope itemtype="http://schema.org/Product">
+            <!-- left infos-->  
+            <div class="pb-left-column col-xs-12  col-sm-4 col-md-5">
+                <!-- product img-->        
+                <div id="image-block" class="clearfix">
+
+                    {$badge_html = $wa->shop->badgeHtml($product.badge)}
+                    {if $badge_html}
+                        <div class="new-box no-print">
+                            <span class="new-label">
+                                {$badge_html}
+                            </span>
+                        </div>
+                    {/if}
+                    <span id="view_full_size">
+                        <img id="bigpic" itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458x458', false)}"/>
                     </span>
-                </div>
-            {/if}
-            <span id="view_full_size">
-                <img id="bigpic" itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458x458', false)}" title="Cutting knife 2003" alt="Cutting knife 2003" width="458" height="458"/>
-            </span>
-        </div> <!-- end image-block -->
+                </div> <!-- end image-block -->
 
-        <!-- thumbnails -->
-        <div id="views_block" class="clearfix ">
-            <span class="view_scroll_spacer">
-                <a id="view_scroll_left" class="" title="Другие виды" href="javascript:{}">
-                    Previous
-                </a>
-            </span>
-            <div id="thumbs_list">
-                <ul id="thumbs_list_frame">
-                    {foreach $product.images as $image}
-                        <li id="thumbnail_{$image.id}">
-                            <a 
-                                href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
-                                data-fancybox-group="other-views"
-                                class="fancybox shown"
-                                title="Cutting knife 2003">
-                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" height="80" width="80" itemprop="image" />
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
-            </div> <!-- end thumbs_list -->
-            <a id="view_scroll_right" title="Другие виды" href="javascript:{}">
-                Next
-            </a>
-        </div> 
-        <!-- end views-block -->
-        <!-- end thumbnails -->
-    </div> 
-    <!-- end pb-left-column -->
-    <!-- end left infos--> 
-
-    <!-- center infos -->
-    <div class="pb-center-column col-xs-12  col-sm-4">
-
-        <h1 itemprop="name">{$product.name|escape}</h1>
-
-        {if $product.summary}
-            <div id="short_description_block">
-                <div id="short_description_content" class="rte align_justify" itemprop="description">
-                    {$product.summary}
-                </div>
-
-                <p class="buttons_bottom_block">
-                    <a href="javascript:{}" class="button">
-                        Подробнее
+                <!-- thumbnails -->
+                <div id="views_block" class="clearfix ">
+                    <span class="view_scroll_spacer">
+                        <a id="view_scroll_left" class="" title="Другие виды" href="javascript:{}">
+                            Previous
+                        </a>
+                    </span>
+                    <div id="thumbs_list">
+                        <ul id="thumbs_list_frame">
+                            {foreach $product.images as $image}
+                                <li id="thumbnail_{$image.id}">
+                                    <a 
+                                        href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
+                                        data-fancybox-group="other-views"
+                                        class="fancybox shown">
+                                        <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" itemprop="image" />
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div> <!-- end thumbs_list -->
+                    <a id="view_scroll_right" title="Другие виды" href="javascript:{}">
+                        Next
                     </a>
-                </p>
-                <!---->
-            </div> <!-- end short_description_block -->
-        {/if}
+                </div> 
+                <!-- end views-block -->
+                <!-- end thumbnails -->
+            </div> 
+            <!-- end pb-left-column -->
+            <!-- end left infos--> 
 
-        {if !empty($theme_settings.product_share_buttons)}
-            <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+            <!-- center infos -->
+            <div class="pb-center-column col-xs-12  col-sm-4">
 
-            <div class="yashare-auto-init"
-                 data-yashareL10n="ru"
-                 data-yashareQuickServices="{$theme_settings.product_share_buttons}"
-                 data-yashareTitle="{$wa->title()|escape}"
-                 data-yashareDescription="{$wa->meta('description')|escape}"
-                 data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
-                 data-yashareType="none"
-                 ></div>
-        {/if}
+                <h1 itemprop="name">{$product.name|escape}</h1>
 
-        <!-- categories -->
-        {if !empty($theme_settings.show_product_category) && $product.categories}
-            <p id="product-categories">
-                [`Categories`]:
-                {foreach $product.categories as $c}
-                    {if $c.status}
+                {if $product.summary}
+                    <div id="short_description_block">
+                        <div id="short_description_content" class="rte align_justify" itemprop="description">
+                            {$product.summary}
+                        </div>
+
+                        <p class="buttons_bottom_block">
+                            <a href="javascript:{}" class="button">
+                                Подробнее
+                            </a>
+                        </p>
+                        <!---->
+                    </div> <!-- end short_description_block -->
+                {/if}
+
+                {if !empty($theme_settings.product_share_buttons)}
+                    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+
+                    <div class="yashare-auto-init"
+                         data-yashareL10n="ru"
+                         data-yashareQuickServices="{$theme_settings.product_share_buttons}"
+                         data-yashareTitle="{$wa->title()|escape}"
+                         data-yashareDescription="{$wa->meta('description')|escape}"
+                         data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
+                         data-yashareType="none"
+                         ></div>
+                {/if}
+
+                <!-- categories -->
+                {if !empty($theme_settings.show_product_category) && $product.categories}
+                    <p id="product-categories">
+                        [`Categories`]:
+                        {foreach $product.categories as $c}
+                            {if $c.status}
+                                <span class="product-info">
+                                    <a href="{$wa->getUrl('/frontend/category', ['category_url' => $c.full_url])}">{$c.name|escape}</a>{if !$c@last}, {/if}
+                                </span>
+                            {/if}
+                        {/foreach}
+                    </p>
+                {/if}
+
+                <!-- tags -->
+                {if !empty($theme_settings.show_product_tag) && $product.tags}
+                    <p class="tags" id="product-tags">
+                        [`Tags`]:
                         <span class="product-info">
-                            <a href="{$wa->getUrl('/frontend/category', ['category_url' => $c.full_url])}">{$c.name|escape}</a>{if !$c@last}, {/if}
+                            {foreach $product.tags as $t}
+                                <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
+                            {/foreach}
                         </span>
-                    {/if}
-                {/foreach}
-            </p>
-        {/if}
+                    </p>
+                {/if}
 
-        <!-- tags -->
-        {if !empty($theme_settings.show_product_tag) && $product.tags}
-            <p class="tags" id="product-tags">
-                [`Tags`]:
-                <span class="product-info">
-                    {foreach $product.tags as $t}
-                        <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
-                    {/foreach}
-                </span>
-            </p>
-        {/if}
+                {$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
+                <ul id="usefull_link_block" class="clearfix no-print">
+                    <li class="compare">
+                        <a {if $compare}style="display:none"{/if} class="compare-add inline-link" data-product="{$product.id}" href="#"><b><i>[`Add to comparison table`]</i></b></a>
+                        <a {if !$compare}style="display:none"{/if} class="compare-remove inline-link" data-product="{$product.id}" href="#"><b><i>[`Remove from comparison table`]</i></b></a>
+                        <a id="compare-link" {if count($compare) lt 2}style="display:none"{/if} rel="nofollow" href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="bold">[`Compare`] <span class="count">{count($compare)}</span></a>
+                    </li>
+                    <li class="favorite">
+                        <a data-id="{$product.id}" href="#" {if in_array($product.id, $wishlist)}class="checked"{/if}>
+                            {if in_array($product.id, $wishlist)}
+                                [`Remove from wishlist`]
+                            {else}
+                                [`Add to wishlist`]
+                            {/if}
+                        </a>
+                    </li>
+                    <li class="print">
+                        <a href="javascript:print();">
+                            Распечатать
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end center infos-->
 
-        {$wishlist = waRequest::cookie('shop_wishlist', array(), waRequest::TYPE_ARRAY_INT)}
-        <ul id="usefull_link_block" class="clearfix no-print">
-            <li class="compare">
-                <a {if $compare}style="display:none"{/if} class="compare-add inline-link" data-product="{$product.id}" href="#"><b><i>[`Add to comparison table`]</i></b></a>
-                <a {if !$compare}style="display:none"{/if} class="compare-remove inline-link" data-product="{$product.id}" href="#"><b><i>[`Remove from comparison table`]</i></b></a>
-                <a id="compare-link" {if count($compare) lt 2}style="display:none"{/if} rel="nofollow" href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="bold">[`Compare`] <span class="count">{count($compare)}</span></a>
-            </li>
-            <li class="favorite">
-                <a data-id="{$product.id}" href="#" {if in_array($product.id, $wishlist)}class="checked"{/if}>
-                    {if in_array($product.id, $wishlist)}
-                        [`Remove from wishlist`]
-                    {else}
-                        [`Add to wishlist`]
-                    {/if}
-                </a>
-            </li>
-            <li class="print">
-                <a href="javascript:print();">
-                    Распечатать
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- end center infos-->
+            <!-- pb-right-column-->
+            <div class="pb-right-column col-xs-12  col-sm-4 col-md-3">
+                {include file="product.cart.html" inline}
+            </div> 
+            <!-- end pb-right-column-->
+        </div> <!-- end primary_block -->
 
-    <!-- pb-right-column-->
-    <div class="pb-right-column col-xs-12  col-sm-4 col-md-3">
-        {include file="product.cart.html" inline}
-    </div> 
-    <!-- end pb-right-column-->
-</div> <!-- end primary_block -->
+        <script type="text/javascript">
+            var contentOnly = true;
+            var jqZoomEnabled = false;
+        </script>
+        <script type="text/javascript">
+            var ruble_symbol = {$theme_settings.ruble_symbol};
+            var use_uniform = '{$theme_settings.use_uniform}';
+            $(window).load(function () {
+                if (use_uniform) {
+                    $("select.form-control, input[type='checkbox']:not(.comparator), input[type='radio'], input[type='file']").uniform();
+                }
+            });
+        </script>
+        <script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.scrollTo.js" ></script>
+        <script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.serialScroll.js" ></script>
+        {if $theme_settings.use_uniform}<script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.uniform.min.js"></script>{/if}
+        <script type="text/javascript" src="{$wa_theme_url}product_script.js"></script>
+        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/jquery.tmpl.min.js"></script>
 
-<script type="text/javascript">
-    var contentOnly = true;
-    var jqZoomEnabled = true;
-</script>
-
-<script type="text/javascript" src="{$wa_theme_url}jquery.jqzoom.js"></script>
-<script type="text/javascript" src="{$wa_theme_url}product_script.js"></script>
+    </body>
+</html>

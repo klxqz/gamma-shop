@@ -9,9 +9,17 @@
     {if isset($checkout_steps)}
         <!-- Steps -->
         <ul id="order_step" class="step clearfix">
+            {$flag = true}
             {foreach $checkout_steps as $step_id => $s}
+                {if $checkout_current_step == $step_id}
+                    {$flag = false}
+                {/if}
                 <li class="{if $checkout_current_step == $step_id}step_current{else}step_todo{/if}{if $s@first} first{/if}{if $s@last} last{/if}"{if $s@last} id="step_end"{/if}>
+                    {if $flag}
+                        <span><a href="{$wa->getUrl("shop/frontend/checkout",['step' => $step_id])}"><em>{$s@iteration}.</em> {$s.name}</a></span>
+                    {else}
                         <span><em>{$s@iteration}.</em> {$s.name}</span>
+                    {/if}
                 </li>
             {/foreach}
         </ul>

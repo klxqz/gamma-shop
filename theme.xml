@@ -8,7 +8,7 @@
         </file>
         <file path="custom.css" parent="1">
         </file>
-        <file path="custom.shop.css">
+        <file path="gamma.shop.css">
             <description locale="en_US">Core storefront CSS</description>
             <description locale="ru_RU">Основной CSS интернет-магазина</description>
         </file>
@@ -27,10 +27,6 @@
         <file path="list-thumbs.html">
             <description locale="en_US">Product list thumbnail view</description>
             <description locale="ru_RU">Список товаров эскизами</description>
-        </file>
-        <file path="list-table.html">
-            <description locale="en_US">Product list table view</description>
-            <description locale="ru_RU">Список товаров таблицей</description>
         </file>
         <file path="product.html">
             <description locale="en_US">Dedicated product page</description>
@@ -138,7 +134,7 @@
         </file>
         <file path="error.html" parent="1">
         </file>
-        <file path="custom.shop.js">
+        <file path="gamma.shop.js">
             <description locale="en_US">CUSTOM theme JS</description>
             <description locale="ru_RU">Скрипты темы CUSTOM</description>
         </file>
@@ -146,6 +142,182 @@
             <description locale="en_US">Reviews JS</description>
             <description locale="ru_RU">Скрипты отзывов</description>
         </file>
+        
+        
+        
+        <file path="category.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="category.js">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="comparator.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="home.news.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="home.photos.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="home.slider.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="homeslider.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="homeslider.js">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="list-thumbs-home.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="list-thumbs-product.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="print.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.cart.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.crossselling_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.description_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.features_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.images.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.pages_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.plugin_menu_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.reviews_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product.upselling_section.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="product_script.js">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="productcomments.css">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+        <file path="quick-view.html">
+            <description locale="en_US"></description>
+            <description locale="ru_RU"></description>
+        </file>
+
+        
+        
+        
+        
+        
+        <file path="addon-panel.html" parent="1">
+        </file>
+        <file path="block-header-links.html" parent="1">
+        </file>
+        <file path="block-top-menu.html" parent="1">
+        </file>
+        <file path="blocktopmenu.js" parent="1">
+        </file>
+        <file path="custom.bg.html" parent="1">
+        </file>
+        <file path="custom.color_scheme.html" parent="1">
+        </file>
+        <file path="footer.html" parent="1">
+        </file>
+        <file path="list-thumbs-sidebar.html" parent="1">
+        </file>
+        <file path="sidebar.bestsellers_block.html" parent="1">
+        </file>
+        <file path="sidebar.blog_app_block.html" parent="1">
+        </file>
+        <file path="sidebar.catalog_block.html" parent="1">
+        </file>
+        <file path="sidebar.facebook_block.html" parent="1">
+        </file>
+        <file path="sidebar.filter_block.html" parent="1">
+        </file>
+        <file path="sidebar.helpdesk_app_block.html" parent="1">
+        </file>
+        <file path="sidebar.html" parent="1">
+        </file>
+        <file path="sidebar.information_block.html" parent="1">
+        </file>
+        <file path="sidebar.manufacturer_block.html" parent="1">
+        </file>
+        <file path="sidebar.news_block.html" parent="1">
+        </file>
+        <file path="sidebar.photos_app_block.html" parent="1">
+        </file>
+        <file path="sidebar.photos_block.html" parent="1">
+        </file>
+        <file path="sidebar.tags_block.html" parent="1">
+        </file>
+        <file path="sidebar.viewed_products_block.html" parent="1">
+        </file>
+        <file path="sidebar.vk_block.html" parent="1">
+        </file>
+        <file path="superfish-modified.css" parent="1">
+        </file>
+        <file path="superfish-modified.js" parent="1">
+        </file>
+        <file path="theme2.css" parent="1">
+        </file>
+        <file path="theme3.css" parent="1">
+        </file>
+        <file path="theme4.css" parent="1">
+        </file>
+        <file path="theme5.css" parent="1">
+        </file>
+        <file path="theme6.css" parent="1">
+        </file>
+        <file path="theme7.css" parent="1">
+        </file>
+        <file path="theme8.css" parent="1">
+        </file>
+        <file path="theme9.css" parent="1">
+        </file>
+        <file path="widget.vk.html" parent="1">
+        </file>
+        <file path="widget.facebook.html" parent="1">
+        </file>
+        
     </files>
     <about locale="en_US">
         <![CDATA[
@@ -288,10 +460,10 @@
             <name locale="ru_RU">слайд 1 ссылка</name>
         </setting>
         <setting var="slide1_description" control_type="text">
-            <value><![CDATA[<h2>Заголовок</h2>
-<h3>Заголовок</h3>
-<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
-<p class="p1">Цена: <span>$19.99</span></p>
+            <value><![CDATA[<h2>Множество цветов</h2>
+<h3>Вы можете выбрать именно свой цвет</h3>
+<p>9 цветовых схем + возможность создать пользовательскую цветовую схему</p>
+<p class="p1">Цена: <span>$100</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 1 description</name>
             <name locale="ru_RU">слайд 1 Описание</name>
@@ -309,10 +481,10 @@
             <name locale="ru_RU">слайд 2 ссылка</name>
         </setting>
         <setting var="slide2_description" control_type="text">
-            <value><![CDATA[<h2>Ваш товар</h2>
-<h3>Легкая и гибкая настройка слайдера</h3>
-<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
-<p class="p1">Цена: <span>$29.99</span></p>
+            <value><![CDATA[<h2>Свой магазин уже сегодня</h2>
+<h3>Да, это легко и не дорого!</h3>
+<p>Преобретая готовую тему дизайна Вы экономите на разработеке интернет-магазина.<br/> Вам не придеться ждать, закажите готовый дизайн немедленно!</p>
+<p class="p1">Цена: <span>$100</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 2 description</name>
             <name locale="ru_RU">слайд 2 Описание</name>
@@ -331,10 +503,10 @@
             <name locale="ru_RU">слайд 3 ссылка</name>
         </setting>
         <setting var="slide3_description" control_type="text">
-            <value><![CDATA[<h2>Maped</h2>
-<h3>Effortless Stapler Half strip</h3>
-<p>Описание товара или услуги редактируется в настройках темы дизайна</p>
-<p class="p1">Цена: <span>$33.99</span></p>
+            <value><![CDATA[<h2>Поддержка</h2>
+<h3>Мы заботимся о Вас</h3>
+<p>Приобретая нашу тему Вы получаете не только первокласный дизайн, но и быструю и оперативную консультацию в решение возникших вопросов.<br/>Наша почта: support@wa-plugins.ru</p>
+<p class="p1">Цена: <span>$100</span></p>
 <div class="a"> </div>]]></value>
             <name locale="en_US">slide 3 description</name>
             <name locale="ru_RU">слайд 3 Описание</name>
@@ -414,7 +586,7 @@
         <setting var="banner1_description" control_type="text">
             <value><![CDATA[<div>
     <h2>Скидка 20% <br/>при расчете</h2>
-    <p>кредитной карты</p>
+    <p>кредитной картой</p>
 </div>]]></value>
             <name locale="en_US">banner 1 description</name>
             <name locale="ru_RU">баннер 1 Описание</name>

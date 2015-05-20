@@ -25,6 +25,9 @@ $(function () {
             } else {
                 obj.attr('disabled', 'disabled');
             }
+            if (use_uniform) {
+                $.uniform.update(obj);
+            }
         }
     });
 

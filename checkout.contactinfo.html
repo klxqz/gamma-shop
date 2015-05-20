@@ -64,13 +64,6 @@
                                 $("#create-user-div").hide().find('input').attr('disabled', 'disabled').val('');
                             }
                         }).change();
-                        var visible = $('input[name="customer[address.shipping][region]"]').is(':visible');
-                        setInterval(function () {
-                            if ( visible != $('input[name="customer[address.shipping][region]"]').is(':visible')) {
-                                visible = $('input[name="customer[address.shipping][region]"]').is(':visible');
-                                $.uniform.update("select.form-control");
-                            }
-                        }, 500);
 
                     });
                 </script>
@@ -79,6 +72,21 @@
                 <p class="error">{$errors.all}</p>
             {/if}
         </div>
+        <script type="text/javascript">
+            $(function () {
+                var visible = $('input[name="customer[address.shipping][region]"]').is(':visible');
+                setInterval(function () {
+
+                    if (visible != $('input[name="customer[address.shipping][region]"]').is(':visible')) {
+                        visible = $('input[name="customer[address.shipping][region]"]').is(':visible');
+                        if (use_uniform) {
+                            $.uniform.update("select");
+                        }
+                        console.log('dsd');
+                    }
+                }, 500);
+            });
+        </script>
     </div>
 
     <!-- plugin hook: 'frontend_checkout' -->

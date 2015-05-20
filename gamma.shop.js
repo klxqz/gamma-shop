@@ -101,7 +101,7 @@ function initQuickView()
                 'padding': 0,
                 'width': 1087,
                 'height': 610,
-                'type': 'ajax',
+                'type': 'iframe',
                 'href': url + 'content_only=1&quick_view=1'
             });
     });

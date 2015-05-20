@@ -16,6 +16,9 @@ function Product(form, options) {
             } else {
                 obj.attr('disabled', 'disabled');
             }
+            if(use_uniform) {
+                 $.uniform.update(obj);
+            }
         }
         self.updatePrice();
     });
@@ -204,7 +207,7 @@ Product.prototype.currencyFormat = function (number, no_html) {
     //kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).slice(2) : "");
     kd = (decimals && (number - i) ? dec_point + Math.abs(number - i).toFixed(decimals).replace(/-/, 0).slice(2) : "");
     var number = km + kw + kd;
-    var s = !ruble_symbol ? this.currency.sign : this.currency.sign_html;
+    var s = !ruble_symbol || no_html ? this.currency.sign : this.currency.sign_html;
     if (!this.currency.sign_position) {
         return s + this.currency.sign_delim + number;
     } else {

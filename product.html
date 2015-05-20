@@ -1,10 +1,9 @@
 {if $wa->get('quick_view')}
     {include file="quick-view.html"}
 {else}
+    <link rel="stylesheet" href="{$wa_active_theme_url}productcomments.css"  media="all"/>
+    <link rel="stylesheet" href="{$wa_active_theme_url}product.css" media="all" />
     <link rel="stylesheet" href="{$wa_theme_url}print.css" media="all" />
-    <link rel="stylesheet" href="{$wa_theme_url}jquery.jqzoom.css" media="all" />
-
-
     <div class="primary_block row" itemscope itemtype="http://schema.org/Product">
         <input type="hidden" id="is_product_page" value="{$product.id}" />
         <div class="container">
@@ -48,18 +47,19 @@
             {/if}
 
             {if !empty($theme_settings.product_share_buttons)}
-                <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                <div class="yashare-auto-init"
-                     data-yashareL10n="ru"
-                     data-yashareQuickServices="{$theme_settings.product_share_buttons}"
-                     data-yashareTitle="{$wa->title()|escape}"
-                     data-yashareDescription="{$wa->meta('description')|escape}"
-                     data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
-                     data-yashareType="none"
-                     ></div>
+                <div class="share-buttons">
+                    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+                    <div class="yashare-auto-init"
+                         data-yashareL10n="ru"
+                         data-yashareQuickServices="{$theme_settings.product_share_buttons}"
+                         data-yashareTitle="{$wa->title()|escape}"
+                         data-yashareDescription="{$wa->meta('description')|escape}"
+                         data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
+                         data-yashareType="none"
+                         ></div>
+                </div>
             {/if}
 
-            <br/>
 
             <!-- categories -->
             {if !empty($theme_settings.show_product_category) && $product.categories}
@@ -198,10 +198,9 @@
 
     <script type="text/javascript">
         var contentOnly = false;
-        var jqZoomEnabled = true;
+        var jqZoomEnabled = false;
     </script>
 
 
     <script type="text/javascript" src="{$wa_theme_url}product_script.js" ></script>
-    <script type="text/javascript" src="{$wa_theme_url}jquery.jqzoom.js" ></script>
 {/if}

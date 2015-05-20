@@ -56,6 +56,8 @@ img {
         width: 280px;
         margin: 0 auto; } }
 .pb-left-column #image-block img {
+    display: block;
+    margin: 0 auto;
     background: #fbfbfb;
 }
 .pb-left-column #image-block #view_full_size {
@@ -499,7 +501,7 @@ span.view_scroll_spacer {
     border-right: 1px solid #d6d4d4;
     width: 30%;
     font-weight: 700;
-    color: #bababa; }
+}
 
 /* table product-discounts */
 table.table-product-discounts {
@@ -950,3 +952,7 @@ Quick View Styles
     border: 1px solid #d6d4d4; }
 .ie8 .box-security {
     filter: none; }
+.share-buttons{
+    display: block;
+    margin-bottom: 20px;
+}

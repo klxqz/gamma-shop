@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     //hover 'other views' images management
     $('#views_block li a').hover(
             function () {
@@ -10,24 +9,47 @@ $(document).ready(function () {
             }
     );
 
-    //set jqZoom parameters if needed
-    if (typeof (jqZoomEnabled) != 'undefined' && jqZoomEnabled)
-    {
-        $('.jqzoom').jqzoom({
-            zoomType: 'innerzoom', //innerzoom/standard/reverse/drag
-            zoomWidth: 458, //zooming div default width(default width value is 200)
-            zoomHeight: 458, //zooming div default width(default height value is 200)
-            xOffset: 21, //zooming div default offset(default offset value is 10)
-            yOffset: 0,
-            title: false
+    if ($("#product-image").length) {
+        $("#product-image").elevateZoom({
+            zoomType: "window",
+            cursor: "crosshair",
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 750,
+            gallery: "thumbs_list_frame",
+            galleryActiveClass: "thumbActive",
+            zoomWindowWidth: 400,
+            borderSize: 1,
+            borderColour: '#e5e5e5',
+            lensOpacity: 0.7,
+            scrollZoom: true,
+            constrainType: 'width'
+        });
+        $("#product-image").bind("click", function (e) {
+            var ez = $('#product-image').data('elevateZoom');
+            $.fancybox(ez.getGalleryList(), {
+                prevEffect: 'none',
+                nextEffect: 'none',
+                loop: false,
+                helpers: {
+                    title: {
+                        type: 'outside'
+                    },
+                    buttons: {
+                        position: 'bottom'
+                    }
+                }
+            });
+            return false;
         });
     }
+
     //add a link on the span 'view full size' and on the big image
     $(document).on('click', '#view_full_size, #image-block', function (e) {
         $('#views_block .shown').click();
     });
 
     //catch the click on the "more infos" button at the top of the page
+
     $(document).on('click', '#short_description_block .button', function (e) {
         $('#more_info_tab_more_info').click();
         $.scrollTo('#more_info_tabs', 1200);
@@ -136,9 +158,7 @@ function serialScrollFixLock(event, targeted, scrolled, items, position)
 function refreshProductImages(id_product_attribute)
 {
     $('#thumbs_list_frame').scrollTo('li:eq(0)', 700, {axis: 'x'});
-
     id_product_attribute = parseInt(id_product_attribute);
-
     if (id_product_attribute > 0 && typeof (combinationImages) != 'undefined' && typeof (combinationImages[id_product_attribute]) != 'undefined')
     {
         $('#thumbs_list li').hide();
@@ -186,6 +206,7 @@ function galeryReload() {
     $('#thumbs_list').trigger('goto', 0);
 }
 $(document).ready(galeryReload);
+$(document).ready(refreshProductImages);
 $(window).resize(refreshProductImages);
 
 

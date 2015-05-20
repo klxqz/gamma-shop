@@ -1,7 +1,6 @@
 {if $product.images}
     <!-- product img-->        
-    <div id="image-block" class="clearfix">
-
+    <div id="image-block">
         {$badge_html = $wa->shop->badgeHtml($product.badge)}
         {if $badge_html}
             <div class="new-box no-print">
@@ -10,13 +9,9 @@
                 </span>
             </div>
         {/if}
-
-        <span id="view_full_size">
-            <a class="jqzoom" title="{$product.name}" rel="gal1" href="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '800', false)}" itemprop="url">
-                <img itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458', false)}" title="{$product.name}" alt="{$product.name}"/>
-            </a>
-        </span>
-    </div> <!-- end image-block -->
+        <img id="product-image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '360', false)}"  
+             data-zoom-image="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '900', false)}"/>
+    </div>
 
     {if count($product.images) > 1}
         <!-- thumbnails -->
@@ -28,14 +23,15 @@
             </span>
 
             <div id="thumbs_list">
-                <ul id="thumbs_list_frame">
+                <ul id="thumbs_list_frame">                    
                     {foreach $product.images as $image}
                         <li id="thumbnail_{$image.id}">
-                            <a id="product-image-{$image.id}"
-                               href="javascript:void(0);"
-                               rel="{ldelim}gallery: 'gal1', smallimage: '{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}',largeimage: '{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '800x800', false)}'{rdelim}"
-                               title="Cutting knife 2003">
-                                <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" alt="Cutting knife 2003" title="Cutting knife 2003" itemprop="image" />
+                            <a id="product-image-{$image.id}" 
+                               href="#"
+                               data-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '360', false)}"
+                               data-zoom-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '900', false)}"
+                               class="elevatezoom-gallery">
+                                <img id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '70x70', false)}"  />
                             </a>
                         </li>
                     {/foreach}
@@ -46,8 +42,7 @@
             <a id="view_scroll_right" href="#">
                 Next
             </a>
-        </div> 
-        <!-- end views-block -->
+        </div>
     {/if}
-
+    <script type="text/javascript" src="{$wa_active_theme_url}js/jquery.elevateZoom-3.0.8.min.js" ></script>
 {/if}
