@@ -1,11 +1,13 @@
 {function reviews_content}
     <div id="product_comments_block_tab">
         {if $theme_settings.product_reviews_display_mode == 'separate_page'}
-            {foreach $reviews as $review}
-                {include file="review.html" reply_allowed=false inline}
-            {/foreach}
+            {if !empty($reviews)}
+                {foreach $reviews as $review}
+                    {include file="review.html" reply_allowed=false inline}
+                {/foreach}
+            {/if}
 
-            {if !$reviews}
+            {if empty($reviews)}
                 <p>{sprintf('[`Be the first to <a href="%s">write a review</a> of this product!`]', 'reviews/')}</p>
             {else}
                 {sprintf(_w(
@@ -27,15 +29,13 @@
     {/if}
 {/function}
 
-{if $reviews}
-    {if !empty($content_only)}
-        {reviews_content}
-    {else}
-        <section class="page-product-box">
-            <h3 id="#idTab5" class="idTabHrefShort page-product-heading">{$theme_settings.product_reviews_section_title}</h3> 
-            <div id="idTab5">
-                {reviews_content}
-            </div>
-        </section>
-    {/if}
+{if !empty($content_only)}
+    {reviews_content}
+{else}
+    <section class="page-product-box">
+        <h3 id="#idTab5" class="idTabHrefShort page-product-heading">{$theme_settings.product_reviews_section_title}</h3> 
+        <div id="idTab5">
+            {reviews_content}
+        </div>
+    </section>
 {/if}

@@ -234,7 +234,7 @@ function display(view)
 function bindGrid()
 {
     var view = $.totalStorage('display');
-    if(!view) {
+    if (!view) {
         view = default_product_view;
     }
 
@@ -265,7 +265,7 @@ $(document).ready(function () {
     if (filter_slider) {
         initFilterSlider();
     }
-    
+
     $(document).on('click', '#layer_cart .cross, #layer_cart .continue, .layer_cart_overlay', function (e) {
         e.preventDefault();
         $('.layer_cart_overlay').hide();
@@ -325,7 +325,7 @@ $(document).ready(function () {
             return false;
         }
         var param = '';
-        if(ruble_symbol) {
+        if (ruble_symbol) {
             param = '?html=1';
         }
         $.post(f.attr('action') + param, f.serialize(), function (response) {
@@ -395,7 +395,7 @@ $(document).ready(function () {
                         $('#layer_cart .ajax_cart_quantity').html(response.data.count);
                         $('#layer_cart .ajax_cart_discount').html(response.data.discount);
 
-                        var n = parseInt($(window).scrollTop()) + 'px';
+                        var n = parseInt($(window).scrollTop() - 350) + screen.height / 2 - $('#layer_cart').height() + 'px';
 
                         $('.layer_cart_overlay').css('width', '100%');
                         $('.layer_cart_overlay').css('height', '100%');
@@ -422,7 +422,7 @@ $(document).ready(function () {
     });
 
 
-    $('#selectProductSort option').click(function () {
+    $('#selectProductSort').change(function () {
         location.assign($(this).val());
     });
 
@@ -433,6 +433,11 @@ $(document).ready(function () {
             $.cookie('products_per_page', '', {expires: 0, path: '/'});
         }
         location.reload();
+    });
+
+    $('#columns').on('click', '.layered_subtitle_heading', function () {
+        $(this).toggleClass('active').parent().find('.layered_filter_ul').stop().slideToggle('medium');
+        $(this).find('i').toggleClass('icon-minus').toggleClass('icon-plus');
     });
 
     $('#columns').on('change', '.filters.ajax form input', function () {

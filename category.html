@@ -5,12 +5,16 @@
     {/if}
     {$inverted = in_array($sort, array('rating', 'create_datetime', 'total_sales', 'count', 'stock'))}
     {$data = waRequest::get()}
+    {$data_active = waRequest::get()}
     {$data['sort'] = $sort}
+    {$data_active['sort'] = $sort}
     {if $sort == $active_sort}
         {if waRequest::get('order') == 'asc'}
             {$data['order'] = 'desc'}
+            {$data_active['order'] = 'asc'}
         {else}
             {$data['order'] = 'asc'}
+            {$data_active['order'] = 'desc'}
         {/if}
     {else}
         {if $inverted}
@@ -19,7 +23,10 @@
             {$data['order'] = 'asc'}
         {/if}
     {/if}
-    <option value="?{http_build_query($data)}" {if $active_sort == $sort}selected="selected"{/if}>{$name} {if $active_sort == $sort}{if $data['order'] == 'asc'}&uarr;{else}&darr;{/if}{/if}</option>
+    {if $active_sort == $sort}
+        <option style="display: none;" value="?{http_build_query($data_active)}" {if $active_sort == $sort}selected="selected"{/if}>{$name} {if $active_sort == $sort}{if $data_active['order'] == 'asc'}&uarr;{else}&darr;{/if}{/if}</option>
+    {/if}
+    <option value="?{http_build_query($data)}">{$name} {if $active_sort == $sort}{if $data['order'] == 'asc'}&uarr;{else}&darr;{/if}{/if}</option>
 {/function}
 
 {$compare = waRequest::cookie('shop_compare', array(), waRequest::TYPE_ARRAY_INT)}
@@ -46,7 +53,7 @@
                 {else}
                     <div id="category_description_short" class="rte">{$category.description}</div>
                 {/if}
-                {if $theme_settings.category_description_truncate && $category.description|strip_tags|truncate:$theme_settings.category_description_truncate != $category.description}
+                {if $theme_settings.category_description_truncate && $category.description|strip_tags|truncate:$theme_settings.category_description_truncate != $category.description|strip_tags}
                     <div id="category_description_full" class="unvisible rte">{$category.description}</div>
                     <a href="#" class="lnk_more">[`More`]</a>
                 {/if}
@@ -68,7 +75,7 @@
                     {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($sc.id)}
                         <div class="subcategory-image">
                             <a href="{$sc.url}" class="img">
-                                <img class="replace-2x" src="{shopLogocategoryPlugin::getImgUrl($sc.id)}" alt="" />
+                                <img class="img-responsive" src="{shopLogocategoryPlugin::getImgUrl($sc.id)}" alt="" />
                             </a>
                         </div>
                     {/if}
@@ -203,9 +210,9 @@
         <div id="pagination_bottom" class="pagination clearfix">
             {wa_pagination total=$pages_count attrs=['class' => "pagination"] next = '<i class="icon-chevron-right"></i>' prev = '<i class="icon-chevron-left"></i>'}
         </div>
- 
+
         <!-- /Pagination -->
-        
+
     </div>
 </div>
 

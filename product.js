@@ -150,7 +150,7 @@ function Product(form, options) {
                     $('#layer_cart .ajax_block_cart_total').html(response.data.total);
                     $('#layer_cart .ajax_cart_quantity').html(response.data.count);
                     $('#layer_cart .ajax_cart_discount').html(response.data.discount);
-                    var n = parseInt($(window).scrollTop()) + 'px';
+                    var n = parseInt($(document).height()) + 'px';
                     $('.layer_cart_overlay').css('width', '100%');
                     $('.layer_cart_overlay').css('height', '100%');
                     $('.layer_cart_overlay').show();

@@ -14,7 +14,7 @@
 
 
         <link rel="stylesheet" href="{$wa_parent_theme_url}font-awesome/css/font-awesome.min.css"  media="all"/>
-        <link rel="stylesheet" href="{$wa_parent_theme_url}global.css"  media="all"/>
+        <link rel="stylesheet" href="{$wa_parent_theme_url}gamma.css"  media="all"/>
         {if $theme_settings.use_uniform}<link rel="stylesheet" href="{$wa_parent_theme_url}css/uniform/{$theme_settings.uniform_theme}/css/uniform.{$theme_settings.uniform_theme}.min.css"  media="all"/>{/if}
         <link rel="stylesheet" href="{$wa_active_theme_url}product.css" media="all" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" media="all"/>
@@ -111,16 +111,18 @@
                 {/if}
 
                 {if !empty($theme_settings.product_share_buttons)}
-                    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+                    <div class="share-buttons">
+                        <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 
-                    <div class="yashare-auto-init"
-                         data-yashareL10n="ru"
-                         data-yashareQuickServices="{$theme_settings.product_share_buttons}"
-                         data-yashareTitle="{$wa->title()|escape}"
-                         data-yashareDescription="{$wa->meta('description')|escape}"
-                         data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
-                         data-yashareType="none"
-                         ></div>
+                        <div class="yashare-auto-init"
+                             data-yashareL10n="ru"
+                             data-yashareQuickServices="{$theme_settings.product_share_buttons}"
+                             data-yashareTitle="{$wa->title()|escape}"
+                             data-yashareDescription="{$wa->meta('description')|escape}"
+                             data-yashareImage="{$wa->domainUrl()}{$wa->shop->productImgUrl($product, '200x0')}"
+                             data-yashareType="none"
+                             ></div>
+                    </div>
                 {/if}
 
                 <!-- categories -->
@@ -194,6 +196,7 @@
                 }
             });
         </script>
+        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/jquery.cookie.js"></script>
         <script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.scrollTo.js" ></script>
         <script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.serialScroll.js" ></script>
         {if $theme_settings.use_uniform}<script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.uniform.min.js"></script>{/if}

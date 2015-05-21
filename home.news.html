@@ -28,7 +28,12 @@
                                     {/if}
                                     {$post.datetime|wa_datetime:"humandate"}
                                 </div>
+                                {$img = ''}
+                                {if preg_match('/<img.*src=\"(.*?)\"[^>]*>/', $post.text, $img)}
+                                    <img src="{$img[1]}" />
+                                {/if}
                                 <p>
+
                                     {$post.text|strip_tags|truncate:200}
                                 </p>
                             </div>

@@ -73,6 +73,7 @@
                         </p>
                     {/if}
                     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="content_price">
+                        <meta itemprop="priceCurrency" content="{$wa->shop->primaryCurrency()}">
                         {if $p.compare_price > 0}
                             <span itemprop="price" class="price product-price product-price-new">
                                 {if $theme_settings.ruble_symbol}
