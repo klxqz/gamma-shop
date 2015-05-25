@@ -100,7 +100,9 @@
             <description locale="en_US">Customer account interface: affiliate program</description>
             <description locale="ru_RU">Личный кабинет покупателя: партнерская программа</description>
         </file>
-        <file path="my.profile.html" parent="1">
+        <file path="my.profile.html">
+            <description locale="en_US">My profile: contact info editing form</description>
+            <description locale="ru_RU">Мой профиль: редактирование контактной информации</description>
         </file>
         <file path="my.orders.html">
             <description locale="en_US">Customer account interface: order list</description>
@@ -122,17 +124,21 @@
             <description locale="en_US">Static page content</description>
             <description locale="ru_RU">Содержимое информационной страницы</description>
         </file>
-        <file path="sidebar.html">
-            <description locale="en_US">Navigation sidebar</description>
-            <description locale="ru_RU">Колонка навигации по магазину</description>
+        <file path="login.html" custom="0">
+            <description locale="en_US">Login page</description>
+            <description locale="ru_RU">Страница входа для пользователей</description>
         </file>
-        <file path="login.html" parent="1">
+        <file path="signup.html" custom="0">
+            <description locale="en_US">Sign up page</description>
+            <description locale="ru_RU">Страница регистрации пользователей</description>
         </file>
-        <file path="signup.html" parent="1">
+        <file path="forgotpassword.html" custom="0">
+            <description locale="en_US">Forgot password page</description>
+            <description locale="ru_RU">Страница сброса пароля</description>
         </file>
-        <file path="forgotpassword.html" parent="1">
-        </file>
-        <file path="error.html" parent="1">
+        <file path="error.html">
+            <description locale="en_US">404 and other errors</description>
+            <description locale="ru_RU">404 и другие ошибки</description>
         </file>
         <file path="gamma.shop.js">
             <description locale="en_US">CUSTOM theme JS</description>
