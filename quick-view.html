@@ -32,7 +32,7 @@
 
 
         {if !empty($theme_settings.color_scheme) && $theme_settings.color_scheme == 'custom_color_scheme'}
-            {include file="custom.color_scheme.html" inline}
+            {include file="`$wa_parent_theme_path`/custom.color_scheme.html" inline}
         {elseif !empty($theme_settings.color_scheme)}
             <link rel="stylesheet" href="{$wa_theme_url}{$theme_settings.color_scheme}.css"  media="all"/>
         {/if}

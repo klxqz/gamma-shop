@@ -45,7 +45,7 @@
         {/if}
         <div class="cat_desc  col-xs-12 col-sm-7 {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($category.id)}col-lg-9{else}col-lg-12{/if} col-md-8 ">
             <span class="category-name">
-                {$category.name}                            
+                {$category.name|escape}                            
             </span>
             {if $category.description}
                 {if $theme_settings.category_description_truncate}
@@ -62,7 +62,7 @@
     </div>
 </div>
 <h1 class="page-heading product-listing">
-    <span class="cat-name">{$category.name}</span>
+    <span class="cat-name">{$category.name|escape}</span>
 </h1>
 
 {if $category.subcategories}
@@ -80,7 +80,7 @@
                         </div>
                     {/if}
                     <h5>
-                        <a class="subcategory-name" href="{$sc.url}">{$sc.name}</a>
+                        <a class="subcategory-name" href="{$sc.url}">{$sc.name|escape}</a>
                     </h5>
                 </li>
             {/foreach}

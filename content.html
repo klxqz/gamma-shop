@@ -13,9 +13,9 @@
                 <span class="navigation-pipe">&gt;</span>
             {/foreach}
             {if !empty($category)}
-                {$category.name}
+                {$category.name|escape}
             {elseif !empty($product)}
-                {$product.name}
+                {$product.name|escape}
             {elseif !empty($page)}
                 {$page.name}
             {/if}

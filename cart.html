@@ -38,7 +38,7 @@
                                     <div class="services">
                                         {foreach $item.services as $service_id => $s}
                                             <!-- one option -->
-                                            <div {if !empty($s.id)}data-id="{$s.id}"{/if}>
+                                            <div class="service" {if !empty($s.id)}data-id="{$s.id}"{/if}>
                                                 <label>
                                                     <input {if !empty($s.id)}checked{/if} type="checkbox" name="services[{$item.id}][]" value="{$service_id}"> {$s.name|escape} {if $s.price && !isset($s.variants)}(<span>+{shop_currency_html($s.price, $s.currency)}</span>){/if}
                                                 </label>
