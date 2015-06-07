@@ -241,6 +241,8 @@
 
         {if !empty($theme_settings.show_payment_options)}
             <div class="box-payments">
+                <a id="show-pop-product-payments" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                   data-content="Вы можете <b>включить (текущая настройка)</b> или выключить вывод логотипов способов оплаты" data-title="Логотипы способов оплаты">+</a>
                 {$availabe_options = $wa->shop->payment()}
                 {$_cnt = 0}
                 {foreach $availabe_options as $option name=options}

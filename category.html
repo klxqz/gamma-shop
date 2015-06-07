@@ -39,6 +39,10 @@
     <!-- Category image -->
     <div class="content_scene_cat_bg row">
         {if $theme_settings.use_logocategory_plugin && class_exists(shopLogocategoryPlugin) && shopLogocategoryPlugin::getImgUrl($category.id)}
+
+            <a id="show-pop-logocategory" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+               data-content="Вывод изображений категорий реализован через плагин <a target='_blank' href='http://www.webasyst.ru/store/plugin/shop/logocategory/'>Логотип категории</a>" data-title="Изображение категорий">+</a>
+
             <div class="category-image hidden-xs col-xs-12 col-sm-5 col-md-4 col-lg-3">
                 <img class="img-responsive" src="{shopLogocategoryPlugin::getImgUrl($category.id)}" />
             </div>

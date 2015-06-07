@@ -8,6 +8,9 @@
                 <ul class="htmlcontent-home clearfix row">
                     {if !empty($theme_settings.banner1)}
                         <li class="htmlcontent-item-1">
+                            <a id="show-pop-banner1" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                               data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
+                               Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
                             <a href="{$theme_settings.banner1_url}"  class="item-link" title="">
                                 <img src="{$wa_theme_url}{$theme_settings.banner1}"  class="item-img"/>
                                 <div class="item-html">
@@ -18,6 +21,9 @@
                     {/if}
                     {if !empty($theme_settings.banner2)}
                         <li class="htmlcontent-item-2">
+                            <a id="show-pop-banner2" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                               data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
+                               Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
                             <a href="{$theme_settings.banner2_url}"  class="item-link" title="">
                                 <img src="{$wa_theme_url}{$theme_settings.banner2}"  class="item-img"/>
                                 <div class="item-html">
@@ -33,6 +39,14 @@
 </div>
 <div class="row">
     <div id="center_column" class="center_column col-xs-12 col-sm-12">
+        <a id="show-pop-products-list" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+           data-content="<ul>
+           <li>Максимум 3 списка товаров</li>
+           <li>Заголовок каждого списка можно изменить</li>
+           <li>В настройках темы дизайна можно задать ID списка товаров</li>
+           <li>Ненужные списки можно отключить</li>
+           </ul>" data-title="Списки товаров">+</a>
+
         <ul id="home-page-tabs" class="nav nav-tabs clearfix">
             {if $theme_settings.productlist1}
                 <li>
@@ -49,7 +63,7 @@
                     <a data-toggle="tab" href="#list3" class="blockbestsellers" title="{$theme_settings.productlist3_name|escape}">{$theme_settings.productlist3_name}</a>
                 </li>
             {/if}
-        </ul>
+        </ul>   
         <div class="tab-content">
             {if $theme_settings.productlist1}
                 {include file='list-thumbs-home.html' products=$wa->shop->productSet($theme_settings.productlist1_list) id="list1" class="product_list grid row tab-pane"}
@@ -101,6 +115,13 @@
             <div class="clearfix row"> 
                 {if $wa->photos && !empty($theme_settings.home_photo)}
                     <div  class="col-xs-12 {if !empty($theme_settings.home_news)}col-sm-4{else}col-sm-12{/if}">
+                        <a id="show-pop-photos-news" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                           data-content="<ul>
+                           <li>Любой из блоков можно отключить</li>
+                           <li>Для каждого блока можно изменить заголовок</li>
+                           <li>Можно задать количество выводимых новостей или фотографий</li>
+                           <li>В теме дизайна реализован функционал вывода изображений для записей блога</li>
+                           </ul>" data-title="Фото и Новости">+</a>
                         {include file="home.photos.html"}
                     </div>
                 {/if}
@@ -120,6 +141,9 @@
                     <div id="htmlcontent_home">
                         <ul class="htmlcontent-home clearfix row">
                             <li class="htmlcontent-item-1 col-xs-6 ">
+                                <a id="show-pop-banner3" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                                   data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
+                                   Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
                                 <a href="{$theme_settings.banner3_url}"  class="item-link">
                                     <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
                                     <div class="item-html">
@@ -128,6 +152,9 @@
                                 </a>
                             </li>
                             <li class="htmlcontent-item-2 col-xs-6 ">
+                                <a id="show-pop-banner4" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                                   data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
+                                   Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
                                 <a href="{$theme_settings.banner4_url}"  class="item-link">
                                     <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
                                     <div class="item-html">
@@ -142,6 +169,11 @@
                 {if $theme_settings.home_vk_widget}
                     <div id="facebook_block" class="col-xs-4 div7">
                         <div class="div">
+                            <a id="show-pop-vk-widget" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                               data-content="<ul>
+                               <li>Вы можете выбрать виджет Вконтакте или виджет Файсбук</li>
+                               <li>Настройка виджетов осуществляется прямо в теме дизайна</li>
+                               </ul>" data-title="Виджеты соц. сетей">+</a>
                             <h4>[`We VKontakte`]</h4>
                             <div class="facebook-fanbox">
                                 {include file="`$wa_parent_theme_path`/widget.vk.html"}
@@ -166,11 +198,15 @@
                 <div id="cmsinfo_block">
                     <div class="col-xs-6">
                         <div class="div">
+                            <a id="show-pop-custom-block1" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                               data-content="Содержимое пользовательского блока редактируется в настройках темы дизайна" data-title="Пользовательский блок №1">+</a>
                             {$theme_settings.home_custom_block1}
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="div">
+                            <a id="show-pop-custom-block2" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                               data-content="Содержимое пользовательского блока редактируется в настройках темы дизайна" data-title="Пользовательский блок №2">+</a>
                             {$theme_settings.home_custom_block2}
                         </div>
                     </div>

@@ -36,6 +36,12 @@
     <div class="row">
         <!-- current page core content -->
         {if !empty($category) || preg_match("/search/", $wa->currentUrl())}
+            {if $enable && empty($google)}
+                <a id="show-pop-sidebar" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
+                   data-content="Вы можете самостоятельно изменить последовательность блоков в Sidebar, 
+                   отключить ненужные блоки, 
+                   задать собственные заголовки для каждого из блоков и выполнить настройку практически для любого блока" data-title="Настройка боковой части страницы(SideBar)">+</a>
+            {/if} 
             <div id="left_column" class="column col-xs-12 col-sm-3"><!-- Block layered navigation module -->
                 {include file="`$wa_parent_theme_path`/sidebar.html" inline}
             </div>
