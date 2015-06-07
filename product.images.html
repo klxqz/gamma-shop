@@ -1,48 +1,50 @@
-{if $product.images}
-    <!-- product img-->        
-    <div id="image-block">
-        {$badge_html = $wa->shop->badgeHtml($product.badge)}
-        {if $badge_html}
-            <div class="new-box no-print">
-                <span class="new-label">
-                    {$badge_html}
-                </span>
-            </div>
-        {/if}
-        <img id="product-image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '360', false)}"  
-             data-zoom-image="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '900', false)}"/>
-    </div>
-
-    {if count($product.images) > 1}
-        <!-- thumbnails -->
-        <div id="views_block" class="clearfix ">
-            <span class="view_scroll_spacer">
-                <a id="view_scroll_left" href="#">
-                    Previous
-                </a>
+<!-- product img-->        
+<div id="image-block">
+    {$badge_html = $wa->shop->badgeHtml($product.badge)}
+    {if $badge_html}
+        <div class="new-box no-print">
+            <span class="new-label">
+                {$badge_html}
             </span>
-
-            <div id="thumbs_list">
-                <ul id="thumbs_list_frame">                    
-                    {foreach $product.images as $image}
-                        <li id="thumbnail_{$image.id}">
-                            <a id="product-image-{$image.id}" 
-                               href="#"
-                               data-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '360', false)}"
-                               data-zoom-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '900', false)}"
-                               class="elevatezoom-gallery">
-                                <img id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '70x70', false)}"  />
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
-
-            </div> <!-- end thumbs_list -->
-
-            <a id="view_scroll_right" href="#">
-                Next
-            </a>
         </div>
     {/if}
-    <script type="text/javascript" src="{$wa_active_theme_url}js/jquery.elevateZoom-3.0.8.min.js" ></script>
+    {if $product.images}
+        <img id="product-image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '360', false)}"  
+             data-zoom-image="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '900', false)}"/>
+    {else}
+        <img src="{$wa_theme_url}img/dummy200.png" />
+    {/if}
+</div>
+
+{if count($product.images) > 1}
+    <!-- thumbnails -->
+    <div id="views_block" class="clearfix ">
+        <span class="view_scroll_spacer">
+            <a id="view_scroll_left" href="#">
+                [`Previous`]
+            </a>
+        </span>
+
+        <div id="thumbs_list">
+            <ul id="thumbs_list_frame">                    
+                {foreach $product.images as $image}
+                    <li id="thumbnail_{$image.id}">
+                        <a id="product-image-{$image.id}" 
+                           href="#"
+                           data-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '360', false)}"
+                           data-zoom-image="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '900', false)}"
+                           class="elevatezoom-gallery">
+                            <img id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '70x70', false)}"  />
+                        </a>
+                    </li>
+                {/foreach}
+            </ul>
+
+        </div> <!-- end thumbs_list -->
+
+        <a id="view_scroll_right" href="#">
+            [`Next`]
+        </a>
+    </div>
 {/if}
+<script type="text/javascript" src="{$wa_active_theme_url}js/jquery.elevateZoom-3.0.8.min.js" ></script>

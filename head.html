@@ -1,5 +1,9 @@
 <!-- shop app css -->
+<link rel="stylesheet" href="{$wa_active_theme_url}category.css"  media="all"/>
 <link href="{$wa_active_theme_url}gamma.shop.css?v{$wa_theme_version}" rel="stylesheet" type="text/css">
+{if !empty($theme_settings.slider)}
+    <link rel="stylesheet" href="{$wa_active_theme_url}homeslider.css"  media="all"/>
+{/if}
 
 {if !empty($nofollow)}
     <!-- "nofollow" for pages not to be indexed, e.g. customer account -->

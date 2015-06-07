@@ -1,15 +1,4 @@
 {if !empty($theme_settings.slider)}
-
-    <a id="show-pop-slider" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
-       data-content="Вы можете самостоятельно настроить слайдер:
-       <ul>
-       <li>Два режима работы: слайдер товаров и слайдер изображений</li>
-       <li>В режиме слайдер товаров - можно указать список товаров</li>
-       <li>В режиме слайдер изображений вы можете загрузить свои изображения в слайдер прямо из админки</li>
-       </ul>
-       " data-title="Слайдер">+</a>
-
-    <link rel="stylesheet" href="{$wa_theme_url}homeslider.css"  media="all"/>
     {if $theme_settings.slider == 'images'}
         <div id="homepage-slider">
             <ul id="homeslider">
