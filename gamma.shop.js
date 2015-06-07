@@ -453,6 +453,7 @@ $(document).ready(function () {
             if (!!(history.pushState && history.state !== undefined)) {
                 window.history.pushState({}, '', url);
             }
+            bindGrid();
             //$(window).lazyLoad && $(window).lazyLoad('reload');
         });
     });
