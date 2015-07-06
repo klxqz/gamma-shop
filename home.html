@@ -33,6 +33,29 @@
 </div>
 <div class="row">
     <div id="center_column" class="center_column col-xs-12 col-sm-12">
+        {if !empty($theme_settings.banners)}
+            <div id="htmlcontent_home">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1 col-xs-6 ">
+                        <a href="{$theme_settings.banner3_url}"  class="item-link">
+                            <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
+                            <div class="item-html">
+                                {$theme_settings.banner3_description}
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-2 col-xs-6 ">
+                        <a href="{$theme_settings.banner4_url}"  class="item-link">
+                            <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
+                            <div class="item-html">
+                                {$theme_settings.banner4_description}
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        {/if}
+
         <ul id="home-page-tabs" class="nav nav-tabs clearfix">
             {if $theme_settings.productlist1}
                 <li>
@@ -115,29 +138,6 @@
 
         {if !empty($theme_settings.home_custom)}
             <div class="clearfix"> 
-
-                {if !empty($theme_settings.banners)}
-                    <div id="htmlcontent_home">
-                        <ul class="htmlcontent-home clearfix row">
-                            <li class="htmlcontent-item-1 col-xs-6 ">
-                                <a href="{$theme_settings.banner3_url}"  class="item-link">
-                                    <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
-                                    <div class="item-html">
-                                        {$theme_settings.banner3_description}
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="htmlcontent-item-2 col-xs-6 ">
-                                <a href="{$theme_settings.banner4_url}"  class="item-link">
-                                    <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
-                                    <div class="item-html">
-                                        {$theme_settings.banner4_description}
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                {/if}
 
                 {if $theme_settings.home_vk_widget}
                     <div id="facebook_block" class="col-xs-4 div7">

@@ -46,13 +46,14 @@
     margin: 0 0 0 -20px; }
 #subcategories ul li {
     float: left;
-    width: 128px;
     margin: 0 0 13px 20px;
     text-align: center;
 }
 #subcategories ul li .subcategory-image {
     padding: 0 0 8px 0; }
 #subcategories ul li .subcategory-image a {
+    width: 127px;
+    line-height: 108px;
     display: block;
     border: 1px solid #d6d4d4;
     padding: 9px;
@@ -60,7 +61,6 @@
     background: white; }
 #subcategories ul li .subcategory-image a img {
     max-width: 100%;
-    vertical-align: top;
     height: auto; }
 #subcategories ul li h5 {
     margin: 0; }

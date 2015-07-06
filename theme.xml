@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd">
-<theme id="gamma" system="0" vendor="985310" author="wa-plugins.ru" app="shop" parent_theme_id="site:gamma" version="1.0.0">
+<theme id="gamma" system="0" vendor="985310" author="wa-plugins.ru" app="shop" parent_theme_id="site:gamma" version="1.0.1">
     <name locale="en_US">Gamma</name>
     <name locale="ru_RU">Гамма</name>
     <files>
@@ -1180,6 +1180,10 @@ plugin_menu_section]]></value>
         <locale>
             <msgid>Price</msgid>
             <msgstr locale="ru_RU">Цена</msgstr>
+        </locale>
+        <locale>
+            <msgid>Search by query</msgid>
+            <msgstr locale="ru_RU">Поиск по запросу</msgstr>
         </locale>
         
         

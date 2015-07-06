@@ -1,4 +1,6 @@
+{wa_print_tree tree = $wa->shop->pages($page.id) class = "page-menu menu-h"  elem = '<a href=":url">:name</a>'}
 
 <h1 class="page-heading">{$page.name}</h1>
-
-{$page.content}
+<div class="page-content">
+    {$page.content}
+</div>
