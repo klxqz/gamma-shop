@@ -34,7 +34,7 @@
         {if !empty($theme_settings.color_scheme) && $theme_settings.color_scheme == 'custom_color_scheme'}
             {include file="`$wa_parent_theme_path`/custom.color_scheme.html" inline}
         {elseif !empty($theme_settings.color_scheme)}
-            <link rel="stylesheet" href="{$wa_theme_url}{$theme_settings.color_scheme}.css"  media="all"/>
+            <link rel="stylesheet" href="{$wa_parent_theme_url}{$theme_settings.color_scheme}.css"  media="all"/>
         {/if}
 
 
@@ -55,7 +55,7 @@
                         </div>
                     {/if}
                     <span id="view_full_size">
-                        <img id="bigpic" itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458x458', false)}"/>
+                        <img id="bigpic" itemprop="image" src="{shopImage::getUrl(['id' => $product.image_id, 'product_id' => $product.id, 'ext' => $product.ext], '458', false)}"/>
                     </span>
                 </div> <!-- end image-block -->
 
@@ -71,7 +71,7 @@
                             {foreach $product.images as $image}
                                 <li id="thumbnail_{$image.id}">
                                     <a 
-                                        href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458x458', false)}"
+                                        href="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '458', false)}"
                                         data-fancybox-group="other-views"
                                         class="fancybox shown">
                                         <img class="img-responsive" id="thumb_{$image.id}" src="{shopImage::getUrl(['id' => $image.id, 'product_id' => $product.id, 'ext' => $image.ext], '80x80', false)}" itemprop="image" />
@@ -178,7 +178,7 @@
 
             <!-- pb-right-column-->
             <div class="pb-right-column col-xs-12  col-sm-4 col-md-3">
-                {include file="product.cart.html" inline}
+                {include file="quick-view.product.cart.html" inline}
             </div> 
             <!-- end pb-right-column-->
         </div> <!-- end primary_block -->
@@ -186,6 +186,7 @@
         <script type="text/javascript">
             var contentOnly = true;
             var jqZoomEnabled = false;
+            var layer_cart = '{!empty($theme_settings.layer_cart)}';
         </script>
         <script type="text/javascript">
             var ruble_symbol = {$theme_settings.ruble_symbol};
@@ -201,7 +202,6 @@
         <script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.serialScroll.js" ></script>
         {if $theme_settings.use_uniform}<script type="text/javascript" src="{$wa_parent_theme_url}js/jquery.uniform.min.js"></script>{/if}
         <script type="text/javascript" src="{$wa_theme_url}product_script.js"></script>
-        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/jquery.tmpl.min.js"></script>
 
     </body>
 </html>

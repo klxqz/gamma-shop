@@ -76,7 +76,7 @@
                             {$wa->shop->productImgHtml($p, '0x567', ['class' => 'replace-2x img-responsive', 'alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
                         </a>
                         <div class="homeslider-description">
-                            <h2>{$p.name|escape}</h2>
+                            <h2>{$p.name}</h2>
                             {if $p.summary}
                                 <p>{$p.summary|strip_tags}</p>
                             {/if}
