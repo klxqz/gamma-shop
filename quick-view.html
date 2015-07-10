@@ -5,6 +5,10 @@
 <!--[if gt IE 8]> <html class="no-js ie9" lang="en"><![endif]-->
 <html lang="en">
     <head>
+        {$storage = $wa->session('theme_settings')}
+        {foreach $storage as $key => $value}
+            {$theme_settings[$key] = $value}
+        {/foreach}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>{$wa->title()|escape}</title>
         <meta name="Keywords" content="{$wa->meta('keywords')|escape}" />
