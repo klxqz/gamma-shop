@@ -145,6 +145,14 @@ function initFilterSlider() {
     });
 }
 
+function initClearViewed() {
+    $(document).on('click', '.bt_clean_viewed', function () {
+        $.cookie('viewed_products', '', {expires: 0, path: '/'});
+        location.reload();
+        return false;
+    });
+}
+
 function display(view)
 {
     var nbItemsPerLine = 3;
@@ -258,6 +266,7 @@ $(document).ready(function () {
     initCompare();
     initWishlist();
     bindGrid();
+    initClearViewed();
 
     if (quick_view) {
         initQuickView();

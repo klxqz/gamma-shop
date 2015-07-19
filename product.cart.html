@@ -27,17 +27,15 @@
                 {if $theme_settings.selectable_features_control == 'inline'}
                     <div class="options">
                         {foreach $features_selectable as $f}
+                            <strong>{$f.name}</strong>
                             <div class="inline-select{if $f.type == 'color'} color{/if}">
                                 {foreach $f.values as $v_id => $v}
                                     {if !isset($default_sku_features[$f.id])}
                                         {$default_sku_features[$f.id]=$v_id}
                                     {/if}
-                                    <a data-value="{$v_id}" href="#"class="btn btn-default{if $v_id == ifset($default_sku_features[$f.id])} active{/if}"{if $f.type == 'color'} style="{$v->style}; margin-bottom: 20px;"{/if}>
+                                    <a {if $f.type == 'color'}title="{strip_tags($v)|trim|escape}"{/if} data-value="{$v_id}" href="#"class="btn btn-default{if $v_id == ifset($default_sku_features[$f.id])} active{/if}"{if $f.type == 'color'} style="{$v->style}; margin-bottom: 20px;"{/if}>
                                         {if $f.type == 'color'}
-                                            &nbsp;<i class="icon16 checkmark color_checkmark"></i>
-                                        {/if}
-                                        {if $f.type == 'color'}
-                                            &nbsp;<span class="color_name">{strip_tags($v)}</span>
+                                            <span class="color_name" >&nbsp;</span>
                                         {else}
                                             {$v}
                                         {/if}

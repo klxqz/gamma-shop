@@ -118,12 +118,12 @@ ul.product_list.grid > li .product-container .left-block {
     /*background: #f4f4f4;*/
     position: relative; }
 ul.product_list.grid > li .product-container .product-image-container {
-    padding: 70px;
+    padding: 55px;
     margin-bottom: 13px; }
 ul.product_list.grid > li .product-container .product-image-container a.product_img_link{
-    line-height: 127px;
+    line-height: 147px;
     display: block;
-    height: 127px;}
+    height: 147px;}
 @media (min-width: 992px) and (max-width: 1199px) {
     ul.product_list.grid > li .product-container .product-image-container {
         padding: 50px; } 
@@ -682,7 +682,6 @@ h1 .order-status { font-size: 0.75em; margin-left: 10px; }
     .review-form .review-submit { padding-left: 0; }
     .review-form .wa-captcha img { margin-bottom: 10px; }
 }
-
 .zoomContainer{
     z-index: 999;
 }

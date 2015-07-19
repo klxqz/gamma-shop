@@ -795,16 +795,23 @@
             <name locale="en_US">Title block</name>
             <name locale="ru_RU">Название блока</name>
         </setting>
-        
-        
+
         <setting var="home_number_news" control_type="text">
             <value>5</value>
             <name locale="en_US">number of news.</name>
             <name locale="ru_RU">Количество новостей</name>
         </setting>
-        
-        
-        
+        <setting var="home_new_length" control_type="text">
+            <value>200</value>
+            <name locale="en_US">Specify the maximum length in characters post.</name>
+            <name locale="ru_RU">Укажите максимальную длинну новости в символах.</name>
+        </setting>
+        <setting var="home_new_img" control_type="checkbox">
+            <value>1</value>
+            <name locale="en_US">Show news</name>
+            <name locale="ru_RU">Показывать изображения</name>
+        </setting>
+              
         <setting var="setting_home_custom_title" control_type="text">
             <value></value>
             <name locale="en_US">
@@ -1185,10 +1192,15 @@ plugin_menu_section]]></value>
             <msgid>Search by query</msgid>
             <msgstr locale="ru_RU">Поиск по запросу</msgstr>
         </locale>
-        
+        <locale>
+            <msgid>Clear list</msgid>
+            <msgstr locale="ru_RU">Очистить список</msgstr>
+        </locale>
+        <locale>
+            <msgid>Show all</msgid>
+            <msgstr locale="ru_RU">Показать все</msgstr>
+        </locale>
         
         
     </locales>
-    
-    
 </theme>
