@@ -30,7 +30,7 @@
                          {/if}
                          data-name="{$p.name|escape}" 
                          data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-                         data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
+                         data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '178', false)}"
                          ></div>
                     <div class="product-image-container">
                         <a class="product_img_link" href="{$p.frontend_url}" title="{$p.name}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}" itemprop="url">

@@ -21,16 +21,13 @@
                                     {/if}
                                 </h3>
                                 <div class="credentials">
-                                    {if $post.user.posts_link}
-                                        <a href="{$post.user.posts_link}" class="username">{$post.user.name}</a>
-                                    {else}
-                                        <span class="username">{$post.user.name}</span>
-                                    {/if}
                                     {$post.datetime|wa_datetime:"humandate"}
                                 </div>
                                 {$img = ''}
                                 {if !empty($theme_settings.home_new_img) && preg_match('/<img.*src=\"(.*?)\"[^>]*>/', $post.text, $img)}
-                                    <img src="{$img[1]}" />
+                                    <div class="image">
+                                        <img class="img-responsive" src="{$img[1]}" />
+                                    </div>
                                 {/if}
                                 <p>
                                     {$post.text|strip_tags|truncate:$theme_settings.home_new_length}
