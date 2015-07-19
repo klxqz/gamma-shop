@@ -54,7 +54,7 @@
                              data-name="{$p.name|escape}" 
                              data-url="{$p.frontend_url}" 
                              data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-                             data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
+                             data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '178', false)}"
                              ></div>
                         {if count($products) > 2}
                             <div class="remove">
@@ -107,9 +107,6 @@
                                             <span>[`Add to cart`]</span>
                                         </button>
                                     </form>
-                                    <a title="[`More`]" href="{$wa->getUrl('/frontend/product/', ['product_url' => $p.url])}" class="button lnk_view btn btn-default">
-                                        <span>[`More`]</span>
-                                    </a>
                                 </div>
                             </div>
                         </div> <!-- end comparison_product_infos -->

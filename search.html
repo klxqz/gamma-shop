@@ -18,10 +18,9 @@
     {else}
         {$products = null}   
     {/if}
-{else}
+{elseif $wa->get('query')}
     {$is_products_pers = true}
     {$title = "[`Search by query`] «`$wa->get('query')|escape`»"}
-
 {/if}
 
 {$wa->title($title)}
@@ -82,6 +81,14 @@
     </div>
     <div class="top-pagination-content clearfix">
         <div class="compare-form">
+            {if $wa->get('list') == 'viewed_products'}
+                <a href="#" class="btn btn-default button button-medium bt_clean_viewed">
+                    <span>
+                        <i class="icon-trash"></i> [`Clear list`]
+                    </span>
+                </a>
+            {/if}
+
             <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
                 <span>
                     [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>
@@ -128,6 +135,13 @@
 <div class="content_sortPagiBar">
     <div class="bottom-pagination-content clearfix">
         <div class="compare-form">
+            {if $wa->get('list') == 'viewed_products'}
+                <a href="#" class="btn btn-default button button-medium bt_clean_viewed">
+                    <span>
+                        <i class="icon-trash"></i> [`Clear list`]
+                    </span>
+                </a>
+            {/if}
             <a href="{$wa->getUrl('/frontend/compare/', ['id' => implode(',', $compare) ])}" class="btn btn-default button button-medium bt_compare bt_compare_bottom" {if count($compare)<2}disabled="disabled"{/if}>
                 <span>
                     [`Compare`] (<strong class="total-compare-val">{count($compare)}</strong>) <i class="icon-chevron-right right"></i>

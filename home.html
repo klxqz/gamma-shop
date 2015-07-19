@@ -39,31 +39,29 @@
 </div>
 <div class="row">
     <div id="center_column" class="center_column col-xs-12 col-sm-12">
-        {if !empty($theme_settings.banners)}
+        {if !empty($theme_settings.banners) && ($theme_settings.banner3 || $theme_settings.banner4)}
             <div id="htmlcontent_home">
                 <ul class="htmlcontent-home clearfix row">
-                    <li class="htmlcontent-item-1 col-xs-6 ">
-                        <a id="show-pop-banner3" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
-                           data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
-                           Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
-                        <a href="{$theme_settings.banner3_url}"  class="item-link">
-                            <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
-                            <div class="item-html">
-                                {$theme_settings.banner3_description}
-                            </div>
-                        </a>
-                    </li>
-                    <li class="htmlcontent-item-2 col-xs-6 ">
-                        <a id="show-pop-banner4" href="#" class="btn btn-danger  show-pop center-block" data-animation="pop" 
-                           data-content="Вы можете самостоятельно загрузить изображение баннера, указать описание и ссылку для перехода по нажатию на баннер. 
-                           Все это настраивается прямо из админки, в настройках темы дизайна." data-title="Редактируемый баннер">+</a>
-                        <a href="{$theme_settings.banner4_url}"  class="item-link">
-                            <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
-                            <div class="item-html">
-                                {$theme_settings.banner4_description}
-                            </div>
-                        </a>
-                    </li>
+                    {if !empty($theme_settings.banner3)}
+                        <li class="htmlcontent-item-1 col-xs-6 ">
+                            <a href="{$theme_settings.banner3_url}"  class="item-link">
+                                <img src="{$wa_theme_url}{$theme_settings.banner3}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner3_description}
+                                </div>
+                            </a>
+                        </li>
+                    {/if}
+                    {if !empty($theme_settings.banner4)}
+                        <li class="htmlcontent-item-2 col-xs-6 ">
+                            <a href="{$theme_settings.banner4_url}"  class="item-link">
+                                <img src="{$wa_theme_url}{$theme_settings.banner4}"  class="item-img"/>
+                                <div class="item-html">
+                                    {$theme_settings.banner4_description}
+                                </div>
+                            </a>
+                        </li>
+                    {/if}
                 </ul>
             </div>
         {/if}
@@ -180,7 +178,6 @@
                         </div>
                     </div>
                 {/if}
-
                 {if $theme_settings.home_facebook_widget}
                     <div id="facebook_block" class="col-xs-4 div7">
                         <div class="div">
@@ -191,9 +188,6 @@
                         </div>
                     </div>
                 {/if}
-
-
-
                 <div id="cmsinfo_block">
                     <div class="col-xs-6">
                         <div class="div">

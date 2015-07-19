@@ -26,7 +26,7 @@
                          data-name="{$p.name|escape}" 
                          data-url="{$p.frontend_url}" 
                          data-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '80x80', false)}"
-                         data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '250', false)}"
+                         data-big-img="{shopImage::getUrl(['id' => $p.image_id, 'product_id' => $p.id, 'ext' => $p.ext, 'default' => "`$wa_theme_url`img/dummy200.png"], '178', false)}"
                          ></div>
 
                     <div class="product-image-container">
@@ -109,17 +109,12 @@
                                 <span>[`Add to cart`]</span>
                             </a>
                         </form>
-
-                        <a itemprop="url" class="button lnk_view btn btn-default" href="{$p.frontend_url}" title="View">
-                            <span>[`More`]</span>
-                        </a>
                     </div>
-                    <div class="color-list-container"> </div>
                     <div class="product-flags"></div>
                     {if !empty($theme_settings.availability_category)}
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="availability">
                             {if !($p.count === null || $p.count > 0)}
-                                <span class="out-of-stock">
+                                <span class="out-of-stock ">
                                     <link itemprop="availability" href="http://schema.org/OutOfStock" />
                                     {if $wa->shop->settings('ignore_stock_count')}[`Pre-order only`]{else}[`Out of stock`]{/if}
                                 </span>

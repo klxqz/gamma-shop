@@ -255,6 +255,7 @@ span.view_scroll_spacer {
 
 /* link list */
 #usefull_link_block {
+    margin-top: 20px;
     list-style-type: none; }
 #usefull_link_block li {
     margin: 0 0 8px 0; }
@@ -346,6 +347,7 @@ span.view_scroll_spacer {
     font-weight: 700;
     color: #bababa; }
 .pb-center-column #short_description_block {
+    margin-top: 10px;
     color: #666666; }
 .pb-center-column #short_description_block .buttons_bottom_block {
     display: none; }
@@ -955,4 +957,7 @@ Quick View Styles
 .share-buttons{
     display: block;
     margin-bottom: 20px;
+}
+#product-categories a, #product-tags a{
+    text-decoration: underline;
 }
